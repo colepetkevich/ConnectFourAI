@@ -1,9 +1,8 @@
 package engine;
 
 import java.awt.Font;
+import java.awt.FontMetrics;
 import java.awt.Graphics;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 
@@ -11,8 +10,8 @@ import javax.swing.JButton;
 
 public class Button extends UI implements MouseListener
 {	
-	//private JButton button;
 	private boolean isClickable;
+	private float fontScale;
 	
 	private Runnable mouseClickAction;
 	private Runnable mouseEnterAction;
@@ -51,16 +50,43 @@ public class Button extends UI implements MouseListener
 		component.setLayout(null);
 		
 		isClickable = true;
+		fontScale = 1;
 		mouseClickAction = mouseEnterAction = mouseExitAction = null;
-		
+
+		component.setFocusable(false);
 		component.addMouseListener(this);
+	}
+	
+	public void resizeUpdate()
+	{
+		scaleFontSize();
+	}
+	
+	private void scaleFontSize()
+	{
+		int fontSize = 1;
+		JButton button = (JButton) component;
+		Font font = button.getFont();
+		FontMetrics fontMetrics;
+
+		do
+		{
+			font = new Font(font.getName(), font.getStyle(), fontSize);
+			fontMetrics = button.getFontMetrics(font);
+			fontSize++;
+		} while (fontMetrics.getHeight() < fontScale * button.getHeight());
+		
+		((JButton) component).setFont(new Font(font.getName(), font.getStyle(), fontSize));
 	}
 	
 	public String getText() { return ((JButton) component).getText(); }
 	public void setText(String text) { ((JButton) component).setText(text); }
 	
 	public Font getFont() { return ((JButton) component).getFont(); }
-	public void setFont(Font font) { ((JButton) component).setFont(font); }
+	public void setFont(String name, int style) { ((JButton) component).setFont(new Font(name, style, ((JButton) component).getFont().getSize())); }
+	
+	public float getFontScale() { return fontScale; }
+	public void setFontScale(float fontScale) { this.fontScale = fontScale; }
 	
 	public boolean isClickable() { return isClickable; }
 	public void setClickable(boolean isClickable) { this.isClickable = isClickable; }

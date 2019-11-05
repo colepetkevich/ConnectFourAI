@@ -135,10 +135,10 @@ public class ConnectFour extends JFrame
 		
 		//creating resetButton
 		Button resetButton = new Button(currentScene.NORTH_WEST, currentScene);
-		resetButton.setText("RESET");
-		resetButton.setFont(new Font(resetButton.getFont().getName(), resetButton.getFont().getStyle(), 40));
-		resetButton.setLocalSize(.5f, .25f);
-		resetButton.setLocalPosition(.30f, -.175f);
+		resetButton.setText("Reset");
+		resetButton.setFontScale(.75f);
+		resetButton.setLocalSize(.5f, .2f);
+		resetButton.setLocalPosition(.30f, -.15f);
 		
 		//setting resetButton command
 		resetButton.setMouseClickAction(() ->

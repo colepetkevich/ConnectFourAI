@@ -36,7 +36,7 @@ public class ConnectFourBoard extends Drawable
 			Image tile = new Image(this, scene);
 			tile.setImage(BOARD_TILE_PATH);
 			tile.setLocalSize(width / columns, width / columns);
-			tile.setLocalPosition(getLocalPosition().x - width / 2 + tile.getLocalSize().x * (column + 0.5f), getLocalPosition().y + getLocalSize().y / 2 - tile.getLocalSize().y * (row - 0.5f));
+			tile.setLocalPosition(getLocalPosition().x - width / 2 + tile.getLocalSize().x * (column + 0.5f), getLocalPosition().y + height / 2 - tile.getLocalSize().y * (row + 0.5f));
 			//make tiles slightly bigger so that there are no gap between tiles
 			tile.setLocalSize(1.01f * tile.getLocalSize().x, 1.01f * tile.getLocalSize().y);
 		}
