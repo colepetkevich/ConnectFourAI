@@ -86,13 +86,14 @@ public class ConnectFour extends JFrame
 	public static final char RED = 'R';
 	public static final char YELLOW = 'Y';
 	public static final char EMPTY = ' ';
+	public static final int WIN_AMOUNT = 4; // How many tokens in a row to win? (Connect 4 or Connect 20?)
 	
 	private static final Color GAME_BACKGROUND_COLOR = Color.DARK_GRAY;
 	private static final Vector2 CONNECT_FOUR_POSITION = new Vector2(0, 0);
 	private static final float CONNECT_FOUR_HEIGHT = 1.5f;
 	private static final Vector2 CONNECT_FOUR_SIZE = new Vector2(CONNECT_FOUR_HEIGHT * COLUMNS / ROWS, CONNECT_FOUR_HEIGHT);
 	
-	private char[] connectFour;
+	private char[] connectFour; // MAIN BOARD
 	private char turn;
 	private Button[] inputButtons;
 	private void newGameScene()
@@ -231,7 +232,10 @@ public class ConnectFour extends JFrame
 			 index += COLUMNS;
 	
 		connectFour[index] = turn;
-		
+
+		System.out.println("H Check: " + horizontalCheck());
+		System.out.println("V Check: " + verticalCheck());
+
 		//returns the row that the token should be inserted to
 		return index / COLUMNS;
 	}
@@ -242,6 +246,68 @@ public class ConnectFour extends JFrame
 			turn = YELLOW;
 		else
 			turn = RED;
+	}
+
+	/** Method verticalCheck()
+	 * 	BRUTE FORCE way of finding 4 in a row matches VERTICALLY only
+	 * @return a team that has won vertically
+	 * returns empty if nobody has won vertically
+	 */
+	private char verticalCheck() {
+		int currentIndex = 0;
+		int inARow;
+		char currentColor = EMPTY;
+
+		for (int i = 0; i < COLUMNS; i++) {
+			inARow = 0;
+			currentColor = EMPTY;
+			currentIndex = i;
+			for (int j = 0; j < ROWS ; j++) {
+				if (currentColor == connectFour[currentIndex]) {
+					inARow++;
+				}
+				else {
+					inARow = 1;
+					currentColor = connectFour[currentIndex];
+				}
+				if (currentColor != EMPTY && inARow >= WIN_AMOUNT) {
+					return currentColor;
+				}
+				currentIndex+=COLUMNS;
+			}
+
+		}
+		return EMPTY;
+	}
+	/** Method horizontalCheck()
+	 * 	BRUTE FORCE way of finding 4 in a row matches HORIZONTALLY only
+	 * @return a team that has won horizontally
+	 * returns empty if nobody has won horizontally
+	 */
+	private char horizontalCheck() {
+		int currentIndex = 0;
+		int inARow;
+		char currentColor = EMPTY;
+
+		for (int i = 0; i < ROWS; i++) {
+			inARow = 0;
+			currentColor = EMPTY;
+			for (int j = 0; j < COLUMNS ; j++) {
+				if (currentColor == connectFour[currentIndex]) {
+					inARow++;
+				}
+				else {
+					inARow = 1;
+					currentColor = connectFour[currentIndex];
+				}
+				if (currentColor != EMPTY && inARow >= WIN_AMOUNT) {
+					return currentColor;
+				}
+				currentIndex++;
+			}
+
+		}
+		return EMPTY;
 	}
 	
 	private void createNewScene()
@@ -262,5 +328,6 @@ public class ConnectFour extends JFrame
 	public static void main(String[] args)
 	{
 		ConnectFour connectFour = new ConnectFour("Connect Four");
+
 	}
 }
