@@ -87,8 +87,8 @@ public class ConnectFour extends JFrame
 	public static final char YELLOW = 'Y';
 	public static final char EMPTY = ' ';
 	
-	private static final Color GAME_BACKGROUND_COLOR = Color.DARK_GRAY;
-	private static final Vector2 CONNECT_FOUR_POSITION = new Vector2(0, 0);
+	private static final Color GAME_BACKGROUND_COLOR = new Color(119, 165, 191);
+	private static final Vector2 CONNECT_FOUR_POSITION = new Vector2(0, -.05f);
 	private static final float CONNECT_FOUR_HEIGHT = 1.5f;
 	private static final Vector2 CONNECT_FOUR_SIZE = new Vector2(CONNECT_FOUR_HEIGHT * COLUMNS / ROWS, CONNECT_FOUR_HEIGHT);
 	
@@ -107,7 +107,9 @@ public class ConnectFour extends JFrame
 		turn = RED;	
 		//creating board graphics
 		ConnectFourBoard connectFourBoard = new ConnectFourBoard(currentScene);
+		connectFourBoard.setLocalPosition(CONNECT_FOUR_POSITION);
 		connectFourBoard.setBoard(CONNECT_FOUR_HEIGHT, ROWS, COLUMNS);
+
 		
 		//creating input buttons
 		inputButtons = new Button[COLUMNS];
