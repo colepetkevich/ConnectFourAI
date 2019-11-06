@@ -85,14 +85,15 @@ public class ConnectFour extends JFrame
 	public static final int COLUMNS = 7;
 	public static final char RED = 'R';
 	public static final char YELLOW = 'Y';
-	public static final char EMPTY = ' ';
+	public static final char EMPTY = 'E';
+	public static final int WIN_AMOUNT = 4; // How many tokens in a row to win? (Connect 4 or Connect 20?)
 	
 	private static final Color GAME_BACKGROUND_COLOR = new Color(119, 165, 191);
 	private static final Vector2 CONNECT_FOUR_POSITION = new Vector2(0, -.05f);
 	private static final float CONNECT_FOUR_HEIGHT = 1.5f;
 	private static final Vector2 CONNECT_FOUR_SIZE = new Vector2(CONNECT_FOUR_HEIGHT * COLUMNS / ROWS, CONNECT_FOUR_HEIGHT);
 	
-	private char[] connectFour;
+	private char[] connectFour; // MAIN BOARD
 	private char turn;
 	private Button[] inputButtons;
 	private void newGameScene()
@@ -233,7 +234,11 @@ public class ConnectFour extends JFrame
 			 index += COLUMNS;
 	
 		connectFour[index] = turn;
-		
+
+		System.out.println("RelH Check: " + relHorizontalCheck(index));
+		System.out.println("RelV Check: " + relVerticalCheck(index));
+		System.out.println("RelD Check: " + relDiagonalCheck(index));
+
 		//returns the row that the token should be inserted to
 		return index / COLUMNS;
 	}
@@ -245,6 +250,166 @@ public class ConnectFour extends JFrame
 		else
 			turn = RED;
 	}
+
+	/** relDiagonalCheck method
+	 * 	Checks the diagnols to the place you just inserted for wins
+	 * @param index
+	 * @return
+	 */
+	private char relDiagonalCheck(int index) {
+
+		int currentIndex = index;
+		// This while loop goes until the index is on the edge of the board
+		// This will specifically check the diagonal that looks like this:  \
+		// This means until either of these:
+		// index < COLUMNS   (TOP EDGE)
+		// index % COLUMNS == 0  (LEFT EDGE)
+		// index + COLUMNS >= COLUMNS * ROWS (BOTTOM EDGE)
+		// index % COLUMNS == COLUMNS - 1 (RIGHT EDGE)
+		while( !(currentIndex < COLUMNS) && currentIndex % COLUMNS != 0) {
+			currentIndex = currentIndex - COLUMNS - 1;
+		}
+
+		int inARow = 0;
+		char currentColor = EMPTY;
+		// This while loop goes until the index is on the other side of the board diagonally
+		while (!(currentIndex + COLUMNS >= COLUMNS * ROWS) && currentIndex % COLUMNS != COLUMNS - 1) {
+			if (connectFour[currentIndex] == currentColor) {
+				inARow++;
+			}
+			else {
+				inARow = 1;
+			}
+
+			if (currentColor != EMPTY && inARow >= WIN_AMOUNT) {
+				return currentColor;
+			}
+
+			currentColor = connectFour[currentIndex];
+			currentIndex = currentIndex + COLUMNS + 1;
+		}
+
+		if (connectFour[currentIndex] == currentColor) {
+			inARow++;
+		}
+		else {
+			inARow = 1;
+		}
+
+		if (currentColor != EMPTY && inARow >= WIN_AMOUNT) {
+			return currentColor;
+		}
+
+		// We are now done checking this diagonal:   \
+		// Now we must check this one:   /
+		// index < COLUMNS   (TOP EDGE)
+		// index % COLUMNS == 0  (LEFT EDGE)
+		// index + COLUMNS >= COLUMNS * ROWS (BOTTOM EDGE)
+		// index % COLUMNS == COLUMNS - 1 (RIGHT EDGE)
+		inARow = 0;
+		currentIndex = index;
+
+		// This while loop will go until currentIndex is on the edge
+		while( currentIndex % COLUMNS != COLUMNS - 1 && !(currentIndex < COLUMNS)) {
+			currentIndex = currentIndex - COLUMNS + 1;
+		}
+
+
+		while(currentIndex % COLUMNS != 0 && !(currentIndex + COLUMNS >= COLUMNS * ROWS)) {
+			System.out.println(currentIndex);
+			if (connectFour[currentIndex] == currentColor) {
+				inARow++;
+			}
+			else {
+				inARow = 1;
+			}
+
+			if (currentColor != EMPTY && inARow >= WIN_AMOUNT) {
+				return currentColor;
+			}
+
+			currentColor = connectFour[currentIndex];
+			currentIndex = currentIndex + COLUMNS - 1;
+		}
+
+		if (connectFour[currentIndex] == currentColor) {
+			inARow++;
+		}
+		else {
+			inARow = 1;
+		}
+
+		if (currentColor != EMPTY && inARow >= WIN_AMOUNT) {
+			return currentColor;
+		}
+
+		return EMPTY;
+	}
+
+	/** relVerticalCheck method
+	 * Less brute force (still not optimal)
+	 * Checks the entire column in which you just inserted for wins
+	 * @param index: The place you last inserted a token
+	 * @return The Winning team (Empty if none)
+	 */
+	private char relVerticalCheck(int index) {
+		// This while loop brings the index to the start of the column
+		while (index > COLUMNS - 1) {
+			index-= COLUMNS;
+		}
+
+		int inARow = 0;
+		char currentColor = EMPTY;
+
+		// This for loop iterates through the entire column
+		for (int i = 0; i < ROWS; i++) {
+			if (connectFour[index] == currentColor) {
+				inARow++;
+			}
+			else {
+				inARow = 1;
+				currentColor = connectFour[index];
+			}
+
+			if (currentColor != EMPTY && inARow >= WIN_AMOUNT) {
+				return currentColor;
+			}
+
+			index+=COLUMNS;
+		}
+		return EMPTY;
+	}
+    /** relHorizontalCheck method
+	 * Checks the entire row in which you just inserted for wins
+     * @param index: The place you last inserted a token
+     * @return The Winning team (Empty if none)
+     */
+	private char relHorizontalCheck(int index) {
+		// This while loop brings the index to the start of the row
+        while (index % COLUMNS != 0) {
+			index--;
+		}
+
+		int inARow = 0;
+        char currentColor = EMPTY;
+
+        // This for loop iterates through the entire row
+        for (int i = 0; i < COLUMNS; i++) {
+			if (connectFour[index] == currentColor) {
+				inARow++;
+			}
+			else {
+				inARow = 1;
+				currentColor = connectFour[index];
+			}
+
+			if (currentColor != EMPTY && inARow >= WIN_AMOUNT) {
+				return currentColor;
+			}
+			index++;
+		}
+        return EMPTY;
+    }
 	
 	private void createNewScene()
 	{
@@ -264,5 +429,6 @@ public class ConnectFour extends JFrame
 	public static void main(String[] args)
 	{
 		ConnectFour connectFour = new ConnectFour("Connect Four");
+
 	}
 }
