@@ -85,7 +85,7 @@ public class ConnectFour extends JFrame
 	public static final int COLUMNS = 7;
 	public static final char RED = 'R';
 	public static final char YELLOW = 'Y';
-	public static final char EMPTY = ' ';
+	public static final char EMPTY = 'E';
 	public static final int WIN_AMOUNT = 4; // How many tokens in a row to win? (Connect 4 or Connect 20?)
 	
 	private static final Color GAME_BACKGROUND_COLOR = Color.DARK_GRAY;
@@ -233,8 +233,9 @@ public class ConnectFour extends JFrame
 	
 		connectFour[index] = turn;
 
-		System.out.println("H Check: " + horizontalCheck());
-		System.out.println("V Check: " + verticalCheck());
+		System.out.println("RelH Check: " + relHorizontalCheck(index));
+		System.out.println("RelV Check: " + relVerticalCheck(index));
+		System.out.println("RelD Check: " + relDiagonalCheck(index));
 
 		//returns the row that the token should be inserted to
 		return index / COLUMNS;
@@ -248,67 +249,165 @@ public class ConnectFour extends JFrame
 			turn = RED;
 	}
 
-	/** Method verticalCheck()
-	 * 	BRUTE FORCE way of finding 4 in a row matches VERTICALLY only
-	 * @return a team that has won vertically
-	 * returns empty if nobody has won vertically
+	/** relDiagonalCheck method
+	 * 	Checks the diagnols to the place you just inserted for wins
+	 * @param index
+	 * @return
 	 */
-	private char verticalCheck() {
-		int currentIndex = 0;
-		int inARow;
-		char currentColor = EMPTY;
+	private char relDiagonalCheck(int index) {
 
-		for (int i = 0; i < COLUMNS; i++) {
-			inARow = 0;
-			currentColor = EMPTY;
-			currentIndex = i;
-			for (int j = 0; j < ROWS ; j++) {
-				if (currentColor == connectFour[currentIndex]) {
-					inARow++;
-				}
-				else {
-					inARow = 1;
-					currentColor = connectFour[currentIndex];
-				}
-				if (currentColor != EMPTY && inARow >= WIN_AMOUNT) {
-					return currentColor;
-				}
-				currentIndex+=COLUMNS;
+		int currentIndex = index;
+		// This while loop goes until the index is on the edge of the board
+		// This will specifically check the diagonal that looks like this:  \
+		// This means until either of these:
+		// index < COLUMNS   (TOP EDGE)
+		// index % COLUMNS == 0  (LEFT EDGE)
+		// index + COLUMNS >= COLUMNS * ROWS (BOTTOM EDGE)
+		// index % COLUMNS == COLUMNS - 1 (RIGHT EDGE)
+		while( !(currentIndex < COLUMNS) && currentIndex % COLUMNS != 0) {
+			currentIndex = currentIndex - COLUMNS - 1;
+		}
+
+		int inARow = 0;
+		char currentColor = EMPTY;
+		// This while loop goes until the index is on the other side of the board diagonally
+		while (!(currentIndex + COLUMNS >= COLUMNS * ROWS) && currentIndex % COLUMNS != COLUMNS - 1) {
+			if (connectFour[currentIndex] == currentColor) {
+				inARow++;
+			}
+			else {
+				inARow = 1;
 			}
 
+			if (currentColor != EMPTY && inARow >= WIN_AMOUNT) {
+				return currentColor;
+			}
+
+			currentColor = connectFour[currentIndex];
+			currentIndex = currentIndex + COLUMNS + 1;
 		}
+
+		if (connectFour[currentIndex] == currentColor) {
+			inARow++;
+		}
+		else {
+			inARow = 1;
+		}
+
+		if (currentColor != EMPTY && inARow >= WIN_AMOUNT) {
+			return currentColor;
+		}
+
+		// We are now done checking this diagonal:   \
+		// Now we must check this one:   /
+		// index < COLUMNS   (TOP EDGE)
+		// index % COLUMNS == 0  (LEFT EDGE)
+		// index + COLUMNS >= COLUMNS * ROWS (BOTTOM EDGE)
+		// index % COLUMNS == COLUMNS - 1 (RIGHT EDGE)
+		inARow = 0;
+		currentIndex = index;
+
+		// This while loop will go until currentIndex is on the edge
+		while( currentIndex % COLUMNS != COLUMNS - 1 && !(currentIndex < COLUMNS)) {
+			currentIndex = currentIndex - COLUMNS + 1;
+		}
+
+
+		while(currentIndex % COLUMNS != 0 && !(currentIndex + COLUMNS >= COLUMNS * ROWS)) {
+			System.out.println(currentIndex);
+			if (connectFour[currentIndex] == currentColor) {
+				inARow++;
+			}
+			else {
+				inARow = 1;
+			}
+
+			if (currentColor != EMPTY && inARow >= WIN_AMOUNT) {
+				return currentColor;
+			}
+
+			currentColor = connectFour[currentIndex];
+			currentIndex = currentIndex + COLUMNS - 1;
+		}
+
+		if (connectFour[currentIndex] == currentColor) {
+			inARow++;
+		}
+		else {
+			inARow = 1;
+		}
+
+		if (currentColor != EMPTY && inARow >= WIN_AMOUNT) {
+			return currentColor;
+		}
+
 		return EMPTY;
 	}
-	/** Method horizontalCheck()
-	 * 	BRUTE FORCE way of finding 4 in a row matches HORIZONTALLY only
-	 * @return a team that has won horizontally
-	 * returns empty if nobody has won horizontally
+
+	/** relVerticalCheck method
+	 * Less brute force (still not optimal)
+	 * Checks the entire column in which you just inserted for wins
+	 * @param index: The place you last inserted a token
+	 * @return The Winning team (Empty if none)
 	 */
-	private char horizontalCheck() {
-		int currentIndex = 0;
-		int inARow;
+	private char relVerticalCheck(int index) {
+		// This while loop brings the index to the start of the column
+		while (index > COLUMNS - 1) {
+			index-= COLUMNS;
+		}
+
+		int inARow = 0;
 		char currentColor = EMPTY;
 
+		// This for loop iterates through the entire column
 		for (int i = 0; i < ROWS; i++) {
-			inARow = 0;
-			currentColor = EMPTY;
-			for (int j = 0; j < COLUMNS ; j++) {
-				if (currentColor == connectFour[currentIndex]) {
-					inARow++;
-				}
-				else {
-					inARow = 1;
-					currentColor = connectFour[currentIndex];
-				}
-				if (currentColor != EMPTY && inARow >= WIN_AMOUNT) {
-					return currentColor;
-				}
-				currentIndex++;
+			if (connectFour[index] == currentColor) {
+				inARow++;
+			}
+			else {
+				inARow = 1;
+				currentColor = connectFour[index];
 			}
 
+			if (currentColor != EMPTY && inARow >= WIN_AMOUNT) {
+				return currentColor;
+			}
+
+			index+=COLUMNS;
 		}
 		return EMPTY;
 	}
+    /** relHorizontalCheck method
+	 * Checks the entire row in which you just inserted for wins
+     * @param index: The place you last inserted a token
+     * @return The Winning team (Empty if none)
+     */
+	private char relHorizontalCheck(int index) {
+		// This while loop brings the index to the start of the row
+        while (index % COLUMNS != 0) {
+			index--;
+		}
+
+		int inARow = 0;
+        char currentColor = EMPTY;
+
+        // This for loop iterates through the entire row
+        for (int i = 0; i < COLUMNS; i++) {
+			if (connectFour[index] == currentColor) {
+				inARow++;
+			}
+			else {
+				inARow = 1;
+				currentColor = connectFour[index];
+			}
+
+			if (currentColor != EMPTY && inARow >= WIN_AMOUNT) {
+				return currentColor;
+			}
+			index++;
+		}
+        return EMPTY;
+    }
 	
 	private void createNewScene()
 	{
