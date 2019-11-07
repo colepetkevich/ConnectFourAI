@@ -2,11 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="8d3ccd12-6f9c-4ac9-af96-39aa95077801" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/uiDesigner.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/test/graphtest/GraphTest.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/GameEngine.iml" beforeDir="false" afterPath="$PROJECT_DIR$/GameEngine.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/graph/Edge.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/graph/Edge.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/game/ConnectFour.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/game/ConnectFour.java" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/bin/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -18,40 +16,13 @@
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
       <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/test/graphtest/GraphTest.java">
+        <entry file="file://$PROJECT_DIR$/src/game/ConnectFour.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="102">
-              <caret line="6" lean-forward="true" selection-start-line="6" selection-end-line="6" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/graph/Edge.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="493">
-              <caret line="37" column="59" selection-start-line="37" selection-start-column="59" selection-end-line="37" selection-end-column="59" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/graph/MapGraph.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="153">
-              <caret line="9" column="28" selection-start-line="9" selection-start-column="24" selection-end-line="9" selection-end-column="28" />
+            <state relative-caret-position="34">
+              <caret line="2" column="7" selection-start-line="2" selection-start-column="7" selection-end-line="2" selection-end-column="7" />
               <folding>
-                <element signature="imports" expanded="true" />
+                <element signature="e#12950#12951#0" expanded="true" />
               </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/graph/AbstractGraph.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="663">
-              <caret line="43" column="48" selection-start-line="43" selection-start-column="48" selection-end-line="43" selection-end-column="48" />
             </state>
           </provider>
         </entry>
@@ -65,6 +36,11 @@
         <option value="Class" />
       </list>
     </option>
+  </component>
+  <component name="FindInProjectRecents">
+    <findStrings>
+      <find>insert</find>
+    </findStrings>
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -80,6 +56,7 @@
         <option value="$PROJECT_DIR$/test/GraphTest.java" />
         <option value="$PROJECT_DIR$/src/graph/Edge.java" />
         <option value="$PROJECT_DIR$/test/graphtest/GraphTest.java" />
+        <option value="$PROJECT_DIR$/src/game/ConnectFour.java" />
       </list>
     </option>
   </component>
@@ -105,23 +82,6 @@
               <item name="GameEngine" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
             </path>
-            <path>
-              <item name="GameEngine" type="b2602c69:ProjectViewProjectNode" />
-              <item name="GameEngine" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="graph" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="GameEngine" type="b2602c69:ProjectViewProjectNode" />
-              <item name="GameEngine" type="462c0819:PsiDirectoryNode" />
-              <item name="test" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="GameEngine" type="b2602c69:ProjectViewProjectNode" />
-              <item name="GameEngine" type="462c0819:PsiDirectoryNode" />
-              <item name="test" type="462c0819:PsiDirectoryNode" />
-              <item name="graphtest" type="462c0819:PsiDirectoryNode" />
-            </path>
           </expand>
           <select />
         </subPane>
@@ -135,7 +95,7 @@
     <property name="Repository.Attach.Annotations" value="false" />
     <property name="Repository.Attach.JavaDocs" value="false" />
     <property name="Repository.Attach.Sources" value="false" />
-    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1573112029023" />
+    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1573113052366" />
   </component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
@@ -154,93 +114,23 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="JUnit.GraphTest">
-    <configuration name="GraphTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+  <component name="RunManager">
+    <configuration name="ConnectFour" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="game.ConnectFour" />
       <module name="GameEngine" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="graphtest.*" />
+          <option name="PATTERN" value="game.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
-      <option name="PACKAGE_NAME" value="graphtest" />
-      <option name="MAIN_CLASS_NAME" value="graphtest.GraphTest" />
-      <option name="TEST_OBJECT" value="class" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="GraphTest.testDirected" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="GameEngine" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="graphtest.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <option name="PACKAGE_NAME" value="graphtest" />
-      <option name="MAIN_CLASS_NAME" value="graphtest.GraphTest" />
-      <option name="METHOD_NAME" value="testDirected" />
-      <option name="TEST_OBJECT" value="method" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="GraphTest.testEdgeIterator" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="GameEngine" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="graphtest.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <option name="PACKAGE_NAME" value="graphtest" />
-      <option name="MAIN_CLASS_NAME" value="graphtest.GraphTest" />
-      <option name="METHOD_NAME" value="testEdgeIterator" />
-      <option name="TEST_OBJECT" value="method" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="GraphTest.testInNotEdge" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="GameEngine" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="graphtest.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <option name="PACKAGE_NAME" value="graphtest" />
-      <option name="MAIN_CLASS_NAME" value="graphtest.GraphTest" />
-      <option name="METHOD_NAME" value="testInNotEdge" />
-      <option name="TEST_OBJECT" value="method" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="GraphTest.testNonDirected" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="GameEngine" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="graphtest.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <option name="PACKAGE_NAME" value="graphtest" />
-      <option name="MAIN_CLASS_NAME" value="graphtest.GraphTest" />
-      <option name="METHOD_NAME" value="testNonDirected" />
-      <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="JUnit.GraphTest" />
-        <item itemvalue="JUnit.GraphTest.testEdgeIterator" />
-        <item itemvalue="JUnit.GraphTest.testDirected" />
-        <item itemvalue="JUnit.GraphTest.testNonDirected" />
-        <item itemvalue="JUnit.GraphTest.testInNotEdge" />
+        <item itemvalue="Application.ConnectFour" />
       </list>
     </recent_temporary>
   </component>
@@ -258,9 +148,6 @@
     <servers />
   </component>
   <component name="TestHistory">
-    <history-entry file="GraphTest_testEdgeIterator - 2019.11.06 at 23h 33m 01s.xml">
-      <configuration name="GraphTest.testEdgeIterator" configurationId="JUnit" />
-    </history-entry>
     <history-entry file="GraphTest_testEdgeIterator - 2019.11.06 at 23h 33m 03s.xml">
       <configuration name="GraphTest.testEdgeIterator" configurationId="JUnit" />
     </history-entry>
@@ -288,12 +175,14 @@
     <history-entry file="GraphTest - 2019.11.06 at 23h 33m 38s.xml">
       <configuration name="GraphTest" configurationId="JUnit" />
     </history-entry>
+    <history-entry file="GraphTest - 2019.11.06 at 23h 34m 56s.xml">
+      <configuration name="GraphTest" configurationId="JUnit" />
+    </history-entry>
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
-    <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.086886995" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.086886995" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Image Layers" order="2" />
       <window_info id="Designer" order="3" />
@@ -302,7 +191,7 @@
       <window_info id="Favorites" order="6" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" />
-      <window_info active="true" anchor="bottom" id="Run" order="2" visible="true" weight="0.25135428" />
+      <window_info anchor="bottom" id="Run" order="2" weight="0.25135428" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
@@ -310,7 +199,7 @@
       <window_info anchor="bottom" id="Terminal" order="7" />
       <window_info anchor="bottom" id="Event Log" order="8" side_tool="true" />
       <window_info anchor="bottom" id="Version Control" order="9" />
-      <window_info anchor="bottom" id="Messages" order="10" />
+      <window_info anchor="bottom" id="Messages" order="10" weight="0.32936078" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
@@ -322,13 +211,6 @@
     </layout>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/game/ConnectFour.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="221">
-          <caret line="24" column="27" selection-start-line="24" selection-start-column="27" selection-end-line="24" selection-end-column="27" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/graph/ListGraph.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="935">
@@ -349,10 +231,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/graph/AbstractGraph.java">
+    <entry file="file://$PROJECT_DIR$/test/graphtest/GraphTest.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="663">
-          <caret line="43" column="48" selection-start-line="43" selection-start-column="48" selection-end-line="43" selection-end-column="48" />
+        <state relative-caret-position="102">
+          <caret line="6" lean-forward="true" selection-start-line="6" selection-end-line="6" />
         </state>
       </provider>
     </entry>
@@ -373,10 +255,26 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/test/graphtest/GraphTest.java">
+    <entry file="file://$PROJECT_DIR$/src/graph/AbstractGraph.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="102">
-          <caret line="6" lean-forward="true" selection-start-line="6" selection-end-line="6" />
+        <state relative-caret-position="663">
+          <caret line="43" column="48" selection-start-line="43" selection-start-column="48" selection-end-line="43" selection-end-column="48" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/.classpath">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/.project">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/game/ConnectFour.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="34">
+          <caret line="2" column="7" selection-start-line="2" selection-start-column="7" selection-end-line="2" selection-end-column="7" />
+          <folding>
+            <element signature="e#12950#12951#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>

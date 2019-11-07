@@ -1,7 +1,6 @@
 package game;
 
 import java.awt.Color;
-import java.awt.Font;
 import java.awt.image.BufferedImage;
 import java.util.Arrays;
 
@@ -95,6 +94,7 @@ public class ConnectFour extends JFrame
 	
 	private char[] connectFour; // MAIN BOARD
 	private char turn;
+	private char winner;
 	private Button[] inputButtons;
 	private void newGameScene()
 	{
@@ -105,7 +105,9 @@ public class ConnectFour extends JFrame
 		//creating board
 		connectFour = new char[ROWS * COLUMNS];
 		Arrays.fill(connectFour, EMPTY);
-		turn = RED;	
+		turn = RED;
+		winner = EMPTY;
+
 		//creating board graphics
 		ConnectFourBoard connectFourBoard = new ConnectFourBoard(currentScene);
 		connectFourBoard.setLocalPosition(CONNECT_FOUR_POSITION);
@@ -137,7 +139,7 @@ public class ConnectFour extends JFrame
 			button.setMouseEnterAction(() ->
 			{
 				//if it is possible to play a token in column then set it to color of turn and make it visible
-				if (canInsert(column))
+				if (canInsert(column) && winner == EMPTY)
 				{
 					if (turn == RED)
 						hoverToken.setRed();
@@ -155,7 +157,7 @@ public class ConnectFour extends JFrame
 			button.setMouseExitAction(() ->
 			{
 				//make hoverToken invisible
-				if (canInsert(column))
+				if (canInsert(column) && winner == EMPTY)
 					hoverToken.setVisibility(false);
 			});
 			
@@ -163,10 +165,16 @@ public class ConnectFour extends JFrame
 			button.setMouseClickAction(() -> 
 			{
 				//if row is valid, create a token and send it to the correct position
-				if (canInsert(column))
+				if (canInsert(column) && winner == EMPTY)
 				{
-					//insert 
-					int row = insert(column);
+					//insert token
+					int index = insert(column);
+					int row = index / COLUMNS;
+
+					//checks for winner
+					winner = getWinner(index);
+					if (winner != EMPTY)
+						System.out.println("Winner: " + winner);
 					
 					//create a new token
 					Token token = new Token(connectFourBoard, currentScene);
@@ -235,10 +243,8 @@ public class ConnectFour extends JFrame
 	
 		connectFour[index] = turn;
 
-		System.out.println("Who has won? : " + whoWon(index));
-
-		//returns the row that the token should be inserted to
-		return index / COLUMNS;
+		//returns the index that the token is inserted into
+		return index;
 	}
 	
 	private void nextTurn()
@@ -249,17 +255,17 @@ public class ConnectFour extends JFrame
 			turn = RED;
 	}
 	
-	private char whoWon(int index) {
+	private char getWinner(int index)
+	{
 		char winner = relHorizontalCheck(index);
-		if (winner != EMPTY) {
+		if (winner != EMPTY)
 			return winner;
-		}
+
 		winner = relDiagonalCheck(index);
-		if (winner != EMPTY) {
+		if (winner != EMPTY)
 			return winner;
-		}
-		winner = relVerticalCheck(index);
-		return winner;
+
+		return relVerticalCheck(index);
 	}
 
 	/** relDiagonalCheck method
