@@ -2,14 +2,11 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="8d3ccd12-6f9c-4ac9-af96-39aa95077801" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/src/graph/AbstractGraph.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/graph/Edge.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/graph/Graph.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/graph/ListGraph.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/graph/MapGraph.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/bin/.gitignore" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/engine/Scene.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/engine/Scene.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/game/ConnectFour.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/game/ConnectFour.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/uiDesigner.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/test/graphtest/GraphTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/GameEngine.iml" beforeDir="false" afterPath="$PROJECT_DIR$/GameEngine.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/graph/Edge.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/graph/Edge.java" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/bin/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -20,41 +17,20 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/graph/Graph.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="619">
-              <caret line="42" column="1" selection-start-line="42" selection-start-column="1" selection-end-line="42" selection-end-column="1" />
-            </state>
-          </provider>
-        </entry>
-      </file>
       <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/graph/AbstractGraph.java">
+        <entry file="file://$PROJECT_DIR$/test/graphtest/GraphTest.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="262">
-              <caret line="65" selection-start-line="65" selection-start-column="2" selection-end-line="67" selection-end-column="24" />
-              <folding>
-                <element signature="e#964#965#0" expanded="true" />
-                <element signature="e#991#992#0" expanded="true" />
-                <element signature="e#1128#1129#0" expanded="true" />
-                <element signature="e#1159#1160#0" expanded="true" />
-              </folding>
+            <state relative-caret-position="102">
+              <caret line="6" lean-forward="true" selection-start-line="6" selection-end-line="6" />
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/graph/ListGraph.java">
+        <entry file="file://$PROJECT_DIR$/src/graph/Edge.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="935">
-              <caret line="55" column="8" selection-start-line="55" selection-start-column="8" selection-end-line="55" selection-end-column="8" />
-              <folding>
-                <element signature="e#1012#1013#0" expanded="true" />
-                <element signature="e#1081#1082#0" expanded="true" />
-                <element signature="e#1475#1476#0" expanded="true" />
-                <element signature="e#1522#1523#0" expanded="true" />
-              </folding>
+            <state relative-caret-position="493">
+              <caret line="37" column="59" selection-start-line="37" selection-start-column="59" selection-end-line="37" selection-end-column="59" />
             </state>
           </provider>
         </entry>
@@ -62,17 +38,20 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/graph/MapGraph.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="68">
-              <caret line="4" lean-forward="true" selection-start-line="4" selection-end-line="4" />
+            <state relative-caret-position="153">
+              <caret line="9" column="28" selection-start-line="9" selection-start-column="24" selection-end-line="9" selection-end-column="28" />
               <folding>
                 <element signature="imports" expanded="true" />
-                <element signature="e#716#717#0" expanded="true" />
-                <element signature="e#778#779#0" expanded="true" />
-                <element signature="e#826#827#0" expanded="true" />
-                <element signature="e#880#881#0" expanded="true" />
-                <element signature="e#933#934#0" expanded="true" />
-                <element signature="e#997#998#0" expanded="true" />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/graph/AbstractGraph.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="663">
+              <caret line="43" column="48" selection-start-line="43" selection-start-column="48" selection-end-line="43" selection-end-column="48" />
             </state>
           </provider>
         </entry>
@@ -94,17 +73,20 @@
     <option name="CHANGED_PATHS">
       <list>
         <option value="$PROJECT_DIR$/src/graph/Graph.java" />
-        <option value="$PROJECT_DIR$/src/graph/Edge.java" />
         <option value="$PROJECT_DIR$/src/graph/ListGraph.java" />
         <option value="$PROJECT_DIR$/src/graph/MapGraph.java" />
         <option value="$PROJECT_DIR$/src/graph/AbstractGraph.java" />
+        <option value="$PROJECT_DIR$/src/graph/GraphTest.java" />
+        <option value="$PROJECT_DIR$/test/GraphTest.java" />
+        <option value="$PROJECT_DIR$/src/graph/Edge.java" />
+        <option value="$PROJECT_DIR$/test/graphtest/GraphTest.java" />
       </list>
     </option>
   </component>
-  <component name="ProjectFrameBounds" extendedState="1">
-    <option name="x" value="-8" />
-    <option name="width" value="977" />
-    <option name="height" value="1038" />
+  <component name="ProjectFrameBounds" extendedState="6">
+    <option name="x" value="950" />
+    <option name="width" value="782" />
+    <option name="height" value="830" />
   </component>
   <component name="ProjectView">
     <navigator proportions="" version="1">
@@ -121,11 +103,6 @@
             <path>
               <item name="GameEngine" type="b2602c69:ProjectViewProjectNode" />
               <item name="GameEngine" type="462c0819:PsiDirectoryNode" />
-              <item name="res" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="GameEngine" type="b2602c69:ProjectViewProjectNode" />
-              <item name="GameEngine" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
@@ -133,6 +110,17 @@
               <item name="GameEngine" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
               <item name="graph" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="GameEngine" type="b2602c69:ProjectViewProjectNode" />
+              <item name="GameEngine" type="462c0819:PsiDirectoryNode" />
+              <item name="test" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="GameEngine" type="b2602c69:ProjectViewProjectNode" />
+              <item name="GameEngine" type="462c0819:PsiDirectoryNode" />
+              <item name="test" type="462c0819:PsiDirectoryNode" />
+              <item name="graphtest" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
@@ -143,7 +131,16 @@
     </panes>
   </component>
   <component name="PropertiesComponent">
-    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1573099092830" />
+    <property name="Downloaded.Files.Path.Enabled" value="false" />
+    <property name="Repository.Attach.Annotations" value="false" />
+    <property name="Repository.Attach.JavaDocs" value="false" />
+    <property name="Repository.Attach.Sources" value="false" />
+    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1573112029023" />
+  </component>
+  <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\cpetk\OneDrive\Documents\Projects\GameEngine\test" />
+    </key>
   </component>
   <component name="RunDashboard">
     <option name="ruleStates">
@@ -157,23 +154,93 @@
       </list>
     </option>
   </component>
-  <component name="RunManager">
-    <configuration name="ConnectFour" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="game.ConnectFour" />
+  <component name="RunManager" selected="JUnit.GraphTest">
+    <configuration name="GraphTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="GameEngine" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="game.*" />
+          <option name="PATTERN" value="graphtest.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
+      <option name="PACKAGE_NAME" value="graphtest" />
+      <option name="MAIN_CLASS_NAME" value="graphtest.GraphTest" />
+      <option name="TEST_OBJECT" value="class" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="GraphTest.testDirected" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="GameEngine" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="graphtest.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="graphtest" />
+      <option name="MAIN_CLASS_NAME" value="graphtest.GraphTest" />
+      <option name="METHOD_NAME" value="testDirected" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="GraphTest.testEdgeIterator" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="GameEngine" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="graphtest.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="graphtest" />
+      <option name="MAIN_CLASS_NAME" value="graphtest.GraphTest" />
+      <option name="METHOD_NAME" value="testEdgeIterator" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="GraphTest.testInNotEdge" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="GameEngine" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="graphtest.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="graphtest" />
+      <option name="MAIN_CLASS_NAME" value="graphtest.GraphTest" />
+      <option name="METHOD_NAME" value="testInNotEdge" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="GraphTest.testNonDirected" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="GameEngine" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="graphtest.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="graphtest" />
+      <option name="MAIN_CLASS_NAME" value="graphtest.GraphTest" />
+      <option name="METHOD_NAME" value="testNonDirected" />
+      <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="Application.ConnectFour" />
+        <item itemvalue="JUnit.GraphTest" />
+        <item itemvalue="JUnit.GraphTest.testEdgeIterator" />
+        <item itemvalue="JUnit.GraphTest.testDirected" />
+        <item itemvalue="JUnit.GraphTest.testNonDirected" />
+        <item itemvalue="JUnit.GraphTest.testInNotEdge" />
       </list>
     </recent_temporary>
   </component>
@@ -190,11 +257,43 @@
     </task>
     <servers />
   </component>
+  <component name="TestHistory">
+    <history-entry file="GraphTest_testEdgeIterator - 2019.11.06 at 23h 33m 01s.xml">
+      <configuration name="GraphTest.testEdgeIterator" configurationId="JUnit" />
+    </history-entry>
+    <history-entry file="GraphTest_testEdgeIterator - 2019.11.06 at 23h 33m 03s.xml">
+      <configuration name="GraphTest.testEdgeIterator" configurationId="JUnit" />
+    </history-entry>
+    <history-entry file="GraphTest_testEdgeIterator - 2019.11.06 at 23h 33m 04s.xml">
+      <configuration name="GraphTest.testEdgeIterator" configurationId="JUnit" />
+    </history-entry>
+    <history-entry file="GraphTest_testEdgeIterator - 2019.11.06 at 23h 33m 22s.xml">
+      <configuration name="GraphTest.testEdgeIterator" configurationId="JUnit" />
+    </history-entry>
+    <history-entry file="GraphTest_testEdgeIterator - 2019.11.06 at 23h 33m 24s.xml">
+      <configuration name="GraphTest.testEdgeIterator" configurationId="JUnit" />
+    </history-entry>
+    <history-entry file="GraphTest_testEdgeIterator - 2019.11.06 at 23h 33m 26s.xml">
+      <configuration name="GraphTest.testEdgeIterator" configurationId="JUnit" />
+    </history-entry>
+    <history-entry file="GraphTest_testEdgeIterator - 2019.11.06 at 23h 33m 29s.xml">
+      <configuration name="GraphTest.testEdgeIterator" configurationId="JUnit" />
+    </history-entry>
+    <history-entry file="GraphTest_testEdgeIterator - 2019.11.06 at 23h 33m 30s.xml">
+      <configuration name="GraphTest.testEdgeIterator" configurationId="JUnit" />
+    </history-entry>
+    <history-entry file="GraphTest_testEdgeIterator - 2019.11.06 at 23h 33m 32s.xml">
+      <configuration name="GraphTest.testEdgeIterator" configurationId="JUnit" />
+    </history-entry>
+    <history-entry file="GraphTest - 2019.11.06 at 23h 33m 38s.xml">
+      <configuration name="GraphTest" configurationId="JUnit" />
+    </history-entry>
+  </component>
   <component name="ToolWindowManager">
-    <frame x="-6" y="0" width="781" height="830" extended-state="0" />
+    <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.22607489" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.086886995" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Image Layers" order="2" />
       <window_info id="Designer" order="3" />
@@ -203,7 +302,7 @@
       <window_info id="Favorites" order="6" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" />
-      <window_info anchor="bottom" id="Run" order="2" weight="0.3286119" />
+      <window_info active="true" anchor="bottom" id="Run" order="2" visible="true" weight="0.25135428" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
@@ -230,28 +329,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/graph/Edge.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="565">
-          <caret line="37" column="35" selection-start-line="37" selection-start-column="35" selection-end-line="37" selection-end-column="35" />
-          <folding>
-            <element signature="e#442#443#0" expanded="true" />
-            <element signature="e#522#523#0" expanded="true" />
-            <element signature="e#726#727#0" expanded="true" />
-            <element signature="e#769#770#0" expanded="true" />
-            <element signature="e#801#802#0" expanded="true" />
-            <element signature="e#874#875#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/graph/Graph.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="619">
-          <caret line="42" column="1" selection-start-line="42" selection-start-column="1" selection-end-line="42" selection-end-column="1" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/graph/ListGraph.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="935">
@@ -265,32 +342,41 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/graph/MapGraph.java">
+    <entry file="file://$PROJECT_DIR$/src/graph/Graph.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="68">
-          <caret line="4" lean-forward="true" selection-start-line="4" selection-end-line="4" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#716#717#0" expanded="true" />
-            <element signature="e#778#779#0" expanded="true" />
-            <element signature="e#826#827#0" expanded="true" />
-            <element signature="e#880#881#0" expanded="true" />
-            <element signature="e#933#934#0" expanded="true" />
-            <element signature="e#997#998#0" expanded="true" />
-          </folding>
+        <state relative-caret-position="524">
+          <caret line="42" column="1" selection-start-line="42" selection-start-column="1" selection-end-line="42" selection-end-column="1" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/graph/AbstractGraph.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="262">
-          <caret line="65" selection-start-line="65" selection-start-column="2" selection-end-line="67" selection-end-column="24" />
+        <state relative-caret-position="663">
+          <caret line="43" column="48" selection-start-line="43" selection-start-column="48" selection-end-line="43" selection-end-column="48" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/graph/Edge.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="493">
+          <caret line="37" column="59" selection-start-line="37" selection-start-column="59" selection-end-line="37" selection-end-column="59" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/graph/MapGraph.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="153">
+          <caret line="9" column="28" selection-start-line="9" selection-start-column="24" selection-end-line="9" selection-end-column="28" />
           <folding>
-            <element signature="e#964#965#0" expanded="true" />
-            <element signature="e#991#992#0" expanded="true" />
-            <element signature="e#1128#1129#0" expanded="true" />
-            <element signature="e#1159#1160#0" expanded="true" />
+            <element signature="imports" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/test/graphtest/GraphTest.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="102">
+          <caret line="6" lean-forward="true" selection-start-line="6" selection-end-line="6" />
         </state>
       </provider>
     </entry>

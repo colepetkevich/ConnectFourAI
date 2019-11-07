@@ -35,7 +35,7 @@ public class Edge
 
     public String toString()
     {
-        return "W: " + weight + "@ Src: " + source + ", Dst: " + destination;
+        return "W: " + weight + " @ Src: " + source + ", Dest: " + destination;
     }
 
 }
