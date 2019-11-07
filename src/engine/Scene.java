@@ -65,22 +65,22 @@ public class Scene extends JPanel implements Runnable, Updatable
 		isActive = false;
 		
 		//creating second timer for fps counter
-		printFPS = new ActionListener()
-		{   
-            public void actionPerformed(ActionEvent event)
-            {
-            	if (isActive)
-            	{
-            		System.out.println("fps: " + fps);
-            		fps = 0;
-            	}
-            	else
-            		secondTimer.stop();
-            }
-        };
-		secondTimer = new Timer(1000, printFPS);
-		secondTimer.start();
-		fps = 0;
+//		printFPS = new ActionListener()
+//		{   
+//            public void actionPerformed(ActionEvent event)
+//            {
+//            	if (isActive)
+//            	{
+//            		System.out.println("fps: " + fps);
+//            		fps = 0;
+//            	}
+//            	else
+//            		secondTimer.stop();
+//            }
+//        };
+//		secondTimer = new Timer(1000, printFPS);
+//		secondTimer.start();
+//		fps = 0;
 		
 		//default backgroundColor
 		backgroundColor = Color.BLACK;
@@ -175,11 +175,6 @@ public class Scene extends JPanel implements Runnable, Updatable
 				  //System.out.println("Resized");
 			  }
 		});
-	}
-	
-	private void secondTimer()
-	{
-		
 	}
 	
 	public void run() 

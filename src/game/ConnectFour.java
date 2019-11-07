@@ -235,9 +235,7 @@ public class ConnectFour extends JFrame
 	
 		connectFour[index] = turn;
 
-		System.out.println("RelH Check: " + relHorizontalCheck(index));
-		System.out.println("RelV Check: " + relVerticalCheck(index));
-		System.out.println("RelD Check: " + relDiagonalCheck(index));
+		System.out.println("Who has won? : " + whoWon(index));
 
 		//returns the row that the token should be inserted to
 		return index / COLUMNS;
@@ -249,6 +247,19 @@ public class ConnectFour extends JFrame
 			turn = YELLOW;
 		else
 			turn = RED;
+	}
+	
+	private char whoWon(int index) {
+		char winner = relHorizontalCheck(index);
+		if (winner != EMPTY) {
+			return winner;
+		}
+		winner = relDiagonalCheck(index);
+		if (winner != EMPTY) {
+			return winner;
+		}
+		winner = relVerticalCheck(index);
+		return winner;
 	}
 
 	/** relDiagonalCheck method
@@ -316,7 +327,6 @@ public class ConnectFour extends JFrame
 
 
 		while(currentIndex % COLUMNS != 0 && !(currentIndex + COLUMNS >= COLUMNS * ROWS)) {
-			System.out.println(currentIndex);
 			if (connectFour[currentIndex] == currentColor) {
 				inARow++;
 			}
@@ -429,6 +439,5 @@ public class ConnectFour extends JFrame
 	public static void main(String[] args)
 	{
 		ConnectFour connectFour = new ConnectFour("Connect Four");
-
 	}
 }
