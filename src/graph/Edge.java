@@ -2,15 +2,15 @@ package graph;
 
 public class Edge
 {
-    private int source;
-    private int destination;
-    private double weight;
+    protected int source;
+    protected int destination;
+    protected double weight;
 
     public Edge(int source, int destination)
     {
         this.source = source;
         this.destination = destination;
-        this.weight = 0.0;
+        this.weight = 1.0;
     }
 
     public Edge(int source, int destination, double weight)
