@@ -1,8 +1,10 @@
 package neuralnetwork;
 
 import graph.Edge;
-import graph.MapGraph;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Iterator;
 import java.util.Random;
 
 public class NeuralNetwork
@@ -14,7 +16,7 @@ public class NeuralNetwork
     private int outputCount;
 
     private Neuron[] neurons;
-    private MapGraph weights;
+    private WeightNetwork weights;
 
     public NeuralNetwork(int... layerCounts)
     {
@@ -33,7 +35,7 @@ public class NeuralNetwork
 
         //instantiating data structures for Neurons and weights
         neurons = new Neuron[totalNeurons];
-        weights = new MapGraph(totalNeurons, false);
+        weights = new WeightNetwork(totalNeurons);
 
         //creating Neurons
         for (int i = 0; i < totalNeurons; i++)
@@ -63,9 +65,9 @@ public class NeuralNetwork
 
         //determines output using the outputs of output Neurons
         double[] output = new double[outputCount];
-        int initialIndex = neurons.length - outputCount - 1;
+        int initialOutputIndex = neurons.length - outputCount;
         for(int i = 0; i < outputCount; i++)
-            output[i] = neurons[initialIndex + i].getOutput();
+            output[i] = neurons[initialOutputIndex + i].getOutput();
 
         return output;
     }
@@ -80,13 +82,164 @@ public class NeuralNetwork
     //forward propagates through NeuralNetwork
     private void forwardPropagate(double[] input)
     {
+        for (Neuron neuron: neurons)
+        {
+            //finding the index of neuron
+            int index = neuron.getIndex();
 
+            //if the neuron is an input Neuron, set the correct index of input as the Neuron's output
+            if (index < inputCount)
+                neuron.setOutput(input[index]);
+            //otherwise calculate its input and output
+            else
+            {
+                //calculating Neuron's input
+                double neuronInput = neuron.getBias();
+                for (Iterator<Edge> previousWeights = weights.previousWeights(index); previousWeights.hasNext();)
+                {
+                    Edge weight = previousWeights.next();
+                    neuronInput += weight.getWeight() * neurons[weight.getDestination()].getOutput();
+                }
+
+                //setting the Neuron's input and output
+                neuron.setInput(neuronInput);
+                neuron.setOutput(activation(neuronInput));
+            }
+        }
     }
 
     //back propagates through NeuralNetwork
     private void backPropagate(double[] targetOutput)
     {
+        int initialOutputIndex = neurons.length - outputCount;
+        int targetOutputIndex = targetOutput.length - 1;
 
+        //iterating through neurons backwards
+        for (int index = neurons.length - 1; index >= 0; index--)
+        {
+            //finding the Neuron at the current index
+            Neuron neuron = neurons[index];
+
+            //if the neuron is an output Neuron
+            //set the Neuron's dError/dOuput, dError/dInput, and bais using the targerOutput
+            if (index >= initialOutputIndex)
+                neuron.setdEdO(errorDerivative(neuron.getOutput(), targetOutput[targetOutputIndex--]));
+            //otherwise the neuron is not an output Neuron
+            else
+            {
+                //set weight values for all weights attached to neuron
+                double dEdO = 0.0;
+                for (Iterator<Edge> nextWeights = weights.nextWeights(index); nextWeights.hasNext();)
+                {
+                    Edge weight = nextWeights.next();
+                    Neuron nextNeuron = neurons[weight.getDestination()];
+
+                    //calculating new weight value
+                    double newWeightValue = weight.getWeight() - LEARNING_RATE * neuron.getOutput() * nextNeuron.getdEdI();
+
+                    //setting the weight of current weight and its reverse weight
+                    weight.setWeight(newWeightValue);
+                    Edge reverseWeight = weights.getWeight(weight.getDestination(), weight.getSource());
+                    reverseWeight.setWeight(newWeightValue);
+
+                    dEdO += newWeightValue + nextNeuron.getdEdI();
+                }
+
+                //set the Neuron's dError/dOuput
+                neuron.setdEdO(dEdO);
+            }
+
+            //set Neuruon's dError/dInput, and bias
+            neuron.setdEdI(activationDerivative(neuron.getInput()) * neuron.getdEdO());
+            neuron.setBias(neuron.getBias() - BIAS_LEARNING_RATE * neuron.getdEdI());
+        }
     }
 
+    public double getAccuracy(ArrayList<double[]> inputs, ArrayList<double[]> outputs)
+    {
+        int passes = 0;
+
+        for (int i = 0; i < inputs.size(); i++)
+        {
+            //getting the prediction arrays from inputs array list and storing a copy of them
+            double[] prediction = calculate(inputs.get(i));
+            prediction = Arrays.copyOf(prediction, prediction.length);
+
+            //getting the output array
+            //no copy needed as it will not be modified
+            int outputIndex = maxIndex(outputs.get(i));
+
+            //make sure the prediction is a valid move
+            int predictionIndex = maxIndex(prediction);
+
+            //if prediction is valid count it as a pass
+            if (predictionIndex == outputIndex)
+                passes++;
+        }
+
+        return (double) passes / inputs.size();
+    }
+
+    public double getMeanSquaredError(ArrayList<double[]> inputs, ArrayList<double[]> outputs)
+    {
+        double meanSquaredError = 0;
+
+        for (int i = 0; i < inputs.size(); i++)
+        {
+            //getting the prediction arrays from inputs array list and storing a copy of them
+            double[] prediction = calculate(inputs.get(i));
+            prediction = Arrays.copyOf(prediction, prediction.length);
+
+            //System.out.println(Arrays.toString(prediction) + "\t" + Arrays.toString(outputs.get(i)));
+
+            for (int j = 0; j < prediction.length; j++)
+                meanSquaredError += error(outputs.get(i)[j], prediction[j]);
+
+        }
+
+        return 2 * meanSquaredError / inputs.size();
+    }
+
+    //activation function
+    private static double activation(double x)
+    {
+        return 1 / (1 + Math.exp(-x));
+    }
+
+    //derivative of activation function
+    private static double activationDerivative(double x)
+    {
+        return activation(x) * (1 - activation(x));
+    }
+
+    //error function
+    private static double error(double output, double targetOutput)
+    {
+        //1/2(output - targetOutput)^2
+        double diff = output - targetOutput;
+        return 0.5 * diff * diff;
+    }
+
+    //derivative of error function
+    private static double errorDerivative(double output, double targetOutput)
+    {
+        return output - targetOutput;
+    }
+
+    //returns max index of array
+    public static int maxIndex(double[] array)
+    {
+        int index = 0;
+        double max = Double.MIN_VALUE;
+
+        for (int i = 0; i < array.length; i++)
+        {
+            if (array[i] > max)
+            {
+                max = array[i];
+                index = i;
+            }
+        }
+        return index;
+    }
 }

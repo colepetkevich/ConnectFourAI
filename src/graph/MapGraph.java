@@ -5,7 +5,7 @@ import java.util.LinkedHashMap;
 
 public class MapGraph extends AbstractGraph
 {
-    protected LinkedHashMap<Integer, Edge>[] outgoingEdges;
+    private LinkedHashMap<Integer, Edge>[] outgoingEdges;
 
     public MapGraph(int numV, boolean isDirected)
     {

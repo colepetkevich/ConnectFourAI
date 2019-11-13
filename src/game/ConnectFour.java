@@ -39,6 +39,7 @@ public class ConnectFour extends JFrame
 	private static final Vector2 FIRST_BUTTON_POSITION = new Vector2(0, -0.05f);
 	private static final float BUTTON_MARGIN = 0.05f;
 	private static final float BUTTON_FONT_SCALE = .85f;
+
 	private void newMainMenyScene()
 	{
 		createNewScene();
@@ -75,7 +76,11 @@ public class ConnectFour extends JFrame
 		twoPlayerButton.setLocalPosition(new Vector2(hardButton.getLocalPosition().x, hardButton.getLocalPosition().y - hardButton.getLocalSize().y - BUTTON_MARGIN));
 		twoPlayerButton.setText("Two Player");
 		twoPlayerButton.setFontScale(BUTTON_FONT_SCALE);
-		twoPlayerButton.setMouseClickAction(() -> { newGameScene(); });
+		twoPlayerButton.setMouseClickAction(() ->
+		{
+			gameMode = TWO_PLAYER;
+			newGameScene();
+		});
 		
 		currentScene.initialize(this);
 	}
@@ -84,18 +89,26 @@ public class ConnectFour extends JFrame
 	public static final int COLUMNS = 7;
 	public static final char RED = 'R';
 	public static final char YELLOW = 'Y';
-	public static final char EMPTY = 'E';
+	public static final char EMPTY = ' ';
 	public static final int WIN_AMOUNT = 4; // How many tokens in a row to win? (Connect 4 or Connect 20?)
 	
 	private static final Color GAME_BACKGROUND_COLOR = new Color(119, 165, 191);
 	private static final Vector2 CONNECT_FOUR_POSITION = new Vector2(0, -.05f);
 	private static final float CONNECT_FOUR_HEIGHT = 1.5f;
 	private static final Vector2 CONNECT_FOUR_SIZE = new Vector2(CONNECT_FOUR_HEIGHT * COLUMNS / ROWS, CONNECT_FOUR_HEIGHT);
-	
+
 	private char[] connectFour; // MAIN BOARD
 	private char turn;
 	private char winner;
+	private DataSetHandler dataSetHandler;
 	private Button[] inputButtons;
+
+	//game modes
+	private int gameMode;
+	private static final int EASY = 0;
+	private static final int MEDIUM = 1;
+	private static final int HARD = 2;
+	private static final int TWO_PLAYER = 3;
 	private void newGameScene()
 	{
 		//creating a new scene
@@ -107,6 +120,7 @@ public class ConnectFour extends JFrame
 		Arrays.fill(connectFour, EMPTY);
 		turn = RED;
 		winner = EMPTY;
+		dataSetHandler = new DataSetHandler();
 
 		//creating board graphics
 		ConnectFourBoard connectFourBoard = new ConnectFourBoard(currentScene);
@@ -167,15 +181,26 @@ public class ConnectFour extends JFrame
 				//if row is valid, create a token and send it to the correct position
 				if (canInsert(column) && winner == EMPTY)
 				{
+					//if gameMode is two player and it is Yellow's turn, log current board and move
+					if (gameMode == TWO_PLAYER && turn == RED)
+							dataSetHandler.addData(Arrays.copyOf(connectFour, connectFour.length), column);
+
 					//insert token
 					int index = insert(column);
 					int row = index / COLUMNS;
 
 					//checks for winner
 					winner = getWinner(index);
-					if (winner != EMPTY)
-						System.out.println("Winner: " + winner);
-					
+					if (winner != EMPTY || boardFull())
+					{
+						System.out.println("Winner: " + (winner == EMPTY ? "Tie" : winner));
+
+						//if yellow is the winner or it is a tie game, then save the logged data
+						if (winner == RED || boardFull())
+							dataSetHandler.savaData();
+					}
+
+
 					//create a new token
 					Token token = new Token(connectFourBoard, currentScene);
 					token.setLocalSize(tokenSize);
@@ -266,6 +291,28 @@ public class ConnectFour extends JFrame
 			return winner;
 
 		return relVerticalCheck(index);
+	}
+
+	private boolean boardFull()
+	{
+		for (char move: connectFour)
+			if (move == EMPTY)
+				return false;
+		return true;
+	}
+
+	private void createNewScene()
+	{
+		if (currentScene != null)
+		{
+			currentScene.setEnabled(false);
+			currentScene.setActive(false);
+			remove(currentScene);
+		}
+
+		currentScene = new Scene();
+		add(currentScene);
+		currentScene.setLayout(null);
 	}
 
 	/** relDiagonalCheck method
@@ -426,20 +473,6 @@ public class ConnectFour extends JFrame
 		}
         return EMPTY;
     }
-	
-	private void createNewScene()
-	{
-		if (currentScene != null)
-		{
-			currentScene.setEnabled(false);
-			currentScene.setActive(false);
-			remove(currentScene); 
-		}
-		
-		currentScene = new Scene();
-		add(currentScene);
-		currentScene.setLayout(null);
-	}
 	
 	//main method
 	public static void main(String[] args)
