@@ -8,8 +8,8 @@ import engine.Time;
 
 public class Token extends Image
 {
-	private static final String RED_TOKEN_PATH = "res/RedToken.png";
-	private static final String YELLOW_TOKEN_PATH = "res/YellowToken.png";
+	private static final String RED_TOKEN_PATH = "res/images/RedToken.png";
+	private static final String YELLOW_TOKEN_PATH = "res/images/YellowToken.png";
 			
 	public Token(Scene scene)
 	{

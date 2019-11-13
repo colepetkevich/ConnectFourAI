@@ -2,6 +2,7 @@ package neuralnetwork;
 
 import graph.Edge;
 
+import java.io.*;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Iterator;
@@ -9,8 +10,8 @@ import java.util.Random;
 
 public class NeuralNetwork
 {
-    private static final double LEARNING_RATE = .01;
-    private static final double BIAS_LEARNING_RATE =.0025;
+    private static final double LEARNING_RATE = .001;
+    private static final double BIAS_LEARNING_RATE =.00025;
 
     private int inputCount;
     private int outputCount;
@@ -55,6 +56,12 @@ public class NeuralNetwork
                     weights.insert(new Edge(src, dest, random.nextGaussian() / Math.sqrt(layerCounts[i])));
             }
         }
+    }
+
+    //default constructor get data from data file path
+    public NeuralNetwork(String filePath)
+    {
+        readNetwork(filePath);
     }
 
     //calculates output based on input
@@ -198,6 +205,53 @@ public class NeuralNetwork
         }
 
         return 2 * meanSquaredError / inputs.size();
+    }
+
+    //saves network data
+    public void saveNetwork(String filePath)
+    {
+        ObjectOutputStream binaryOutput = null;
+        try
+        {
+            binaryOutput = new ObjectOutputStream(new FileOutputStream(filePath));
+            binaryOutput.writeObject(new NetworkData(neurons, weights, inputCount, outputCount));
+
+            binaryOutput.close();
+        }
+        catch (IOException e)
+        {
+            e.printStackTrace();
+        }
+    }
+
+    //reads network data
+    public void readNetwork(String filePath)
+    {
+        ObjectInputStream binaryInput = null;
+
+        try
+        {
+            binaryInput = new ObjectInputStream(new FileInputStream(filePath));
+            NetworkData data = (NetworkData) binaryInput.readObject();
+            neurons = data.neurons;
+            weights = data.weights;
+            inputCount = data.inputCount;
+            outputCount = data.outputCount;
+
+            binaryInput.close();
+        }
+        catch (FileNotFoundException e)
+        {
+            e.printStackTrace();
+        }
+        catch (IOException e)
+        {
+            e.printStackTrace();
+        }
+        catch (ClassNotFoundException e)
+        {
+            e.printStackTrace();
+        }
     }
 
     //activation function

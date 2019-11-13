@@ -2,21 +2,31 @@ package neuralnetwork;
 
 import game.DataSetHandler;
 
+import java.io.File;
 import java.time.LocalTime;
 import java.util.ArrayList;
-import java.util.Arrays;
 
 public class Trainer
 {
+    private static final String NEURAL_NETWORK_PATH = "res/files/NeuralNetwork.dat";
+
     public static void main(String[] args)
     {
-        NeuralNetwork nn = new NeuralNetwork(42, 7);
+        NeuralNetwork nn = null;
 
-        System.out.println("Training Began at " + LocalTime.now());
-        System.out.println();
+        if (new File(NEURAL_NETWORK_PATH).exists())
+            nn = new NeuralNetwork(NEURAL_NETWORK_PATH);
+            //otherwise create a new neural network
+        else
+            nn = new NeuralNetwork(42, 7);
 
         DataSetHandler dataSetHandler = new DataSetHandler();
         DataSetHandler.GameData gameData = dataSetHandler.readData();
+
+        System.out.println("Training Began at " + LocalTime.now());
+        System.out.println("Initial Accuracy: " + nn.getAccuracy(gameData.getInputs(), gameData.getOuputs()));
+        System.out.println("Initial Mean Squared Error: " + nn.getMeanSquaredError(gameData.getInputs(), gameData.getOuputs()));
+        System.out.println();
 
         for (int i = 0; i < 100000; i++)
         {
@@ -30,8 +40,11 @@ public class Trainer
             }
         }
 
+        //saving current neural network to binary file
+        nn.saveNetwork(NEURAL_NETWORK_PATH);
+
+        System.out.println("Training Ended at " + LocalTime.now());
         System.out.println("Final Accuracy: " + nn.getAccuracy(gameData.getInputs(), gameData.getOuputs()));
         System.out.println("Final Mean Squared Error: " + nn.getMeanSquaredError(gameData.getInputs(), gameData.getOuputs()));
-        System.out.println("Training Ended at " + LocalTime.now());
     }
 }

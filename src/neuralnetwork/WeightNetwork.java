@@ -3,9 +3,10 @@ package neuralnetwork;
 import graph.Edge;
 import graph.MapGraph;
 
+import java.io.Serializable;
 import java.util.Iterator;
 
-public class WeightNetwork
+public class WeightNetwork implements Serializable
 {
     private MapGraph nextWeights;
     private MapGraph previousWeights;

@@ -31,7 +31,7 @@ public class ConnectFour extends JFrame
 	
 	private static final Color MAIN_MENU_BACKGROUND_COLOR = new Color(246, 234, 123);
 	
-	private static final String LOGO_PATH = "res/Logo00.png";
+	private static final String LOGO_PATH = "res/images/Logo00.png";
 	private static final Vector2 LOGO_POSITION = new Vector2(0, 0.55f);
 	private static final float LOGO_HEIGHT = 0.875f;
 	

@@ -8,7 +8,7 @@ import engine.Scene;
 
 public class ConnectFourBoard extends Drawable
 { 	
-	private static final String BOARD_TILE_PATH = "res/BoardTile.png";
+	private static final String BOARD_TILE_PATH = "res/images/BoardTile.png";
 	
 	public ConnectFourBoard(Scene scene)
 	{

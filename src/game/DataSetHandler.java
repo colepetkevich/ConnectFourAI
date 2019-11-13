@@ -10,8 +10,7 @@ public class DataSetHandler
     public static final double INTERPRETED_YELLOW = 0.5;
     public static final double INTERPRETED_EMPTY = -1.0;
 
-    private static final String GAME_DATA_PATH = "src/game/GameData.txt";
-    private static final String NEURAL_NETWORK_PATH = "src/game/NeuralNetwork.txt";
+    private static final String GAME_DATA_PATH = "res/files/GameData.txt";
 
     private ArrayList<char[]> boards;
     private ArrayList<Integer> moves;
@@ -108,16 +107,6 @@ public class DataSetHandler
     {
         boards.clear();
         moves.clear();
-    }
-
-    public void saveNetwork()
-    {
-
-    }
-
-    public void readNetwork()
-    {
-
     }
 
     private void addAllOrientations(char[] board, int move)

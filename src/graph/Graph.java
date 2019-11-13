@@ -8,7 +8,8 @@ import java.util.*;
  provide a constructor that specifies the number of
  vertices and whether or not the graph is directed.
  */
-public interface Graph {
+public interface Graph
+{
     // Accessor Methods
     /** Return the number of vertices.
      @return The number of vertices
