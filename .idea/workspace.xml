@@ -2,49 +2,14 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="8d3ccd12-6f9c-4ac9-af96-39aa95077801" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/src/neuralnetwork/NetworkData.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/bin/BoardTile.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/bin/Logo00.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/bin/Logo01.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/bin/Logo02.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/bin/Logo03.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/bin/Logo04.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/bin/Logo05.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/bin/RedToken.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/bin/YellowToken.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/engine/Scene$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/bin/engine/Scene$1.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/engine/Scene.class" beforeDir="false" afterPath="$PROJECT_DIR$/bin/engine/Scene.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/files/GameData.txt" beforeDir="false" afterPath="$PROJECT_DIR$/bin/files/GameData.txt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/bin/game/ConnectFour.class" beforeDir="false" afterPath="$PROJECT_DIR$/bin/game/ConnectFour.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/bin/game/ConnectFourBoard.class" beforeDir="false" afterPath="$PROJECT_DIR$/bin/game/ConnectFourBoard.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/bin/game/Token.class" beforeDir="false" afterPath="$PROJECT_DIR$/bin/game/Token.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/bin/graph/AbstractGraph.class" beforeDir="false" afterPath="$PROJECT_DIR$/bin/graph/AbstractGraph.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/bin/graph/Edge.class" beforeDir="false" afterPath="$PROJECT_DIR$/bin/graph/Edge.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/bin/graph/ListGraph.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/bin/graph/MapGraph.class" beforeDir="false" afterPath="$PROJECT_DIR$/bin/graph/MapGraph.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/bin/neuralnetwork/NeuralNetwork.class" beforeDir="false" afterPath="$PROJECT_DIR$/bin/neuralnetwork/NeuralNetwork.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/bin/neuralnetwork/Trainer.class" beforeDir="false" afterPath="$PROJECT_DIR$/bin/neuralnetwork/Trainer.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/bin/neuralnetwork/WeightNetwork.class" beforeDir="false" afterPath="$PROJECT_DIR$/bin/neuralnetwork/WeightNetwork.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/res/BoardTile.png" beforeDir="false" afterPath="$PROJECT_DIR$/res/images/BoardTile.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/res/Logo00.png" beforeDir="false" afterPath="$PROJECT_DIR$/res/images/Logo00.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/res/Logo01.png" beforeDir="false" afterPath="$PROJECT_DIR$/res/images/Logo01.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/res/Logo02.png" beforeDir="false" afterPath="$PROJECT_DIR$/res/images/Logo02.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/res/Logo03.png" beforeDir="false" afterPath="$PROJECT_DIR$/res/images/Logo03.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/res/Logo04.png" beforeDir="false" afterPath="$PROJECT_DIR$/res/images/Logo04.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/res/Logo05.png" beforeDir="false" afterPath="$PROJECT_DIR$/res/images/Logo05.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/res/RedToken.png" beforeDir="false" afterPath="$PROJECT_DIR$/res/images/RedToken.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/res/YellowToken.png" beforeDir="false" afterPath="$PROJECT_DIR$/res/images/YellowToken.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/engine/Scene.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/engine/Scene.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/game/ConnectFour.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/game/ConnectFour.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/game/ConnectFourBoard.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/game/ConnectFourBoard.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/game/DataSetHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/game/DataSetHandler.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/game/GameData.txt" beforeDir="false" afterPath="$PROJECT_DIR$/res/files/GameData.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/game/Token.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/game/Token.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/graph/AbstractGraph.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/graph/AbstractGraph.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/graph/Edge.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/graph/Edge.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/graph/Graph.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/graph/Graph.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/graph/ListGraph.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/graph/MapGraph.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/graph/MapGraph.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/neuralnetwork/NeuralNetwork.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/neuralnetwork/NeuralNetwork.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/neuralnetwork/Trainer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/neuralnetwork/Trainer.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/neuralnetwork/WeightNetwork.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/neuralnetwork/WeightNetwork.java" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/bin/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -63,8 +28,32 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/neuralnetwork/Trainer.java">
           <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="119">
+              <caret line="7" lean-forward="true" selection-start-line="7" selection-end-line="7" />
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/game/ConnectFour.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="272">
+              <caret line="291" lean-forward="true" selection-start-line="291" selection-end-line="291" />
+              <folding>
+                <element signature="e#15921#15922#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/game/DataSetHandler.java">
+          <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="161">
-              <caret line="30" column="33" selection-start-line="30" selection-start-column="33" selection-end-line="30" selection-end-column="33" />
+              <caret line="152" column="20" selection-start-line="152" selection-start-column="20" selection-end-line="152" selection-end-column="20" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -73,19 +62,19 @@
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/game/ConnectFour.java">
+        <entry file="file://$PROJECT_DIR$/src/engine/Scene.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="391">
-              <caret line="33" column="56" selection-start-line="33" selection-start-column="56" selection-end-line="33" selection-end-column="56" />
+            <state relative-caret-position="68">
+              <caret line="4" selection-start-line="4" selection-end-line="4" />
             </state>
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/res/files/GameData.txt">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="338">
-              <caret line="397" column="81" lean-forward="true" selection-start-line="397" selection-start-column="81" selection-end-line="397" selection-end-column="81" />
+              <caret line="397" column="41" selection-start-line="397" selection-start-column="41" selection-end-line="397" selection-end-column="41" />
             </state>
           </provider>
         </entry>
@@ -117,7 +106,7 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/neuralnetwork/NeuralNetwork.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="153">
+            <state relative-caret-position="-4089">
               <caret line="18" column="23" lean-forward="true" selection-start-line="18" selection-start-column="23" selection-end-line="18" selection-end-column="23" />
               <folding>
                 <element signature="imports" expanded="true" />
@@ -164,16 +153,17 @@
         <option value="$PROJECT_DIR$/src/graph/Graph.java" />
         <option value="$PROJECT_DIR$/src/graph/AbstractGraph.java" />
         <option value="$PROJECT_DIR$/src/graph/MapGraph.java" />
-        <option value="$PROJECT_DIR$/src/game/DataSetHandler.java" />
         <option value="$PROJECT_DIR$/src/game/Token.java" />
         <option value="$PROJECT_DIR$/src/game/ConnectFourBoard.java" />
-        <option value="$PROJECT_DIR$/src/game/ConnectFour.java" />
         <option value="$PROJECT_DIR$/src/neuralnetwork/Trainer.java" />
         <option value="$PROJECT_DIR$/res/files/GameData.txt" />
+        <option value="$PROJECT_DIR$/src/engine/Scene.java" />
+        <option value="$PROJECT_DIR$/src/game/DataSetHandler.java" />
+        <option value="$PROJECT_DIR$/src/game/ConnectFour.java" />
       </list>
     </option>
   </component>
-  <component name="ProjectFrameBounds" extendedState="7">
+  <component name="ProjectFrameBounds" extendedState="6">
     <option name="x" value="43" />
     <option name="y" value="-13" />
     <option name="width" value="1939" />
@@ -212,6 +202,12 @@
               <item name="GameEngine" type="b2602c69:ProjectViewProjectNode" />
               <item name="GameEngine" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="engine" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="GameEngine" type="b2602c69:ProjectViewProjectNode" />
+              <item name="GameEngine" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
               <item name="game" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
@@ -238,7 +234,7 @@
     <property name="Repository.Attach.Annotations" value="false" />
     <property name="Repository.Attach.JavaDocs" value="false" />
     <property name="Repository.Attach.Sources" value="false" />
-    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1573674528780" />
+    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1573693618169" />
     <property name="settings.editor.selected.configurable" value="preferences.sourceCode.Java" />
   </component>
   <component name="RecentsManager">
@@ -356,7 +352,7 @@
       <window_info id="Favorites" order="6" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" weight="0.32827735" />
-      <window_info active="true" anchor="bottom" id="Run" order="2" visible="true" weight="0.24504249" />
+      <window_info active="true" anchor="bottom" id="Run" order="2" visible="true" weight="0.22237961" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.3997833" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
@@ -443,16 +439,6 @@
     <entry file="file://$PROJECT_DIR$/res/files/NeuralNetwork.dat">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/game/DataSetHandler.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-1834">
-          <caret line="12" column="59" selection-start-line="12" selection-start-column="59" selection-end-line="12" selection-end-column="59" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/neuralnetwork/Neuron.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="119">
@@ -498,16 +484,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/neuralnetwork/NeuralNetwork.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="153">
-          <caret line="18" column="23" lean-forward="true" selection-start-line="18" selection-start-column="23" selection-end-line="18" selection-end-column="23" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/neuralnetwork/WeightNetwork.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="187">
@@ -518,10 +494,44 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/res/files/GameData.txt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="338">
+          <caret line="397" column="41" selection-start-line="397" selection-start-column="41" selection-end-line="397" selection-end-column="41" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/engine/Scene.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="68">
+          <caret line="4" selection-start-line="4" selection-end-line="4" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/neuralnetwork/Trainer.java">
       <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="119">
+          <caret line="7" lean-forward="true" selection-start-line="7" selection-end-line="7" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/game/DataSetHandler.java">
+      <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="161">
-          <caret line="30" column="33" selection-start-line="30" selection-start-column="33" selection-end-line="30" selection-end-column="33" />
+          <caret line="152" column="20" selection-start-line="152" selection-start-column="20" selection-end-line="152" selection-end-column="20" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/neuralnetwork/NeuralNetwork.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-4089">
+          <caret line="18" column="23" lean-forward="true" selection-start-line="18" selection-start-column="23" selection-end-line="18" selection-end-column="23" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
@@ -530,15 +540,11 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/game/ConnectFour.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="391">
-          <caret line="33" column="56" selection-start-line="33" selection-start-column="56" selection-end-line="33" selection-end-column="56" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/res/files/GameData.txt">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="338">
-          <caret line="397" column="81" lean-forward="true" selection-start-line="397" selection-start-column="81" selection-end-line="397" selection-end-column="81" />
+        <state relative-caret-position="272">
+          <caret line="291" lean-forward="true" selection-start-line="291" selection-end-line="291" />
+          <folding>
+            <element signature="e#15921#15922#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>

@@ -11,6 +11,7 @@ import engine.Image;
 import engine.ImageFactory;
 import engine.Scene;
 import engine.Vector2;
+import neuralnetwork.NeuralNetwork;
 
 public class ConnectFour extends JFrame
 {	
@@ -58,6 +59,11 @@ public class ConnectFour extends JFrame
 		easyButton.setLocalPosition(FIRST_BUTTON_POSITION);
 		easyButton.setText("Easy");
 		easyButton.setFontScale(BUTTON_FONT_SCALE);
+		easyButton.setMouseClickAction(() ->
+		{
+			gameMode = EASY;
+			newGameScene();
+		});
 		
 		Button mediumButton = new Button(currentScene.CENTER, currentScene);
 		mediumButton.setLocalSize(BUTTON_SIZE);
@@ -103,6 +109,10 @@ public class ConnectFour extends JFrame
 	private DataSetHandler dataSetHandler;
 	private Button[] inputButtons;
 
+	//connect four ai (neural network)
+	private NeuralNetwork connectFourAi;
+	private static final String NEURAL_NETWORK_PATH = "res/files/NeuralNetwork.dat";
+
 	//game modes
 	private int gameMode;
 	private static final int EASY = 0;
@@ -127,6 +137,8 @@ public class ConnectFour extends JFrame
 		connectFourBoard.setLocalPosition(CONNECT_FOUR_POSITION);
 		connectFourBoard.setBoard(CONNECT_FOUR_HEIGHT, ROWS, COLUMNS);
 
+		//creating connect four ai
+		connectFourAi = new NeuralNetwork(NEURAL_NETWORK_PATH);
 		
 		//creating input buttons
 		inputButtons = new Button[COLUMNS];
@@ -152,73 +164,88 @@ public class ConnectFour extends JFrame
 			//setting button enter action
 			button.setMouseEnterAction(() ->
 			{
-				//if it is possible to play a token in column then set it to color of turn and make it visible
-				if (canInsert(column) && winner == EMPTY)
+				//only do an action if two player or is yellow's turn
+				if (gameMode == TWO_PLAYER || turn == YELLOW)
 				{
-					if (turn == RED)
-						hoverToken.setRed();
+					//if it is possible to play a token in column then set it to color of turn and make it visible
+					if (canInsert(column) && winner == EMPTY)
+					{
+						if (turn == RED)
+							hoverToken.setRed();
+						else
+							hoverToken.setYellow();
+
+						hoverToken.setVisibility(true);
+					}
+					//otherwise destroy hoverToken
 					else
-						hoverToken.setYellow();
-					
-					hoverToken.setVisibility(true);
+						hoverToken.destroy();
 				}
-				//otherwise destroy hoverToken
-				else
-					hoverToken.destroy();
 			});
 			
 			//setting mouse exit action
 			button.setMouseExitAction(() ->
 			{
-				//make hoverToken invisible
-				if (canInsert(column) && winner == EMPTY)
-					hoverToken.setVisibility(false);
+				//only do an action if two player or is yellow's turn
+				if (gameMode == TWO_PLAYER || turn == YELLOW)
+				{
+					//make hoverToken invisible
+					if (canInsert(column) && winner == EMPTY)
+						hoverToken.setVisibility(false);
+				}
 			});
 			
 			//setting button click action
 			button.setMouseClickAction(() -> 
 			{
-				//if row is valid, create a token and send it to the correct position
-				if (canInsert(column) && winner == EMPTY)
+				//only do an action if two player or is yellow's turn
+				if (gameMode == TWO_PLAYER || turn == YELLOW)
 				{
-					//if gameMode is two player and it is Yellow's turn, log current board and move
-					if (gameMode == TWO_PLAYER && turn == RED)
+					//if row is valid, create a token and send it to the correct position
+					if (canInsert(column) && winner == EMPTY)
+					{
+						//if gameMode is two player and it is Yellow's turn, log current board and move
+						if (gameMode == TWO_PLAYER && turn == RED)
 							dataSetHandler.addData(Arrays.copyOf(connectFour, connectFour.length), column);
 
-					//insert token
-					int index = insert(column);
-					int row = index / COLUMNS;
+						//insert token
+						int index = insert(column);
+						int row = index / COLUMNS;
+						System.out.println(row);
 
-					//checks for winner
-					winner = getWinner(index);
-					if (winner != EMPTY || boardFull())
-					{
-						System.out.println("Winner: " + (winner == EMPTY ? "Tie" : winner));
+						//checks for winner
+						winner = getWinner(index);
+						if (winner != EMPTY || boardFull())
+						{
+							System.out.println("Winner: " + (winner == EMPTY ? "Tie" : winner));
 
-						//if yellow is the winner or it is a tie game, then save the logged data
-						if (winner == RED || boardFull())
-							dataSetHandler.savaData();
+							//if yellow is the winner or it is a tie game, then save the logged data
+							if (winner == RED || boardFull())
+								dataSetHandler.savaData();
+						}
+
+						//create a new token
+						Token token = new Token(connectFourBoard, currentScene);
+						token.setLocalSize(tokenSize);
+						token.setLocalPosition(button.getLocalPosition().x, CONNECT_FOUR_POSITION.y + CONNECT_FOUR_SIZE.y / 2 + token.getLocalSize().y / 2);
+
+						//setting token to correct color
+						if (turn == YELLOW)
+							token.setYellow();
+
+						//drop this token and make the hover token invisible
+						token.drop(CONNECT_FOUR_POSITION.y + CONNECT_FOUR_SIZE.y / 2 - token.getLocalSize().y * (row + 0.5f));
+
+						//go to next turn
+						nextTurn();
+						if (canInsert(column))
+							hoverToken.setVisibility(false);
+						else
+							hoverToken.destroy();
+
+						if (gameMode != TWO_PLAYER && turn == RED && !boardFull())
+							aiPlays(connectFourAi, connectFourBoard);
 					}
-
-
-					//create a new token
-					Token token = new Token(connectFourBoard, currentScene);
-					token.setLocalSize(tokenSize);
-					token.setLocalPosition(button.getLocalPosition().x, CONNECT_FOUR_POSITION.y + CONNECT_FOUR_SIZE.y / 2 + token.getLocalSize().y / 2);
-					
-					//setting token to correct color
-					if (turn == YELLOW)
-						token.setYellow();
-					
-					//drop this token and make the hover token invisible
-					token.drop(CONNECT_FOUR_POSITION.y + CONNECT_FOUR_SIZE.y / 2 - token.getLocalSize().y * (row + 0.5f));
-										
-					//go to next turn
-					nextTurn();
-					if (canInsert(column))
-						hoverToken.setVisibility(false);
-					else
-						hoverToken.destroy();
 				}
 			});
 		}
@@ -231,7 +258,7 @@ public class ConnectFour extends JFrame
 		resetButton.setLocalPosition(.30f, -.4f);
 		
 		//setting resetButton command
-		resetButton.setMouseClickAction(() -> { newGameScene(); });
+		resetButton.setMouseClickAction(() -> newGameScene() );
 		
 		//creating backButton
 		Button backButton = new Button(currentScene.NORTH_WEST, currentScene);
@@ -239,10 +266,42 @@ public class ConnectFour extends JFrame
 		backButton.setFontScale(.75f);
 		backButton.setLocalSize(.5f, .2f);
 		backButton.setLocalPosition(.30f, -.15f);
-		backButton.setMouseClickAction(() -> { newMainMenyScene(); } );
+		backButton.setMouseClickAction(() -> newMainMenyScene() );
 				
 		//initializing scene
 		currentScene.initialize(this);
+
+		//ai playing first move if it is not set to two player move
+		if (gameMode != TWO_PLAYER && turn == RED)
+			aiPlays(connectFourAi, connectFourBoard);
+	}
+
+	private void aiPlays(NeuralNetwork connectFourAi, ConnectFourBoard connectFourBoard)
+	{
+		double[] translatedBoard = DataSetHandler.translateBoard(connectFour);
+
+		int index = NeuralNetwork.maxIndex(connectFourAi.calculate(translatedBoard));
+		//makes sure index is valid
+		while (!canInsert(index))
+		{
+			translatedBoard[index] = -Double.MAX_VALUE;
+			index = NeuralNetwork.maxIndex(connectFourAi.calculate(translatedBoard));
+		}
+
+		int row = insert(index) / COLUMNS;
+
+		Vector2 tokenSize = new Vector2(CONNECT_FOUR_SIZE.x / COLUMNS, CONNECT_FOUR_SIZE.x / COLUMNS);
+
+		//create a new token
+		Token token = new Token(connectFourBoard, currentScene);
+		token.setLocalSize(tokenSize);
+		token.setLocalPosition(CONNECT_FOUR_POSITION.x - CONNECT_FOUR_SIZE.x / 2 +  tokenSize.x * (index + 0.5f), CONNECT_FOUR_POSITION.y + CONNECT_FOUR_SIZE.y / 2 + token.getLocalSize().y / 2);
+
+		//drop this token and make the hover token invisible
+		token.drop(CONNECT_FOUR_POSITION.y + CONNECT_FOUR_SIZE.y / 2 - token.getLocalSize().y * (row + 0.5f));
+
+		//go to next turn
+		nextTurn();
 	}
 	
 	private boolean canInsert(int column)

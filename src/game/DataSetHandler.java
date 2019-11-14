@@ -149,4 +149,28 @@ public class DataSetHandler
         public ArrayList<double[]> getInputs() { return inputs; }
         public ArrayList<double[]> getOuputs() { return outputs; }
     }
+
+    //static methods
+    public static double[] translateBoard(char[] board)
+    {
+        //determining translation
+        double[] translation = new double[board.length];
+        for (int i = 0; i < board.length; i++)
+        {
+            switch (board[i])
+            {
+                case ConnectFour.RED:
+                    translation[i] = INTERPRETED_RED;
+                    break;
+                case ConnectFour.YELLOW:
+                    translation[i] = INTERPRETED_YELLOW;
+                    break;
+                default:
+                    translation[i] = INTERPRETED_EMPTY;
+                    break;
+            }
+        }
+
+        return translation;
+    }
 }
