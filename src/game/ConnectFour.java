@@ -211,7 +211,6 @@ public class ConnectFour extends JFrame
 						//insert token
 						int index = insert(column);
 						int row = index / COLUMNS;
-						System.out.println(row);
 
 						//checks for winner
 						winner = getWinner(index);
@@ -243,7 +242,7 @@ public class ConnectFour extends JFrame
 						else
 							hoverToken.destroy();
 
-						if (gameMode != TWO_PLAYER && turn == RED && getWinner(index) == EMPTY)
+						if (gameMode != TWO_PLAYER && turn == RED && getWinner(index) == EMPTY && !boardFull())
 							aiPlays(connectFourAi, connectFourBoard);
 					}
 				}
@@ -278,17 +277,19 @@ public class ConnectFour extends JFrame
 
 	private void aiPlays(NeuralNetwork connectFourAi, ConnectFourBoard connectFourBoard)
 	{
-		double[] translatedBoard = DataSetHandler.translateBoard(connectFour);
+		double[] prediction = connectFourAi.calculate(DataSetHandler.translateBoard(connectFour));
 
-		int index = NeuralNetwork.maxIndex(connectFourAi.calculate(translatedBoard));
+		int index = NeuralNetwork.maxIndex(prediction);
 		//makes sure index is valid
 		while (!canInsert(index))
 		{
-			translatedBoard[index] = -Double.MAX_VALUE;
-			index = NeuralNetwork.maxIndex(connectFourAi.calculate(translatedBoard));
+			prediction[index] = -Double.MAX_VALUE;
+			index = NeuralNetwork.maxIndex(prediction);
 		}
 
 		int row = insert(index) / COLUMNS;
+		//saving winner
+		winner = getWinner(index);
 
 		Vector2 tokenSize = new Vector2(CONNECT_FOUR_SIZE.x / COLUMNS, CONNECT_FOUR_SIZE.x / COLUMNS);
 

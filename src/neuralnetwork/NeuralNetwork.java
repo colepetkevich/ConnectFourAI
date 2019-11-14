@@ -10,8 +10,8 @@ import java.util.Random;
 
 public class NeuralNetwork
 {
-    private static final double LEARNING_RATE = .001;
-    private static final double BIAS_LEARNING_RATE =.00025;
+    private static final double LEARNING_RATE = .01;
+    private static final double BIAS_LEARNING_RATE =.0025;
 
     private int inputCount;
     private int outputCount;
@@ -96,7 +96,9 @@ public class NeuralNetwork
 
             //if the neuron is an input Neuron, set the correct index of input as the Neuron's output
             if (index < inputCount)
+            {
                 neuron.setOutput(input[index]);
+            }
             //otherwise calculate its input and output
             else
             {
@@ -106,6 +108,7 @@ public class NeuralNetwork
                 {
                     Edge weight = previousWeights.next();
                     neuronInput += weight.getWeight() * neurons[weight.getDestination()].getOutput();
+
                 }
 
                 //setting the Neuron's input and output
@@ -149,7 +152,7 @@ public class NeuralNetwork
                     Edge reverseWeight = weights.getWeight(weight.getDestination(), weight.getSource());
                     reverseWeight.setWeight(newWeightValue);
 
-                    dEdO += newWeightValue + nextNeuron.getdEdI();
+                    dEdO += newWeightValue * nextNeuron.getdEdI();
                 }
 
                 //set the Neuron's dError/dOuput
@@ -170,13 +173,8 @@ public class NeuralNetwork
         {
             //getting the prediction arrays from inputs array list and storing a copy of them
             double[] prediction = calculate(inputs.get(i));
-            prediction = Arrays.copyOf(prediction, prediction.length);
 
-            //getting the output array
-            //no copy needed as it will not be modified
             int outputIndex = maxIndex(outputs.get(i));
-
-            //make sure the prediction is a valid move
             int predictionIndex = maxIndex(prediction);
 
             //if prediction is valid count it as a pass
@@ -195,9 +193,6 @@ public class NeuralNetwork
         {
             //getting the prediction arrays from inputs array list and storing a copy of them
             double[] prediction = calculate(inputs.get(i));
-            prediction = Arrays.copyOf(prediction, prediction.length);
-
-            //System.out.println(Arrays.toString(prediction) + "\t" + Arrays.toString(outputs.get(i)));
 
             for (int j = 0; j < prediction.length; j++)
                 meanSquaredError += error(outputs.get(i)[j], prediction[j]);

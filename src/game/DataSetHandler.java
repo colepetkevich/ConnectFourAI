@@ -147,7 +147,7 @@ public class DataSetHandler
         public int size() { return inputs.size(); }
 
         public ArrayList<double[]> getInputs() { return inputs; }
-        public ArrayList<double[]> getOuputs() { return outputs; }
+        public ArrayList<double[]> getOutputs() { return outputs; }
     }
 
     //static methods

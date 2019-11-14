@@ -54,5 +54,4 @@ public class Neuron implements Serializable
     public int getIndex() {
         return index;
     }
-
 }
