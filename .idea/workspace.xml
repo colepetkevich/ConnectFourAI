@@ -7,7 +7,7 @@
       <change beforePath="$PROJECT_DIR$/bin/files/NeuralNetwork.dat" beforeDir="false" afterPath="$PROJECT_DIR$/bin/files/NeuralNetwork.dat" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/bin/neuralnetwork/Trainer.class" beforeDir="false" afterPath="$PROJECT_DIR$/bin/neuralnetwork/Trainer.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/res/files/GameData.txt" beforeDir="false" afterPath="$PROJECT_DIR$/res/files/GameData.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/res/files/NeuralNetwork.dat" beforeDir="false" afterPath="$PROJECT_DIR$/res/files/NeuralNetwork.dat" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/res/files/NeuralNetwork.dat" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/src/neuralnetwork/Trainer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/neuralnetwork/Trainer.java" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -71,7 +71,7 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="Application.Trainer">
+  <component name="RunManager" selected="Application.ConnectFour">
     <configuration name="ConnectFour" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="game.ConnectFour" />
       <module name="GameEngine" />
@@ -100,8 +100,8 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="Application.Trainer" />
         <item itemvalue="Application.ConnectFour" />
+        <item itemvalue="Application.Trainer" />
       </list>
     </recent_temporary>
   </component>
