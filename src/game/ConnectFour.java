@@ -243,7 +243,7 @@ public class ConnectFour extends JFrame
 						else
 							hoverToken.destroy();
 
-						if (gameMode != TWO_PLAYER && turn == RED && !boardFull())
+						if (gameMode != TWO_PLAYER && turn == RED && getWinner(index) == EMPTY)
 							aiPlays(connectFourAi, connectFourBoard);
 					}
 				}
