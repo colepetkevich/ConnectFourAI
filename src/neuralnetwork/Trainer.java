@@ -28,7 +28,7 @@ public class Trainer
         System.out.println("Initial Mean Squared Error: " + nn.getMeanSquaredError(gameData.getInputs(), gameData.getOuputs()));
         System.out.println();
 
-        for (int i = 0; i < 100000; i++)
+        for (int i = 0; i < 1000; i++)
         {
             ArrayList<double[]> inputsCopy = (ArrayList<double[]>) gameData.getInputs().clone();
             ArrayList<double[]> outputsCopy = (ArrayList<double[]>) gameData.getOuputs().clone();
