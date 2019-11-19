@@ -1,6 +1,6 @@
 package neuralnetwork;
 
-import game.DataSetHandler;
+import connectfour.DataSetHandler;
 
 import java.io.File;
 import java.time.LocalTime;
@@ -10,8 +10,8 @@ public class Trainer
 {
     private static final String NEURAL_NETWORK_PATH = "res/files/NeuralNetwork.dat";
 
-    private static final int NUMBER_OF_CHECKS = 10000;
-    private static final int CHECKS_PER_SAVE = 2500;
+    private static final int NUMBER_OF_CHECKS = 250000;
+    private static final int CHECKS_PER_SAVE = 1000;
 
     public static void main(String[] args)
     {
@@ -21,7 +21,7 @@ public class Trainer
             nn = new NeuralNetwork(NEURAL_NETWORK_PATH);
             //otherwise create a new neural network
         else
-            nn = new NeuralNetwork(42, 32, 16, 7);
+            nn = new NeuralNetwork(42, 36, 30, 24, 18, 12, 7);
 
         DataSetHandler dataSetHandler = new DataSetHandler();
         DataSetHandler.GameData gameData = dataSetHandler.readData();

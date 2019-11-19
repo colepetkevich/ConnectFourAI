@@ -10,7 +10,7 @@ public class Coroutine
 	private Runnable loopBlock;
 	private Runnable postloopBlock;
 	
-	public Coroutine(Scene scene, Callable<Boolean> condition, Runnable loopBlock, Runnable postloopBlock)
+	public Coroutine(Callable<Boolean> condition, Runnable loopBlock, Runnable postloopBlock, Scene scene)
 	{
 		this.scene = scene;
 		this.condition = condition;

@@ -1,4 +1,4 @@
-package game;
+package connectfour;
 
 import engine.Coroutine;
 import engine.Drawable;
@@ -37,11 +37,9 @@ public class Token extends Image
 	public void drop(float finalY)
 	{	
 		//creating the drop coroutine
-		Coroutine drop = new Coroutine(scene,
+		Coroutine drop = new Coroutine(
 				//loop condition: y position is greater or equal to finalY position
-				() -> {
-					return getLocalPosition().y >= finalY;
-				},
+				() -> getLocalPosition().y >= finalY,
 				//loop block: change velocity and y position depending on the change in time
 				() -> {
 					velocityY += accelerationY * Time.deltaTime();
@@ -57,7 +55,7 @@ public class Token extends Image
 				//post loop block: set token to finalY position
 				() -> {
 					setLocalPosition(getLocalPosition().x, finalY);
-				});
+				}, scene);
 		
 		//starting the drop coroutine
 		drop.start();

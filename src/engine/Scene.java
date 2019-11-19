@@ -26,7 +26,7 @@ public class Scene extends JPanel implements Runnable, Updatable
 	protected ArrayList<Drawable> drawables;
 	protected ArrayList<Coroutine> coroutines;
 	
-	//game state variables
+	//connectfour state variables
 	private boolean isInitilized;
 	private boolean isActive;
 	
@@ -103,7 +103,7 @@ public class Scene extends JPanel implements Runnable, Updatable
 			isActive = true;
 			isInitilized = true;
 			
-			//starts running game and make the JFrame visible
+			//starts running connectfour and make the JFrame visible
 			new Thread(this).start();
 			jFrame.setVisible(true);
 			
@@ -113,7 +113,7 @@ public class Scene extends JPanel implements Runnable, Updatable
 		}
 	}
 	
-	//handles all the game logic and graphics
+	//handles all the connectfour logic and graphics
 	public void update()
 	{				
 		//calls update() on all updatables

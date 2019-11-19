@@ -1,4 +1,4 @@
-package game;
+package connectfour;
 
 import java.io.*;
 import java.util.ArrayList;
@@ -6,9 +6,9 @@ import java.util.Arrays;
 
 public class DataSetHandler
 {
-    public static final double INTERPRETED_RED = 1.0;
-    public static final double INTERPRETED_YELLOW = 0.5;
-    public static final double INTERPRETED_EMPTY = -1.0;
+    public static final double TRANSLATED_RED = 1.0;
+    public static final double TRANSLATED_YELLOW = -1.0;
+    public static final double TRANSLATED_EMPTY = 0.0;
 
     private static final String GAME_DATA_PATH = "res/files/GameData.txt";
 
@@ -59,22 +59,28 @@ public class DataSetHandler
             while ((line = inputFile.readLine()) != null)
             {
                 //determining input
-                double[] input = new double[ConnectFour.COLUMNS * ConnectFour.ROWS];
-                for (int i = 0; i < input.length; i++)
-                {
-                    switch (line.charAt(1 + 3 * i))
-                    {
-                        case ConnectFour.RED:
-                            input[i] = INTERPRETED_RED;
-                            break;
-                        case ConnectFour.YELLOW:
-                            input[i] = INTERPRETED_YELLOW;
-                            break;
-                        default:
-                            input[i] = INTERPRETED_EMPTY;
-                            break;
-                    }
-                }
+                char[] board = new char[ConnectFour.COLUMNS * ConnectFour.ROWS];
+                for (int i = 0; i < board.length; i++)
+                    board[i] = line.charAt(1 + 3 * i);
+
+                double[] input = translateBoard(board);
+
+//                double[] input = new double[Game.COLUMNS * Game.ROWS];
+//                for (int i = 0; i < input.length; i++)
+//                {
+//                    switch (line.charAt(1 + 3 * i))
+//                    {
+//                        case Game.RED:
+//                            input[i] = TRANSLATED_RED;
+//                            break;
+//                        case Game.YELLOW:
+//                            input[i] = TRANSLATED_YELLOW;
+//                            break;
+//                        default:
+//                            input[i] = TRANSLATED_EMPTY;
+//                            break;
+//                    }
+//                }
 
                 //determining output
                 double[] output = new double[ConnectFour.COLUMNS];
@@ -160,17 +166,27 @@ public class DataSetHandler
             switch (board[i])
             {
                 case ConnectFour.RED:
-                    translation[i] = INTERPRETED_RED;
+                    translation[i] = TRANSLATED_RED;
                     break;
                 case ConnectFour.YELLOW:
-                    translation[i] = INTERPRETED_YELLOW;
+                    translation[i] = TRANSLATED_YELLOW;
                     break;
                 default:
-                    translation[i] = INTERPRETED_EMPTY;
+                    translation[i] = TRANSLATED_EMPTY;
                     break;
             }
         }
 
         return translation;
+    }
+
+    private static double translatedChar(char c)
+    {
+        if (c == ConnectFour.RED)
+            return TRANSLATED_RED;
+        else if (c == ConnectFour.YELLOW)
+            return TRANSLATED_YELLOW;
+
+        return TRANSLATED_EMPTY;
     }
 }
