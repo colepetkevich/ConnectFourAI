@@ -1,6 +1,8 @@
 package connectfour;
 
 import java.awt.Color;
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
 import java.awt.image.BufferedImage;
 
 import javax.swing.JFrame;
@@ -10,11 +12,13 @@ import engine.Image;
 import engine.ImageFactory;
 import engine.Scene;
 import engine.Vector2;
+import neuralnetwork.NNRepresentation;
 
-public class Game extends JFrame
+public class Game extends JFrame implements KeyListener
 {	
 	//class variables
 	private Scene currentScene;
+	private NNRepresentation nn;
 	
 	public Game(String title)
 	{
@@ -23,7 +27,9 @@ public class Game extends JFrame
 		setSize(1200, 800);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setLocationRelativeTo(null);
-		
+
+		addKeyListener(this);
+
 		//newGameScene();
 		newMainMenyScene();
 	}
@@ -141,5 +147,23 @@ public class Game extends JFrame
 	public static void main(String[] args)
 	{
 		Game connectFour = new Game("Connect Four");
+	}
+
+	@Override
+	public void keyTyped(KeyEvent e) {
+
+	}
+
+	@Override
+	public void keyPressed(KeyEvent e) {
+		if (e.getKeyChar() == 'n')
+		{
+			nn = new NNRepresentation();
+		}
+	}
+
+	@Override
+	public void keyReleased(KeyEvent e) {
+
 	}
 }

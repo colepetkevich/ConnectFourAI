@@ -12,6 +12,7 @@ public class Trainer
 
     private static final int NUMBER_OF_CHECKS = 250000;
     private static final int CHECKS_PER_SAVE = 1000;
+    public static final int[] NEURON_LAYER_COUNTS = { 42, 36, 30, 24, 18, 12, 7 };
 
     public static void main(String[] args)
     {
@@ -21,7 +22,7 @@ public class Trainer
             nn = new NeuralNetwork(NEURAL_NETWORK_PATH);
             //otherwise create a new neural network
         else
-            nn = new NeuralNetwork(42, 36, 30, 24, 18, 12, 7);
+            nn = new NeuralNetwork(NEURON_LAYER_COUNTS);
 
         DataSetHandler dataSetHandler = new DataSetHandler();
         DataSetHandler.GameData gameData = dataSetHandler.readData();
@@ -60,4 +61,5 @@ public class Trainer
         System.out.println("Final Accuracy: " + nn.getAccuracy(gameData.getInputs(), gameData.getOutputs()));
         System.out.println("Final Mean Squared Error: " + nn.getMeanSquaredError(gameData.getInputs(), gameData.getOutputs()));
     }
+
 }
