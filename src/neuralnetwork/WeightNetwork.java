@@ -42,9 +42,7 @@ public class WeightNetwork implements Serializable
 
         return edge;
     }
-
-    public int getNumV() { return nextWeights.getNumV(); }
-
+    
     public Iterator<Edge> nextWeights(int neruonIndex) { return nextWeights.edgeIterator(neruonIndex); }
     public Iterator<Edge> previousWeights(int neuronIndex) { return previousWeights.edgeIterator(neuronIndex); }
 }
