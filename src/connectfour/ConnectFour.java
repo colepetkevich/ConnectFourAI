@@ -1,20 +1,26 @@
 package connectfour;
 
 import java.awt.*;
+import java.time.LocalTime;
 import java.util.Arrays;
+import java.util.Iterator;
 
 import engine.*;
 import engine.Button;
 import engine.Image;
+import graph.Edge;
+import graph.MapGraph;
 import neuralnetwork.NeuralNetwork;
+import neuralnetwork.WeightNetwork;
 
 public class ConnectFour extends Drawable
 {
-	public static final int ROWS = 6;
-	public static final int COLUMNS = 7;
 	public static final char RED = 'R';
 	public static final char YELLOW = 'Y';
 	public static final char EMPTY = ' ';
+
+	public static final int ROWS = 6;
+	public static final int COLUMNS = 7;
 	public static final int WIN_AMOUNT = 4; // How many tokens in a row to win? (Connect 4 or Connect 20?)
 
 	private char[] connectFour; // MAIN BOARD
@@ -107,7 +113,7 @@ public class ConnectFour extends Drawable
 				//only do an action if two player or is yellow's turn
 				if (gameMode == TWO_PLAYER || (turn == YELLOW && aiCanPlayMove)) {
 					//if it is possible to play a token in column then set it to color of turn and make it visible
-					if (canInsert(column) && winner == EMPTY) {
+					if (canInsert(column, connectFour) && winner == EMPTY) {
 						if (turn == RED)
 							hoverToken.setRed();
 						else
@@ -127,7 +133,7 @@ public class ConnectFour extends Drawable
 				//only do an action if two player or is yellow's turn
 				if (gameMode == TWO_PLAYER || (turn == YELLOW && aiCanPlayMove)) {
 					//make hoverToken invisible
-					if (canInsert(column) && winner == EMPTY)
+					if (canInsert(column, connectFour) && winner == EMPTY)
 						hoverToken.setVisibility(false);
 				}
 			});
@@ -138,24 +144,26 @@ public class ConnectFour extends Drawable
 				//only do an action if two player or is yellow's turn
 				if (gameMode == TWO_PLAYER || (turn == YELLOW && aiCanPlayMove)) {
 					//if row is valid, create a token and send it to the correct position
-					if (canInsert(column) && winner == EMPTY) {
+					if (canInsert(column, connectFour) && winner == EMPTY) {
 						//if gameMode is two player and it is Yellow's turn, log current board and move
 						if (gameMode == TWO_PLAYER && turn == RED)
 							dataSetHandler.addData(Arrays.copyOf(connectFour, connectFour.length), column);
 
 						//insert token
-						int index = insert(column);
+						int index = insert(column, connectFour, turn);
 						int row = index / COLUMNS;
 
 						//checks for winner
-						//winner = getWinner(index);
-						winner = getWinner();
-						if (winner != EMPTY || boardFull()) {
-							System.out.println("Winner: " + (winner == EMPTY ? "Tie" : winner));
+						winner = getWinner(connectFour);
+						if (winner != EMPTY || boardFull(connectFour))
+						{
+							System.out.println(boardFull(connectFour) ? "Its a tie!" : (winner == RED ? "Red" : "Yellow") + " wins!");
 
 							//if yellow is the winner or it is a tie connectfour, then save the logged data
-							if (winner == RED || boardFull())
+							if (gameMode == TWO_PLAYER && (turn == RED || boardFull(connectFour)))
 								dataSetHandler.savaData();
+							else
+								dataSetHandler.clearData();
 						}
 
 						//create a new token
@@ -172,7 +180,7 @@ public class ConnectFour extends Drawable
 
 						//go to next turn
 						nextTurn();
-						if (canInsert(column))
+						if (canInsert(column, connectFour))
 							hoverToken.setVisibility(false);
 						else
 							hoverToken.destroy();
@@ -184,10 +192,8 @@ public class ConnectFour extends Drawable
 
 	public void update()
 	{
-
-
 		//only have ai play if not two player mode, turn is RED, and game is not over
-		if (gameMode != TWO_PLAYER && turn == RED && aiCanPlayMove && winner == EMPTY && !boardFull())
+		if (gameMode != TWO_PLAYER && turn == RED && aiCanPlayMove && winner == EMPTY && !boardFull(connectFour))
 		{
 			aiCanPlayMove = false;
 
@@ -208,26 +214,66 @@ public class ConnectFour extends Drawable
 	{
 		double[] prediction = connectFourAi.calculate(DataSetHandler.translateBoard(connectFour));
 
-		//does forced move before ai prediction
-		int move = checkForcedMove();
+		double[] emptyPrediction = new double[prediction.length];
+		Arrays.fill(emptyPrediction, -Double.MAX_VALUE);
+
+		int move = -1;
+
+		//does forced move before ai prediction if on medium or hard game mode
+		if (gameMode == MEDIUM || gameMode == HARD)
+			move = checkForcedMove(connectFour, turn);
 
 		//if there is not forced move then play ai's move
-		if (move == -1)
+		if (move < 0)
 		{
 			move = NeuralNetwork.maxIndex(prediction);
-			//System.out.println(Arrays.toString(prediction));
+
+			//making sure move does not result in a loss
+			char[] connectFourCopy = Arrays.copyOf(connectFour, connectFour.length);
+			insert(move, connectFourCopy, RED);
+			int yellowForcedMove = checkForcedMove(connectFourCopy, YELLOW);
+
 			//makes sure index is valid
-			while (!canInsert(move))
+			//if on hard gameMode make sure current move will not results in a loss
+			while (!Arrays.equals(prediction, emptyPrediction) && (!canInsert(move, connectFour) ||
+					(gameMode == HARD && yellowForcedMove >= 0 && yellowForcedMove < COLUMNS)))
 			{
 				prediction[move] = -Double.MAX_VALUE;
 				move = NeuralNetwork.maxIndex(prediction);
-			}
-		}
 
-		int row = insert(move) / COLUMNS;
-		//saving winner
-		//winner = getWinner(move);
-		winner = getWinner();
+				//making sure move does not result in a loss
+				connectFourCopy = Arrays.copyOf(connectFour, connectFour.length);
+				insert(move, connectFourCopy, RED);
+				yellowForcedMove = checkForcedMove(connectFourCopy, YELLOW);
+			}
+
+			//if all predictions used, play only available space
+			if (Arrays.equals(prediction, emptyPrediction))
+				for (int i = 0; i < COLUMNS; i++)
+					if (canInsert(i, connectFour))
+					{
+						move = i;
+						break;
+					}
+		}
+		//if blccking then adjust the index of move
+		else if (move >= COLUMNS)
+			move -= COLUMNS;
+
+		int row = insert(move, connectFour, turn) / COLUMNS;
+
+		//checks for winner
+		winner = getWinner(connectFour);
+		if (winner != EMPTY || boardFull(connectFour))
+		{
+			System.out.println(boardFull(connectFour) ? "Its a tie!" : (winner == RED ? "Red" : "Yellow") + " wins!");
+
+			//if yellow is the winner or it is a tie connectfour, then save the logged data
+			if (gameMode == TWO_PLAYER && (turn == RED || boardFull(connectFour)))
+				dataSetHandler.savaData();
+			else
+				dataSetHandler.clearData();
+		}
 
 		Vector2 tokenSize = new Vector2(getLocalSize().x / COLUMNS, getLocalSize().x / COLUMNS);
 
@@ -243,33 +289,7 @@ public class ConnectFour extends Drawable
 		aiCanPlayMove = true;
 	}
 
-	private boolean canInsert(int column)
-	{
-		if (connectFour[column] != EMPTY)
-			return false;
-
-		int index = column;
-		while(index + COLUMNS < connectFour.length && connectFour[index + COLUMNS] == EMPTY)
-			index += COLUMNS;
-
-		return true;
-	}
-
-	private int insert(int column)
-	{
-		if (connectFour[column] != EMPTY)
-			return -1;
-
-		int index = column;
-		while(index + COLUMNS < connectFour.length && connectFour[index + COLUMNS] == EMPTY)
-			index += COLUMNS;
-
-		connectFour[index] = turn;
-
-		//returns the index that the token is inserted into
-		return index;
-	}
-
+	//HELPER METHODS
 	private void nextTurn()
 	{
 		if (turn == RED)
@@ -278,19 +298,173 @@ public class ConnectFour extends Drawable
 			turn = RED;
 	}
 
-	private char getWinner()
+	//STATIC HELPER METHODS
+	private static boolean canInsert(int column, char[] connectFour)
 	{
-		for (int i = 0; i < connectFour.length; i++)
+		if (connectFour[column] != EMPTY)
+			return false;
+
+		return true;
+	}
+
+	private static int insert(int column, char[] connectFour, final char TURN)
+	{
+		if (connectFour[column] != EMPTY)
+			return -1;
+
+		int index = column;
+		while(index + COLUMNS < connectFour.length && connectFour[index + COLUMNS] == EMPTY)
+			index += COLUMNS;
+
+		connectFour[index] = TURN;
+
+		//returns the index that the token is inserted into
+		return index;
+	}
+
+	//checks single index for winner
+	private static char getWinner(char[] connectFour, int index)
+	{
+		int row = index / COLUMNS;
+		int column = index % COLUMNS;
+		final int MIN_INDEX = 0;
+		final int MAX_INDEX = connectFour.length - 1;
+
+		//horizontal
+		for (int i = index; i < index + WIN_AMOUNT; i++) {
+			//determining horizontal row elements
+			char[] horiRow = new char[WIN_AMOUNT];
+			boolean horiRowCreated = true;
+			for (int j = 0; j < horiRow.length; j++) {
+				int currIndex = i - j;
+
+				//if currIndex and index are not on same row then exit
+				if (currIndex < MIN_INDEX || currIndex > MAX_INDEX ||
+						row != currIndex / COLUMNS || connectFour[currIndex] == EMPTY) {
+					horiRowCreated = false;
+					break;
+				}
+				horiRow[j] = connectFour[currIndex];
+			}
+
+			if (horiRowCreated) {
+				//if all elements in horiRow are the same then currRow is a winning row so return the element values
+				boolean allEqual = true;
+				for (int j = 0; j < horiRow.length - 1; j++)
+					if (horiRow[j] != horiRow[j + 1]) {
+						allEqual = false;
+						break;
+					}
+				if (allEqual)
+					return horiRow[0];
+			}
+		}
+
+		//vertical
+		for (int i = index; i <= index + COLUMNS * WIN_AMOUNT; i += COLUMNS) {
+			//determining vertical row elements
+			char[] vertRow = new char[WIN_AMOUNT];
+			boolean vertRowCreated = true;
+			for (int j = 0; j < vertRow.length; j++) {
+				int currIndex = i - j * COLUMNS;
+
+				//if currIndex and index are not on same column then exit
+				if (currIndex < MIN_INDEX || currIndex > MAX_INDEX ||
+						column != currIndex % COLUMNS || connectFour[currIndex] == EMPTY) {
+					vertRowCreated = false;
+					break;
+				}
+				vertRow[j] = connectFour[currIndex];
+			}
+
+			if (vertRowCreated) {
+				//if all elements in currRow are the same then currRow is a winning row so return the element values
+				boolean allEqual = true;
+				for (int j = 0; j < vertRow.length - 1; j++)
+					if (vertRow[j] != vertRow[j + 1]) {
+						allEqual = false;
+						break;
+					}
+				if (allEqual)
+					return vertRow[0];
+			}
+		}
+
+		//increasing diagonal
+		for (int i = index; i <= index + (COLUMNS - 1) * WIN_AMOUNT; i += COLUMNS - 1)
 		{
+			//determining diagonal row elements
+			char[] diagRow = new char[WIN_AMOUNT];
+			boolean diagRowCreated = true;
+			for (int j = 0; j < diagRow.length; j++) {
+				int currIndex = i - j * (COLUMNS - 1);
+
+				//if currIndex and index are not on same diagonal then exit
+				if (currIndex < MIN_INDEX || currIndex > MAX_INDEX ||
+						row + column != currIndex / COLUMNS + currIndex % COLUMNS || connectFour[currIndex] == EMPTY) {
+					diagRowCreated = false;
+					break;
+				}
+				diagRow[j] = connectFour[currIndex];
+			}
+
+			if (diagRowCreated) {
+				//if all elements in currRow are the same then currRow is a winning row so return the element values
+				boolean allEqual = true;
+				for (int j = 0; j < diagRow.length - 1; j++)
+					if (diagRow[j] != diagRow[j + 1]) {
+						allEqual = false;
+						break;
+					}
+				if (allEqual)
+					return diagRow[0];
+			}
+		}
+
+		//decreasing diagonal
+		for (int i = index; i <= index + (COLUMNS + 1) * WIN_AMOUNT; i += COLUMNS + 1)
+		{
+			//determining diagonal row elements
+			char[] diagRow = new char[WIN_AMOUNT];
+			boolean diagRowCreated = true;
+			for (int j = 0; j < diagRow.length; j++) {
+				int currIndex = i - j * (COLUMNS + 1);
+
+				//if currIndex and index are not on same diagonal then exit or
+				if (currIndex < MIN_INDEX || currIndex > MAX_INDEX ||
+						row - column != currIndex / COLUMNS - currIndex % COLUMNS || connectFour[currIndex] == EMPTY) {
+					diagRowCreated = false;
+					break;
+				}
+				diagRow[j] = connectFour[currIndex];
+			}
+
+			if (diagRowCreated) {
+				//if all elements in currRow are the same then currRow is a winning row so return the element values
+				boolean allEqual = true;
+				for (int j = 0; j < diagRow.length - 1; j++)
+					if (diagRow[j] != diagRow[j + 1]) {
+						allEqual = false;
+						break;
+					}
+				if (allEqual)
+					return diagRow[0];
+			}
+		}
+
+		return EMPTY;
+	}
+
+	//checks entire board for winner
+	private static char getWinner(char[] connectFour) {
+		for (int i = 0; i < connectFour.length; i++) {
 			int row = i / COLUMNS;
 			int column = i % COLUMNS;
 			//West
-			if (column >= WIN_AMOUNT - 1)
-			{
+			if (column >= WIN_AMOUNT - 1) {
 				boolean isWinner = true;
 				for (int j = 1; j < WIN_AMOUNT; j++)
-					if (connectFour[i] == EMPTY || connectFour[i] != connectFour[i - j])
-					{
+					if (connectFour[i] == EMPTY || connectFour[i] != connectFour[i - j]) {
 						isWinner = false;
 						break;
 					}
@@ -299,12 +473,10 @@ public class ConnectFour extends Drawable
 					return connectFour[i];
 			}
 			//North West
-			if (row >= WIN_AMOUNT - 1 && column >= WIN_AMOUNT - 1)
-			{
+			if (row >= WIN_AMOUNT - 1 && column >= WIN_AMOUNT - 1) {
 				boolean isWinner = true;
 				for (int j = 1; j < WIN_AMOUNT; j++)
-					if (connectFour[i] == EMPTY || connectFour[i] != connectFour[i - j * (COLUMNS + 1)])
-					{
+					if (connectFour[i] == EMPTY || connectFour[i] != connectFour[i - j * (COLUMNS + 1)]) {
 						isWinner = false;
 						break;
 					}
@@ -313,12 +485,10 @@ public class ConnectFour extends Drawable
 					return connectFour[i];
 			}
 			//North
-			if (row >= WIN_AMOUNT - 1)
-			{
+			if (row >= WIN_AMOUNT - 1) {
 				boolean isWinner = true;
 				for (int j = 1; j < WIN_AMOUNT; j++)
-					if (connectFour[i] == EMPTY || connectFour[i] != connectFour[i - j * COLUMNS])
-					{
+					if (connectFour[i] == EMPTY || connectFour[i] != connectFour[i - j * COLUMNS]) {
 						isWinner = false;
 						break;
 					}
@@ -327,12 +497,10 @@ public class ConnectFour extends Drawable
 					return connectFour[i];
 			}
 			//North East
-			if (row >= WIN_AMOUNT - 1 && COLUMNS - column >= WIN_AMOUNT)
-			{
+			if (row >= WIN_AMOUNT - 1 && COLUMNS - column >= WIN_AMOUNT) {
 				boolean isWinner = true;
 				for (int j = 1; j < WIN_AMOUNT; j++)
-					if (connectFour[i] == EMPTY || connectFour[i] != connectFour[i - j * (COLUMNS - 1)])
-					{
+					if (connectFour[i] == EMPTY || connectFour[i] != connectFour[i - j * (COLUMNS - 1)]) {
 						isWinner = false;
 						break;
 					}
@@ -341,12 +509,10 @@ public class ConnectFour extends Drawable
 					return connectFour[i];
 			}
 			//East
-			if (COLUMNS - column >= WIN_AMOUNT)
-			{
+			if (COLUMNS - column >= WIN_AMOUNT) {
 				boolean isWinner = true;
 				for (int j = 1; j < WIN_AMOUNT; j++)
-					if (connectFour[i] == EMPTY || connectFour[i] != connectFour[i + j])
-					{
+					if (connectFour[i] == EMPTY || connectFour[i] != connectFour[i + j]) {
 						isWinner = false;
 						break;
 					}
@@ -355,12 +521,10 @@ public class ConnectFour extends Drawable
 					return connectFour[i];
 			}
 			//South East
-			if (ROWS - row >= WIN_AMOUNT && COLUMNS - column >= WIN_AMOUNT)
-			{
+			if (ROWS - row >= WIN_AMOUNT && COLUMNS - column >= WIN_AMOUNT) {
 				boolean isWinner = true;
 				for (int j = 1; j < WIN_AMOUNT; j++)
-					if (connectFour[i] == EMPTY || connectFour[i] != connectFour[i + j * (COLUMNS + 1)])
-					{
+					if (connectFour[i] == EMPTY || connectFour[i] != connectFour[i + j * (COLUMNS + 1)]) {
 						isWinner = false;
 						break;
 					}
@@ -369,12 +533,10 @@ public class ConnectFour extends Drawable
 					return connectFour[i];
 			}
 			//South
-			if (ROWS - row >= WIN_AMOUNT)
-			{
+			if (ROWS - row >= WIN_AMOUNT) {
 				boolean isWinner = true;
 				for (int j = 1; j < WIN_AMOUNT; j++)
-					if (connectFour[i] == EMPTY || connectFour[i] != connectFour[i + j * COLUMNS])
-					{
+					if (connectFour[i] == EMPTY || connectFour[i] != connectFour[i + j * COLUMNS]) {
 						isWinner = false;
 						break;
 					}
@@ -383,12 +545,10 @@ public class ConnectFour extends Drawable
 					return connectFour[i];
 			}
 			//South West
-			if (ROWS - row >= WIN_AMOUNT && column >= WIN_AMOUNT - 1)
-			{
+			if (ROWS - row >= WIN_AMOUNT && column >= WIN_AMOUNT - 1) {
 				boolean isWinner = true;
 				for (int j = 1; j < WIN_AMOUNT; j++)
-					if (connectFour[i] == EMPTY || connectFour[i] != connectFour[i + j * (COLUMNS - 1)])
-					{
+					if (connectFour[i] == EMPTY || connectFour[i] != connectFour[i + j * (COLUMNS - 1)]) {
 						isWinner = false;
 						break;
 					}
@@ -402,7 +562,7 @@ public class ConnectFour extends Drawable
 		return EMPTY;
 	}
 
-	private boolean boardFull()
+	private static boolean boardFull(char[] connectFour)
 	{
 		for (char move: connectFour)
 			if (move == EMPTY)
@@ -410,8 +570,10 @@ public class ConnectFour extends Drawable
 		return true;
 	}
 
-	private int checkForcedMove()
+	private static int checkForcedMove(char[] connectFour, final char TURN)
 	{
+		int blockingMove = -1;
+
 		for (int i = 0; i < connectFour.length; i++)
 		{
 			int row = i / COLUMNS;
@@ -419,66 +581,106 @@ public class ConnectFour extends Drawable
 			//West
 			if (column >= WIN_AMOUNT - 1)
 			{
-				int forcedMove = getForcedMove(i,-1);
-				if (forcedMove != -1)
-					return forcedMove;
+				int move = getForcedMove(i,-1, connectFour, TURN);
+
+				//set blockingMove to move if move is a blocking move
+				if (move >= COLUMNS)
+					blockingMove = move;
+				//return move if move is a winning move
+				else if (move >= 0)
+					return move;
 			}
 			//North West
 			if (row >= WIN_AMOUNT - 1 && column >= WIN_AMOUNT - 1)
 			{
-				int forcedMove = getForcedMove(i, -(COLUMNS + 1));
-				if (forcedMove != -1)
-					return forcedMove;
+				int move = getForcedMove(i, -(COLUMNS + 1), connectFour, TURN);
+
+				//set blockingMove to move if move is a blocking move
+				if (move >= COLUMNS)
+					blockingMove = move;
+					//return move if move is a winning move
+				else if (move >= 0)
+					return move;
 			}
 			//North
 			if (row >= WIN_AMOUNT - 1)
 			{
-				int forcedMove = getForcedMove(i, -COLUMNS);
-				if (forcedMove != -1)
-					return forcedMove;
+				int move = getForcedMove(i, -COLUMNS, connectFour, TURN);
+
+				//set blockingMove to move if move is a blocking move
+				if (move >= COLUMNS)
+					blockingMove = move;
+					//return move if move is a winning move
+				else if (move >= 0)
+					return move;
 			}
 			//North East
 			if (row >= WIN_AMOUNT - 1 && COLUMNS - column >= WIN_AMOUNT)
 			{
-				int forcedMove = getForcedMove(i, -(COLUMNS - 1));
-				if (forcedMove != -1)
-					return forcedMove;
+				int move = getForcedMove(i, -(COLUMNS - 1), connectFour, TURN);
+
+				//set blockingMove to move if move is a blocking move
+				if (move >= COLUMNS)
+					blockingMove = move;
+					//return move if move is a winning move
+				else if (move >= 0)
+					return move;
 			}
 			//East
 			if (COLUMNS - column >= WIN_AMOUNT)
 			{
-				int forcedMove = getForcedMove(i, 1);
-				if (forcedMove != -1)
-					return forcedMove;
+				int move = getForcedMove(i, 1, connectFour, TURN);
+
+				//set blockingMove to move if move is a blocking move
+				if (move >= COLUMNS)
+					blockingMove = move;
+					//return move if move is a winning move
+				else if (move >= 0)
+					return move;
 			}
 			//South East
 			if (ROWS - row >= WIN_AMOUNT && COLUMNS - column >= WIN_AMOUNT)
 			{
-				int forcedMove = getForcedMove(i, COLUMNS + 1);
-				if (forcedMove != -1)
-					return forcedMove;
+				int move = getForcedMove(i, COLUMNS + 1, connectFour, TURN);
+
+				//set blockingMove to move if move is a blocking move
+				if (move >= COLUMNS)
+					blockingMove = move;
+					//return move if move is a winning move
+				else if (move >= 0)
+					return move;
 			}
 			//South
 			if (ROWS - row >= WIN_AMOUNT)
 			{
-				int forcedMove = getForcedMove(i, COLUMNS);
-				if (forcedMove != -1)
-					return forcedMove;
+				int move = getForcedMove(i, COLUMNS, connectFour, TURN);
+
+				//set blockingMove to move if move is a blocking move
+				if (move >= COLUMNS)
+					blockingMove = move;
+					//return move if move is a winning move
+				else if (move >= 0)
+					return move;
 			}
 			//South West
 			if (ROWS - row >= WIN_AMOUNT && column >= WIN_AMOUNT - 1)
 			{
-				int forcedMove = getForcedMove(i, COLUMNS - 1);
-				if (forcedMove != -1)
-					return forcedMove;
+				int move = getForcedMove(i, COLUMNS - 1, connectFour, TURN);
+
+				//set blockingMove to move if move is a blocking move
+				if (move >= COLUMNS)
+					blockingMove = move;
+					//return move if move is a winning move
+				else if (move >= 0)
+					return move;
 			}
 		}
 
-		//no forced move
-		return -1;
+		//returns blocking move
+		return blockingMove;
 	}
 
-	private int getForcedMove(int i, int offset)
+	private static int getForcedMove(int i, int offset, char[] connectFour, final char TURN)
 	{
 		int emptySpot = -1;
 		char pos = EMPTY;
@@ -494,6 +696,77 @@ public class ConnectFour extends Drawable
 				return -1;
 		}
 
-		return emptySpot % COLUMNS;
+		//if winning then returns: [0, COLUMN)
+		//if blocking then returns: [COLUMN, 2*COLUMN)
+		return (connectFour[i] == TURN ? 0 : COLUMNS) + emptySpot % COLUMNS;
+	}
+
+	private static class ConnectFourAI
+	{
+		final int DEPTH;
+		final int BOARD_LENGTH;
+
+		final int TOTAL_MOVES;
+		final int TOTAL_SRC;
+
+		private char[][] games;
+		private WeightNetwork graph;
+
+		public ConnectFourAI(final int DEPTH)
+		{
+			//depth must be greater or equal to 1
+			if (DEPTH <= 0)
+				throw new IllegalArgumentException();
+
+			this.DEPTH = DEPTH;
+			this.BOARD_LENGTH = ROWS * COLUMNS;
+
+			//calculating totalMoves
+			int totalMoves = 0;
+			for (int i = 0; i <= DEPTH; i++)
+				totalMoves += (int) Math.pow(COLUMNS, i);
+
+			TOTAL_MOVES = totalMoves;
+			TOTAL_SRC = totalMoves - (int) Math.pow(COLUMNS, DEPTH);
+
+			//instantiating moves and graph
+			games = new char[totalMoves][BOARD_LENGTH];
+			graph = new WeightNetwork(totalMoves);
+
+			//creating graph
+			int dest = 1;
+			for (int src = 0; src < TOTAL_SRC; src++)
+			{
+				int initialDest = dest;
+				for (dest = initialDest; dest < initialDest + COLUMNS; dest++)
+					graph.insert(new Edge(src, dest));
+			}
+		}
+
+		public int getBestMove(char[] connectFour, final char TURN)
+		{
+			if (connectFour.length != BOARD_LENGTH)
+				throw new IllegalArgumentException();
+
+			games[0] = Arrays.copyOf(connectFour, BOARD_LENGTH);
+
+			//playing moves
+			char turn = TURN;
+			int move = 0;
+			for (int src = 1; src < TOTAL_MOVES; src++)
+			{
+				//if move is invalid, change turn and
+				if (move == COLUMNS)
+				{
+					turn = turn == RED ? YELLOW : RED;
+					move = 0;
+				}
+
+				char[] currGame = games[src] = Arrays.copyOf(games[graph.previousWeights(src).next().getDestination()], BOARD_LENGTH);
+				insert(move++, currGame, turn);
+			}
+
+			return -1;
+		}
 	}
 }

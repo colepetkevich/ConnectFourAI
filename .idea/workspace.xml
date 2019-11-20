@@ -2,51 +2,17 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="ede16ff6-4698-4fe2-bd1b-1f25693f30f0" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/src/connectfour/ConnectFour.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/connectfour/Game.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/connectfour/WinSetCreator.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/engine/Delay.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/GameEngine.iml" beforeDir="false" afterPath="$PROJECT_DIR$/GameEngine.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/bin/engine/Anchor.class" beforeDir="false" afterPath="$PROJECT_DIR$/bin/engine/Anchor.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/bin/engine/Button$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/bin/engine/Button$1.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/bin/engine/Button.class" beforeDir="false" afterPath="$PROJECT_DIR$/bin/engine/Button.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/bin/engine/Coroutine.class" beforeDir="false" afterPath="$PROJECT_DIR$/bin/engine/Coroutine.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/bin/engine/Drawable.class" beforeDir="false" afterPath="$PROJECT_DIR$/bin/engine/Drawable.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/bin/engine/Image.class" beforeDir="false" afterPath="$PROJECT_DIR$/bin/engine/Image.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/bin/engine/ImageFactory.class" beforeDir="false" afterPath="$PROJECT_DIR$/bin/engine/ImageFactory.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/bin/engine/Item.class" beforeDir="false" afterPath="$PROJECT_DIR$/bin/engine/Item.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/bin/engine/Scene$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/bin/engine/Scene$1.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/bin/engine/Scene.class" beforeDir="false" afterPath="$PROJECT_DIR$/bin/engine/Scene.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/bin/engine/Time.class" beforeDir="false" afterPath="$PROJECT_DIR$/bin/engine/Time.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/bin/engine/UI.class" beforeDir="false" afterPath="$PROJECT_DIR$/bin/engine/UI.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/bin/engine/Updatable.class" beforeDir="false" afterPath="$PROJECT_DIR$/bin/engine/Updatable.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/bin/engine/Vector2.class" beforeDir="false" afterPath="$PROJECT_DIR$/bin/engine/Vector2.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/connectfour/ConnectFour.class" beforeDir="false" afterPath="$PROJECT_DIR$/bin/connectfour/ConnectFour.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/connectfour/Game.class" beforeDir="false" afterPath="$PROJECT_DIR$/bin/connectfour/Game.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/bin/files/GameData.txt" beforeDir="false" afterPath="$PROJECT_DIR$/bin/files/GameData.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/bin/files/NeuralNetwork.dat" beforeDir="false" afterPath="$PROJECT_DIR$/bin/files/NeuralNetwork.dat" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/bin/game/ConnectFour.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/bin/game/ConnectFourBoard.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/bin/game/Token.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/bin/graph/AbstractGraph.class" beforeDir="false" afterPath="$PROJECT_DIR$/bin/graph/AbstractGraph.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/bin/graph/Edge.class" beforeDir="false" afterPath="$PROJECT_DIR$/bin/graph/Edge.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/bin/graph/Graph.class" beforeDir="false" afterPath="$PROJECT_DIR$/bin/graph/Graph.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/bin/graph/MapGraph.class" beforeDir="false" afterPath="$PROJECT_DIR$/bin/graph/MapGraph.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/bin/graphtest/GraphTest.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/bin/neuralnetwork/NetworkData.class" beforeDir="false" afterPath="$PROJECT_DIR$/bin/neuralnetwork/NetworkData.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/bin/neuralnetwork/NeuralNetwork.class" beforeDir="false" afterPath="$PROJECT_DIR$/bin/neuralnetwork/NeuralNetwork.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/bin/neuralnetwork/Trainer.class" beforeDir="false" afterPath="$PROJECT_DIR$/bin/neuralnetwork/Trainer.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/bin/neuralnetwork/WeightNetwork.class" beforeDir="false" afterPath="$PROJECT_DIR$/bin/neuralnetwork/WeightNetwork.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/res/files/GameData.txt" beforeDir="false" afterPath="$PROJECT_DIR$/res/files/GameData.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/res/files/NeuralNetwork.dat" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/engine/Coroutine.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/engine/Coroutine.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/engine/Scene.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/engine/Scene.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/game/ConnectFour.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/game/ConnectFourBoard.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/game/DataSetHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/connectfour/DataSetHandler.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/game/Token.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/connectfour/Token.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/neuralnetwork/NeuralNetwork.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/neuralnetwork/NeuralNetwork.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/neuralnetwork/Trainer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/neuralnetwork/Trainer.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/connectfour/ConnectFour.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/connectfour/ConnectFour.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/connectfour/Game.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/connectfour/Game.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/graph/Edge.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/graph/Edge.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/neuralnetwork/WeightNetwork.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/neuralnetwork/WeightNetwork.java" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/bin/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -57,26 +23,56 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/connectfour/Game.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1394">
-              <caret line="91" column="80" selection-start-line="91" selection-start-column="80" selection-end-line="91" selection-end-column="80" />
+            <state relative-caret-position="1581">
+              <caret line="102" column="49" selection-start-line="102" selection-start-column="49" selection-end-line="102" selection-end-column="49" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/connectfour/ConnectFour.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="535">
+              <caret line="758" column="36" selection-start-line="758" selection-start-column="36" selection-end-line="758" selection-end-column="36" />
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/connectfour/ConnectFour.java">
+        <entry file="file://$PROJECT_DIR$/src/graph/Edge.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="8296">
-              <caret line="497" column="5" selection-start-line="497" selection-start-column="5" selection-end-line="497" selection-end-column="5" />
-              <folding>
-                <element signature="e#1442#1443#0" expanded="true" />
-                <element signature="e#1461#1462#0" expanded="true" />
-                <element signature="e#1520#1521#0" expanded="true" />
-                <element signature="e#1547#1548#0" expanded="true" />
-              </folding>
+            <state relative-caret-position="238">
+              <caret line="14" column="23" selection-start-line="14" selection-start-column="23" selection-end-line="14" selection-end-column="23" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/neuralnetwork/WeightNetwork.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="697">
+              <caret line="45" column="22" selection-start-line="45" selection-start-column="22" selection-end-line="45" selection-end-column="22" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/graph/MapGraph.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="68">
+              <caret line="6" column="13" selection-start-line="6" selection-start-column="13" selection-end-line="6" selection-end-column="13" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/res/files/GameData.txt">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="697">
+              <caret line="1973" column="130" selection-start-line="1973" selection-start-column="130" selection-end-line="1973" selection-end-column="130" />
             </state>
           </provider>
         </entry>
@@ -85,7 +81,7 @@
         <entry file="file://$PROJECT_DIR$/src/neuralnetwork/Trainer.java">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="136">
-              <caret line="12" column="35" lean-forward="true" selection-start-line="12" selection-start-column="35" selection-end-line="12" selection-end-column="35" />
+              <caret line="12" column="35" selection-start-line="12" selection-start-column="35" selection-end-line="12" selection-end-column="35" />
             </state>
           </provider>
         </entry>
@@ -108,6 +104,12 @@
       </list>
     </option>
   </component>
+  <component name="FindInProjectRecents">
+    <findStrings>
+      <find>clear</find>
+      <find>winner</find>
+    </findStrings>
+  </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
@@ -121,25 +123,30 @@
         <option value="$PROJECT_DIR$/src/engine/Updatable.java" />
         <option value="$PROJECT_DIR$/src/engine/Delay.java" />
         <option value="$PROJECT_DIR$/src/connectfour/Token.java" />
-        <option value="$PROJECT_DIR$/src/connectfour/ConnectFour.java" />
-        <option value="$PROJECT_DIR$/src/connectfour/Game.java" />
         <option value="$PROJECT_DIR$/src/neuralnetwork/NeuralNetwork.java" />
         <option value="$PROJECT_DIR$/src/neuralnetwork/Trainer.java" />
+        <option value="$PROJECT_DIR$/src/connectfour/ConnectFourBoard.java" />
+        <option value="$PROJECT_DIR$/src/connectfour/Game.java" />
+        <option value="$PROJECT_DIR$/res/files/GameData.txt" />
+        <option value="$PROJECT_DIR$/src/neuralnetwork/WeightNetwork.java" />
+        <option value="$PROJECT_DIR$/src/connectfour/ConnectFourAI.java" />
+        <option value="$PROJECT_DIR$/src/graph/Edge.java" />
+        <option value="$PROJECT_DIR$/src/connectfour/ConnectFour.java" />
       </list>
     </option>
   </component>
   <component name="ProjectFrameBounds" extendedState="6">
-    <option name="x" value="332" />
-    <option name="y" value="-8" />
-    <option name="width" value="784" />
-    <option name="height" value="768" />
+    <option name="x" value="263" />
+    <option name="y" value="-9" />
+    <option name="width" value="629" />
+    <option name="height" value="617" />
   </component>
   <component name="ProjectView">
     <navigator proportions="" version="1">
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scope" />
+      <pane id="PackagesPane" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -191,11 +198,11 @@
           <select />
         </subPane>
       </pane>
-      <pane id="PackagesPane" />
+      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
-    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1574185444944" />
+    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1574283649885" />
   </component>
   <component name="RunDashboard">
     <option name="ruleStates">
@@ -209,7 +216,7 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="Application.Trainer">
+  <component name="RunManager" selected="Application.Game">
     <configuration name="Game" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="connectfour.Game" />
       <module name="GameEngine" />
@@ -236,10 +243,14 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <list>
+      <item itemvalue="Application.Game" />
+      <item itemvalue="Application.Trainer" />
+    </list>
     <recent_temporary>
       <list>
-        <item itemvalue="Application.Trainer" />
         <item itemvalue="Application.Game" />
+        <item itemvalue="Application.Trainer" />
       </list>
     </recent_temporary>
   </component>
@@ -259,7 +270,7 @@
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.20575693" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.17697228" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Image Layers" order="2" />
       <window_info id="Designer" order="3" />
@@ -268,7 +279,7 @@
       <window_info id="Favorites" order="6" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" weight="0.32936078" />
-      <window_info anchor="bottom" id="Run" order="2" sideWeight="0.49932885" weight="0.25135428" />
+      <window_info anchor="bottom" id="Run" order="2" sideWeight="0.49932885" weight="0.18311404" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.3997833" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
@@ -337,14 +348,8 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/res/files/connect-four-win-set.txt">
-      <provider selected="true" editor-type-id="LargeFileEditor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/res/files/connect-four-data-set.txt">
-      <provider selected="true" editor-type-id="LargeFileEditor">
-        <state relative-caret-position="-116333" />
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/res/files/connect-four-win-set.txt" />
+    <entry file="file://$PROJECT_DIR$/res/files/connect-four-data-set.txt" />
     <entry file="file://$PROJECT_DIR$/src/connectfour/DataSetHandler.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="3128">
@@ -366,11 +371,30 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/res/files/GameData.txt">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
     <entry file="file://$PROJECT_DIR$/res/files/NeuralNetwork.dat">
       <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/connectfour/ConnectFourBoard.java" />
+    <entry file="file://$PROJECT_DIR$/src/graph/Graph.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-157">
+          <caret line="10" column="17" selection-start-line="10" selection-start-column="17" selection-end-line="10" selection-end-column="17" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/connectfour/Game.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1581">
+          <caret line="102" column="49" selection-start-line="102" selection-start-column="49" selection-end-line="102" selection-end-column="49" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/connectfour/ConnectFourAI.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="102">
+          <caret line="6" column="27" lean-forward="true" selection-start-line="6" selection-start-column="27" selection-end-line="6" selection-end-column="27" />
+        </state>
+      </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/neuralnetwork/NeuralNetwork.java">
       <provider selected="true" editor-type-id="text-editor">
@@ -379,30 +403,45 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/connectfour/ConnectFour.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="8296">
-          <caret line="497" column="5" selection-start-line="497" selection-start-column="5" selection-end-line="497" selection-end-column="5" />
-          <folding>
-            <element signature="e#1442#1443#0" expanded="true" />
-            <element signature="e#1461#1462#0" expanded="true" />
-            <element signature="e#1520#1521#0" expanded="true" />
-            <element signature="e#1547#1548#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/neuralnetwork/Trainer.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="136">
-          <caret line="12" column="35" lean-forward="true" selection-start-line="12" selection-start-column="35" selection-end-line="12" selection-end-column="35" />
+          <caret line="12" column="35" selection-start-line="12" selection-start-column="35" selection-end-line="12" selection-end-column="35" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/connectfour/Game.java">
+    <entry file="file://$PROJECT_DIR$/res/files/GameData.txt">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1394">
-          <caret line="91" column="80" selection-start-line="91" selection-start-column="80" selection-end-line="91" selection-end-column="80" />
+        <state relative-caret-position="697">
+          <caret line="1973" column="130" selection-start-line="1973" selection-start-column="130" selection-end-line="1973" selection-end-column="130" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/graph/MapGraph.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="68">
+          <caret line="6" column="13" selection-start-line="6" selection-start-column="13" selection-end-line="6" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/neuralnetwork/WeightNetwork.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="697">
+          <caret line="45" column="22" selection-start-line="45" selection-start-column="22" selection-end-line="45" selection-end-column="22" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/graph/Edge.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="238">
+          <caret line="14" column="23" selection-start-line="14" selection-start-column="23" selection-end-line="14" selection-end-column="23" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/connectfour/ConnectFour.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="535">
+          <caret line="758" column="36" selection-start-line="758" selection-start-column="36" selection-end-line="758" selection-end-column="36" />
         </state>
       </provider>
     </entry>

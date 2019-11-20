@@ -57,34 +57,28 @@ public class Game extends JFrame
 		easyButton.setLocalPosition(FIRST_BUTTON_POSITION);
 		easyButton.setText("Easy");
 		easyButton.setFontScale(BUTTON_FONT_SCALE);
-		easyButton.setMouseClickAction(() ->
-		{
-			gameMode = ConnectFour.EASY;
-			newGameScene();
-		});
+		easyButton.setMouseClickAction(() -> newGameScene(ConnectFour.EASY));
 		
 		Button mediumButton = new Button(currentScene.CENTER, currentScene);
 		mediumButton.setLocalSize(BUTTON_SIZE);
 		mediumButton.setLocalPosition(new Vector2(easyButton.getLocalPosition().x, easyButton.getLocalPosition().y - easyButton.getLocalSize().y - BUTTON_MARGIN));
 		mediumButton.setText("Medium");
 		mediumButton.setFontScale(BUTTON_FONT_SCALE);
+		mediumButton.setMouseClickAction(() -> newGameScene(ConnectFour.MEDIUM));
 		
 		Button hardButton = new Button(currentScene.CENTER, currentScene);
 		hardButton.setLocalSize(BUTTON_SIZE);
 		hardButton.setLocalPosition(new Vector2(mediumButton.getLocalPosition().x, mediumButton.getLocalPosition().y - mediumButton.getLocalSize().y - BUTTON_MARGIN));
 		hardButton.setText("Hard");
 		hardButton.setFontScale(BUTTON_FONT_SCALE);
+		hardButton.setMouseClickAction(() -> newGameScene(ConnectFour.HARD));
 		
 		Button twoPlayerButton = new Button(currentScene.CENTER, currentScene);
 		twoPlayerButton.setLocalSize(BUTTON_SIZE);
 		twoPlayerButton.setLocalPosition(new Vector2(hardButton.getLocalPosition().x, hardButton.getLocalPosition().y - hardButton.getLocalSize().y - BUTTON_MARGIN));
 		twoPlayerButton.setText("Two Player");
 		twoPlayerButton.setFontScale(BUTTON_FONT_SCALE);
-		twoPlayerButton.setMouseClickAction(() ->
-		{
-			gameMode = ConnectFour.TWO_PLAYER;
-			newGameScene();
-		});
+		twoPlayerButton.setMouseClickAction(() -> newGameScene(ConnectFour.TWO_PLAYER));
 		
 		currentScene.initialize(this);
 	}
@@ -92,11 +86,10 @@ public class Game extends JFrame
 	private static final Color GAME_BACKGROUND_COLOR = new Color(119, 165, 191);
 
 	private ConnectFour game;
-	private int gameMode;
 	private static final Vector2 CONNECT_FOUR_POSITION = new Vector2(0, 0);
 	private static final float CONNECT_FOUR_HEIGHT = 1.5f;
 
-	private void newGameScene()
+	private void newGameScene(int gameMode)
 	{
 		//creating a new scene
 		createNewScene();
@@ -110,7 +103,7 @@ public class Game extends JFrame
 		resetButton.setLocalPosition(.30f, -.4f);
 
 		//setting resetButton command
-		resetButton.setMouseClickAction(() -> newGameScene());
+		resetButton.setMouseClickAction(() -> newGameScene(gameMode));
 
 		//creating backButton
 		Button backButton = new Button(currentScene.NORTH_WEST, currentScene);

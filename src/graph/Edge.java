@@ -12,7 +12,7 @@ public class Edge implements Serializable
     {
         this.source = source;
         this.destination = destination;
-        this.weight = 1.0;
+        this.weight = 0.0;
     }
 
     public Edge(int source, int destination, double weight)
