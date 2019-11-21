@@ -16,23 +16,25 @@ public class Line extends Drawable {
 
     @Override
     public void draw(Graphics g) {
-        g.setColor(color);
-
         if (getVisibility())
         {
+            g.setColor(color);
+
             int sceneWidth = scene.getWidth();
             int sceneHeight = scene.getHeight();
 
             float drawWidth = getSize().x * sceneHeight / (2 * Scene.RADIUS);
             float drawHeight = getSize().y * sceneHeight / (2 * Scene.RADIUS);
-            //System.out.println(getPosition().x);
 
-            // x =
+            Vector2 positionOne = new Vector2(getLocalPosition().x - .5f * getLocalSize().x, getLocalPosition().y - .5f * getLocalSize().y);
+            Vector2 positionTwo = new Vector2(getLocalPosition().x + .5f * getLocalSize().x, getLocalPosition().y + .5f * getLocalSize().y);
+            //System.out.println(positionOne + " & " + positionTwo);
 
-            g.drawLine(Math.round(getPosition().x * sceneHeight / (2 * Scene.RADIUS) + sceneWidth / 2 - drawWidth / 2),
-                    Math.round(-getPosition().y * sceneHeight / (2 * Scene.RADIUS) + sceneHeight / 2 - drawHeight / 2),
-                    Math.round(drawWidth),
-                    Math.round(drawHeight));
+
+            g.drawLine(Math.round(positionOne.x * sceneHeight / (2 * Scene.RADIUS) + sceneWidth / 2 - drawWidth / 2),
+                    Math.round(-positionOne.y * sceneHeight / (2 * Scene.RADIUS) + sceneHeight / 2 - drawHeight / 2),
+                    Math.round(positionTwo.x * sceneHeight / (2 * Scene.RADIUS) + sceneWidth / 2 - drawWidth / 2),
+                    Math.round(-positionTwo.y * sceneHeight / (2 * Scene.RADIUS) + sceneHeight / 2 - drawHeight / 2));
         }
     }
 

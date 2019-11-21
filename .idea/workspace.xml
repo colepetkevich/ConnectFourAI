@@ -2,13 +2,10 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="ede16ff6-4698-4fe2-bd1b-1f25693f30f0" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/src/engine/Circle.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/engine/Line.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/neuralnetwork/NNRepresentation.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/connectfour/Game.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/connectfour/Game.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/neuralnetwork/Trainer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/neuralnetwork/Trainer.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/neuralnetwork/NNRepresentation.class" beforeDir="false" afterPath="$PROJECT_DIR$/bin/neuralnetwork/NNRepresentation.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/engine/Line.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/engine/Line.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/neuralnetwork/NNRepresentation.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/neuralnetwork/NNRepresentation.java" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
