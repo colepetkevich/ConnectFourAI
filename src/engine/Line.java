@@ -31,10 +31,10 @@ public class Line extends Drawable {
             //System.out.println(positionOne + " & " + positionTwo);
 
 
-            g.drawLine(Math.round(positionOne.x * sceneHeight / (2 * Scene.RADIUS) + sceneWidth / 2 - drawWidth / 2),
-                    Math.round(-positionOne.y * sceneHeight / (2 * Scene.RADIUS) + sceneHeight / 2 - drawHeight / 2),
-                    Math.round(positionTwo.x * sceneHeight / (2 * Scene.RADIUS) + sceneWidth / 2 - drawWidth / 2),
-                    Math.round(-positionTwo.y * sceneHeight / (2 * Scene.RADIUS) + sceneHeight / 2 - drawHeight / 2));
+            g.drawLine(Math.round(positionOne.x * sceneHeight / (2 * Scene.RADIUS) + sceneWidth / 2),
+                    Math.round(-positionOne.y * sceneHeight / (2 * Scene.RADIUS) + sceneHeight / 2),
+                    Math.round(positionTwo.x * sceneHeight / (2 * Scene.RADIUS) + sceneWidth / 2),
+                    Math.round(-positionTwo.y * sceneHeight / (2 * Scene.RADIUS) + sceneHeight / 2));
         }
     }
 

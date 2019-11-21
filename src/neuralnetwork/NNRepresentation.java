@@ -32,12 +32,12 @@ public class NNRepresentation extends JFrame {
     private void createRep()
     {
         Image empty = new Image(scene);
+        empty.setLocalSize(2.75f, 1.75f);
 
         int[] neuronLayerCounts = Trainer.NEURON_LAYER_COUNTS;
         int totalNeurons = 0;
         int totalLayers = neuronLayerCounts.length;
         final float CIRC_SIZE = .015f;
-
 
         for (int i = 0; i < totalLayers; i++) {
             totalNeurons += neuronLayerCounts[i];
@@ -51,45 +51,13 @@ public class NNRepresentation extends JFrame {
                 Circle circ = new Circle(empty, scene);
                 circ.setLocalSize(CIRC_SIZE, CIRC_SIZE);
                 neurons[index] = circ;
-                //System.out.println((2 - circ.getLocalSize().y) * j / neuronCount);
-                //circ.setLocalPosition(-1 + (float) i / totalLayers, (1 - .5f * circ.getLocalSize().y) - (1 - circ.getLocalSize().y) * (float) j / neuronCount);
                 circ.setLocalPosition(-.5f * empty.getLocalSize().x + i * empty.getLocalSize().x / (totalLayers - 1), .5f * empty.getLocalSize().y - .5f * circ.getLocalSize().y - j * (empty.getLocalSize().y - circ.getLocalSize().y) / (neuronCount - 1));
                 index++;
             }
         }
 
-        // first layer of neurons: 0 to neuronLayerCounts[0] - 1
-        // second layer of neurons: neuronLayerCounts[0] - 1 to neuronLayerCounts[1] - 1
-        // third layer of neerons: neuronLayerCounts[1] - 1 to neuronLayerCounts[2] - 1
-
-//        // this for loop goes through all the layers except the last one
-//        int startIndex = 0;
-//        int endIndex = 0;
-//        for (int i = 0; i < neuronLayerCounts.length - 1; i++) {
-//            endIndex += neuronLayerCounts[i];
-//            if (i != 0) {
-//                startIndex += neuronLayerCounts[i-1];
-//            }
-//            // this loops through all the circles on the current layer
-//            // we use this to draw a line from this layer to the next layer
-//            for (int j = startIndex; j < endIndex; j++) {
-//                System.out.println(neuronLayerCounts[i] + " " + neuronLayerCounts[i + 1]);
-//                for (int k = neuronLayerCounts[i]; k < neuronLayerCounts[i + 1]; k++) {
-//                    // draw a line from circle neurons[j] to circle neurons[k]
-//                    Vector2 positionOne = neurons[j].getLocalPosition();
-//                    Vector2 positionTwo = neurons[k].getLocalPosition();
-//
-//                    Line line = new Line(empty, scene);
-//                    line.setLocalPosition((positionOne.x + positionTwo.x) / 2, (positionOne.y + positionTwo.y) / 2);
-//                    line.setLocalSize(positionOne.x - positionTwo.x, positionOne.y - positionTwo.y);
-//                    line.setColor(Color.RED);
-//                    System.out.println(line.getLocalPosition());
-//                }
-//            }
-//        }
-
         int src = 0;
-        for (int i = 0; i < /*neuronLayerCounts.length - 1*/1; i++)
+        for (int i = 0; i < neuronLayerCounts.length - 1; i++)
         {
             int initialDest = src + neuronLayerCounts[i];
             for (; src < initialDest; src++)
@@ -105,14 +73,12 @@ public class NNRepresentation extends JFrame {
                     Line line = new Line(empty, scene);
                     line.setLocalPosition((positionOne.x + positionTwo.x) / 2, (positionOne.y + positionTwo.y) / 2);
                     line.setLocalSize(positionOne.x - positionTwo.x, positionOne.y - positionTwo.y);
-                    line.setColor(Color.RED);
-
-                    System.out.println(positionOne + " & " + positionTwo +  " --> " + line.getLocalPosition());
+                    //line.setColor(new Color((int) (255.0f * src / totalNeurons), 12, 233));
+                    line.setColor(new Color((int) (Math.random() * 255), (int) (Math.random() * 255), (int) (Math.random() * 255)));
+                    line.setLayer(1 - (float) (10 * Math.random()));
                 }
             }
         }
-
-        empty.setLocalScale(1.75f, 1.75f);
     }
 
 

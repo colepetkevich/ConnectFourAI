@@ -1,15 +1,12 @@
 package connectfour;
 
 import java.awt.*;
-import java.time.LocalTime;
 import java.util.Arrays;
-import java.util.Iterator;
 
 import engine.*;
 import engine.Button;
 import engine.Image;
 import graph.Edge;
-import graph.MapGraph;
 import neuralnetwork.NeuralNetwork;
 import neuralnetwork.WeightNetwork;
 
@@ -762,8 +759,15 @@ public class ConnectFour extends Drawable
 					move = 0;
 				}
 
-				char[] currGame = games[src] = Arrays.copyOf(games[graph.previousWeights(src).next().getDestination()], BOARD_LENGTH);
-				insert(move++, currGame, turn);
+				Edge edge = graph.previousWeights(src).next();
+				char[] currGame = games[src] = Arrays.copyOf(games[edge.getDestination()], BOARD_LENGTH);
+				int index = insert(move++, currGame, turn);
+				char winner = getWinner(currGame, index);
+
+				if (winner != EMPTY)
+				{
+					Edge reverseEdge = graph.getWeight(edge.getDestination(), edge.getSource());
+				}
 			}
 
 			return -1;
