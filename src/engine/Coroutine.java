@@ -34,8 +34,8 @@ public class Coroutine
 			//if the condition is no longer true, run post-loop block then remove this coroutine
 			else
 			{
-				postloopBlock.run();
 				scene.coroutines.remove(this);
+				postloopBlock.run();
 			}
 				
 		} 

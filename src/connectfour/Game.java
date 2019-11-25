@@ -138,7 +138,7 @@ public class Game extends JFrame implements KeyListener
 			remove(currentScene);
 		}
 
-		currentScene = new Scene();
+		currentScene = new Scene(1000, 20);
 		add(currentScene);
 		currentScene.setLayout(null);
 	}
@@ -155,7 +155,8 @@ public class Game extends JFrame implements KeyListener
 	}
 
 	@Override
-	public void keyPressed(KeyEvent e) {
+	public void keyPressed(KeyEvent e)
+	{
 		if (e.getKeyChar() == 'n')
 		{
 			nn = new NNRepresentation();

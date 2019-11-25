@@ -10,17 +10,17 @@ import neuralnetwork.Trainer;
 import javax.swing.*;
 import java.awt.*;
 
-public class NNRepresentation extends JFrame {
-
+public class NNRepresentation extends JFrame
+{
     private Scene scene;
 
     public NNRepresentation() {
         super("Neural Network Representation");
         setSize(1200, 800);
-        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         setLocationRelativeTo(null);
 
-        scene = new Scene();
+        scene = new Scene(10, 10);
         add(scene);
 
         createRep();
@@ -81,25 +81,10 @@ public class NNRepresentation extends JFrame {
         }
     }
 
+    public void dispose()
+    {
+        super.dispose();
 
-//    public void paint(Graphics g) {
-//        int scaling = 20;
-//        int circleSize = 10;
-//        int x = 100;
-//        int y;
-//        int[] neuralNetwork = Trainer.getNeuronLayerCounts();
-//        for (int i = 0; i < neuralNetwork.length; i++ ) {
-//            y = 10;
-//            for (int j = 0;j < neuralNetwork[i]; j++) {
-//                g.fillOval(x,y,circleSize,circleSize);
-//                y+=scaling;
-//            }
-//            x+=scaling;
-//        }
-//
-//
-//
-//    }
-
-
+        scene.setActive(false);
+    }
 }

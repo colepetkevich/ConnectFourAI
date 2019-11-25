@@ -13,7 +13,7 @@ public class Delay
         Coroutine delay = new Coroutine(
                 () -> time < delayTime,
                 () -> {
-                    time += Time.deltaTime();
+                    time += scene.TIME.deltaTime();
                 }, postloopBlock, scene);
 
         delay.start();

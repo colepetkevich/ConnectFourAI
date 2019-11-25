@@ -42,8 +42,8 @@ public class Token extends Image
 				() -> getLocalPosition().y >= finalY,
 				//loop block: change velocity and y position depending on the change in time
 				() -> {
-					velocityY += accelerationY * Time.deltaTime();
-					setLocalPosition(getLocalPosition().x, getLocalPosition().y + velocityY * Time.deltaTime());
+					velocityY += accelerationY * scene.TIME.deltaTime();
+					setLocalPosition(getLocalPosition().x, getLocalPosition().y + velocityY * scene.TIME.deltaTime());
 					
 					//bounce token if its y position is less than finalY position and its velocityY is great enough
 					if (getLocalPosition().y < finalY && Math.abs(velocityY) > .1f)

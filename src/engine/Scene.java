@@ -2,11 +2,12 @@ package engine;
 
 import java.awt.Color;
 import java.awt.Graphics;
+import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.ComponentAdapter;
 import java.awt.event.ComponentEvent;
-import java.util.ArrayList;
 import java.util.Collections;
+import java.util.Vector;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
@@ -15,25 +16,28 @@ import javax.swing.Timer;
 public class Scene extends JPanel implements Runnable, Updatable
 {	
 	//updates values
-	public static final float MAX_UPDATES_PER_SECOND = 1000;
-	public static final float FIXED_UPDATES_PER_SECOND = 20;
+	public final float MAX_UPDATES_PER_SECOND;
+	public final float FIXED_UPDATES_PER_SECOND;
 	
 	//dimensions
 	public static final float RADIUS = 1.0f;
 
-	//Updatable, Drawable, and Coroutine ArrayLists
-	protected ArrayList<Updatable> updatables;
-	protected ArrayList<Drawable> drawables;
-	protected ArrayList<Coroutine> coroutines;
+	//scene time
+	public final Time TIME;
+	private Timer secondTimer;
+	private ActionListener printFPS;
+	private int fps;
+
+	//Updatable, Drawable, and Coroutine Vectors
+	protected Vector<Updatable> updatables;
+	protected Vector<Drawable> drawables;
+	protected Vector<Coroutine> coroutines;
 	
-	//connectfour state variables
+	//scene state variables
 	private boolean isInitilized;
 	private boolean isActive;
 	
 	//graphics variables
-	private Timer secondTimer;
-	private ActionListener printFPS;
-	private int fps;
 	private Color backgroundColor;
 	
 	//ui variables
@@ -47,25 +51,29 @@ public class Scene extends JPanel implements Runnable, Updatable
 	public final Anchor SOUTH_EAST;
 	public final Anchor SOUTH_WEST;
 		
-	public Scene()
-	{	
+	public Scene(int maxUpdatesPerSecond, int fixedUpdatesPerSecond)
+	{
 		super();
 		setLayout(null);
 		setOpaque(false);
 		addResizeListener();
+
+		MAX_UPDATES_PER_SECOND = maxUpdatesPerSecond;
+		FIXED_UPDATES_PER_SECOND = fixedUpdatesPerSecond;
 		
 		//instantiating all ArrayList
-		updatables = new ArrayList<Updatable>();
-		drawables = new ArrayList<Drawable>();
-		coroutines = new ArrayList<Coroutine>();
+		updatables = new Vector<Updatable>();
+		drawables = new Vector<Drawable>();
+		coroutines = new Vector<Coroutine>();
 		
 		//default initialization status and active status
 		isInitilized = false;
 		isActive = false;
-		
-		//creating second timer for fps counter
+
+		TIME = new Time();
+//		//creating second timer for fps counter
 //		printFPS = new ActionListener()
-//		{   
+//		{
 //            public void actionPerformed(ActionEvent event)
 //            {
 //            	if (isActive)
@@ -84,7 +92,7 @@ public class Scene extends JPanel implements Runnable, Updatable
 		//default backgroundColor
 		backgroundColor = Color.BLACK;
 				
-		//initilizing UI anchors
+		//initializing UI anchors
 		CENTER = new Anchor(Anchor.CENTER, this);
 		NORTH = new Anchor(Anchor.NORTH, this);
 		SOUTH = new Anchor(Anchor.SOUTH, this);
@@ -103,7 +111,7 @@ public class Scene extends JPanel implements Runnable, Updatable
 			isActive = true;
 			isInitilized = true;
 			
-			//starts running connectfour and make the JFrame visible
+			//starts running Scene and make the JFrame visible
 			new Thread(this).start();
 			jFrame.setVisible(true);
 			
@@ -128,7 +136,7 @@ public class Scene extends JPanel implements Runnable, Updatable
 		repaint();
 		
 		fps++;
-		Time.saveLastUpdate();
+		TIME.saveLastUpdate();
 	}
 	
 	//handles all the I/O
@@ -137,8 +145,8 @@ public class Scene extends JPanel implements Runnable, Updatable
 		//calls fixedUpdate() on all updatables
 		for (int i = updatables.size() - 1; i >= 0; i--)
 			updatables.get(i).fixedUpdate();
-				
-		Time.saveLastFixedUpdate();
+
+		TIME.saveLastFixedUpdate();
 	}
 	
 	public void paint(Graphics g)
@@ -181,10 +189,10 @@ public class Scene extends JPanel implements Runnable, Updatable
 		while (isActive)
 		{				
 			//call fixedUpdate() if enough time has elapsed
-			if (Time.fixedDeltaTime() >= 1 / FIXED_UPDATES_PER_SECOND)
+			if (TIME.fixedDeltaTime() >= 1 / FIXED_UPDATES_PER_SECOND)
 				fixedUpdate();
 			//call update() if enough time has elapsed
-			if (Time.deltaTime() >= 1 / MAX_UPDATES_PER_SECOND)
+			if (TIME.deltaTime() >= 1 / MAX_UPDATES_PER_SECOND)
 				update();	
 		}
 	}
