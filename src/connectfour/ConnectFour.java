@@ -27,7 +27,7 @@ public class ConnectFour extends Drawable
 	private Button[] inputButtons;
 
 	//connect four ai (neural network)
-	private NeuralNetwork connectFourAi;
+	private NeuralNetwork connectFourAI;
 	private boolean aiCanPlayMove;
 	private final float AI_PLAY_DELAY = .75f;
 	private static final String NEURAL_NETWORK_PATH = "res/files/NeuralNetwork.dat";
@@ -81,7 +81,7 @@ public class ConnectFour extends Drawable
 		}
 
 		//creating connect four ai
-		connectFourAi = new NeuralNetwork(NEURAL_NETWORK_PATH);
+		connectFourAI = new NeuralNetwork(NEURAL_NETWORK_PATH);
 		aiCanPlayMove = gameMode != TWO_PLAYER;
 
 		//creating input buttons
@@ -197,7 +197,7 @@ public class ConnectFour extends Drawable
 			//do ai's move at a delay
 			new Delay(AI_PLAY_DELAY, () ->
 			{
-				aiPlays(connectFourAi);
+				aiPlays(connectFourAI);
 			}, scene);
 		}
 	}
@@ -696,81 +696,5 @@ public class ConnectFour extends Drawable
 		//if winning then returns: [0, COLUMN)
 		//if blocking then returns: [COLUMN, 2*COLUMN)
 		return (connectFour[i] == TURN ? 0 : COLUMNS) + emptySpot % COLUMNS;
-	}
-
-	private static class ConnectFourAI
-	{
-		final int DEPTH;
-		final int BOARD_LENGTH;
-
-		final int TOTAL_MOVES;
-		final int TOTAL_SRC;
-
-		private char[][] games;
-		private WeightNetwork graph;
-
-		public ConnectFourAI(final int DEPTH)
-		{
-			//depth must be greater or equal to 1
-			if (DEPTH <= 0)
-				throw new IllegalArgumentException();
-
-			this.DEPTH = DEPTH;
-			this.BOARD_LENGTH = ROWS * COLUMNS;
-
-			//calculating totalMoves
-			int totalMoves = 0;
-			for (int i = 0; i <= DEPTH; i++)
-				totalMoves += (int) Math.pow(COLUMNS, i);
-
-			TOTAL_MOVES = totalMoves;
-			TOTAL_SRC = totalMoves - (int) Math.pow(COLUMNS, DEPTH);
-
-			//instantiating moves and graph
-			games = new char[totalMoves][BOARD_LENGTH];
-			graph = new WeightNetwork(totalMoves);
-
-			//creating graph
-			int dest = 1;
-			for (int src = 0; src < TOTAL_SRC; src++)
-			{
-				int initialDest = dest;
-				for (dest = initialDest; dest < initialDest + COLUMNS; dest++)
-					graph.insert(new Edge(src, dest));
-			}
-		}
-
-		public int getBestMove(char[] connectFour, final char TURN)
-		{
-			if (connectFour.length != BOARD_LENGTH)
-				throw new IllegalArgumentException();
-
-			games[0] = Arrays.copyOf(connectFour, BOARD_LENGTH);
-
-			//playing moves
-			char turn = TURN;
-			int move = 0;
-			for (int src = 1; src < TOTAL_MOVES; src++)
-			{
-				//if move is invalid, change turn and
-				if (move == COLUMNS)
-				{
-					turn = turn == RED ? YELLOW : RED;
-					move = 0;
-				}
-
-				Edge edge = graph.previousWeights(src).next();
-				char[] currGame = games[src] = Arrays.copyOf(games[edge.getDestination()], BOARD_LENGTH);
-				int index = insert(move++, currGame, turn);
-				char winner = getWinner(currGame, index);
-
-				if (winner != EMPTY)
-				{
-					Edge reverseEdge = graph.getWeight(edge.getDestination(), edge.getSource());
-				}
-			}
-
-			return -1;
-		}
 	}
 }
