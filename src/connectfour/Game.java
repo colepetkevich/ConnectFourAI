@@ -31,7 +31,7 @@ public class Game extends JFrame implements KeyListener
 		addKeyListener(this);
 
 		//newGameScene();
-		newMainMenyScene();
+		newMainMenuScene();
 	}
 	
 	private static final Color MAIN_MENU_BACKGROUND_COLOR = new Color(246, 234, 123);
@@ -45,7 +45,7 @@ public class Game extends JFrame implements KeyListener
 	private static final float BUTTON_MARGIN = 0.05f;
 	private static final float BUTTON_FONT_SCALE = .85f;
 
-	private void newMainMenyScene()
+	private void newMainMenuScene()
 	{
 		createNewScene();
 		currentScene.setBackgroundColor(MAIN_MENU_BACKGROUND_COLOR);
@@ -117,7 +117,7 @@ public class Game extends JFrame implements KeyListener
 		backButton.setFontScale(.75f);
 		backButton.setLocalSize(.5f, .2f);
 		backButton.setLocalPosition(.30f, -.15f);
-		backButton.setMouseClickAction(() -> newMainMenyScene());
+		backButton.setMouseClickAction(() -> newMainMenuScene());
 
 		//creating connect four game
 		game = new ConnectFour(currentScene);
