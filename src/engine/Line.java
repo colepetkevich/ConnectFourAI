@@ -26,8 +26,8 @@ public class Line extends Drawable {
             float drawWidth = getSize().x * sceneHeight / (2 * Scene.RADIUS);
             float drawHeight = getSize().y * sceneHeight / (2 * Scene.RADIUS);
 
-            Vector2 positionOne = new Vector2(getLocalPosition().x - .5f * getLocalSize().x, getLocalPosition().y - .5f * getLocalSize().y);
-            Vector2 positionTwo = new Vector2(getLocalPosition().x + .5f * getLocalSize().x, getLocalPosition().y + .5f * getLocalSize().y);
+            Vector2 positionOne = new Vector2(getPosition().x - .5f * getSize().x, getPosition().y - .5f * getSize().y);
+            Vector2 positionTwo = new Vector2(getPosition().x + .5f * getSize().x, getPosition().y + .5f * getSize().y);
             //System.out.println(positionOne + " & " + positionTwo);
 
 
