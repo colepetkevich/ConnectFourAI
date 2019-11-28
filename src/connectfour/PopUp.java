@@ -23,13 +23,17 @@ public class PopUp extends Image
     }
 
     //spawn coroutine variables
+    private static float INITIAL_STEP = 0f;
+    private static float STEP_DISTANCE = (float) (2f / 3 * Math.PI);
     private float time = 0.0f;
-    private Vector2 deltaScale;
-    public void spawn(Vector2 initialScale, Vector2 finalScale, float spawnTime)
+    private Vector2 finalScale;
+    public void spawn(float spawnTime)
     {
-        //setting scale to initialScale and calculating deltaScale
-        setLocalScale(initialScale);
-        deltaScale = new Vector2(finalScale.x - initialScale.x, finalScale.y - initialScale.y);
+        //setting scale to zero
+        finalScale = getLocalScale();
+        setLocalScale(Vector2.ZERO);
+
+        float demon = (float) (Math.sin(INITIAL_STEP + STEP_DISTANCE));
 
         //creating the drop coroutine
         Coroutine spawn = new Coroutine(
@@ -38,8 +42,8 @@ public class PopUp extends Image
                 //loop block: change velocity and y position depending on the change in time
                 () -> {
                     time += scene.TIME.deltaTime();
-                    setLocalScale(new Vector2(getLocalScale().x + deltaScale.x * scene.TIME.deltaTime() / spawnTime,
-                            getLocalScale().y + deltaScale.y * scene.TIME.deltaTime() / spawnTime));
+                    setLocalScale((float) Math.sin(time / spawnTime * (INITIAL_STEP + STEP_DISTANCE)) / demon,
+                            (float) Math.sin(time / spawnTime * (INITIAL_STEP + STEP_DISTANCE)) / demon);
                 },
                 //post loop block: set token to finalY position
                 () -> {

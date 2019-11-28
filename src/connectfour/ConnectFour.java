@@ -6,6 +6,7 @@ import java.util.Arrays;
 import engine.*;
 import engine.Button;
 import engine.Image;
+import engine.Label;
 import graph.Edge;
 import neuralnetwork.NeuralNetwork;
 import neuralnetwork.WeightNetwork;
@@ -185,7 +186,6 @@ public class ConnectFour extends Drawable
 				}
 			});
 		}
-
 	}
 
 	public void update()

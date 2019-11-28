@@ -13,7 +13,7 @@ import neuralnetwork.NNRepresentation;
 public class Game extends JFrame implements KeyListener
 {	
 	//class variables
-	private Scene currentScene;
+	private Scene scene;
 	private NNRepresentation nn;
 	
 	public Game(String title)
@@ -41,73 +41,72 @@ public class Game extends JFrame implements KeyListener
 	private static final float BUTTON_MARGIN = 0.05f;
 	private static final float BUTTON_FONT_SCALE = .85f;
 
-	private PopUp popUp;
-
 	private void newMainMenuScene()
 	{
 		createNewScene();
-		currentScene.setBackgroundColor(MAIN_MENU_BACKGROUND_COLOR);
-
-		//TODO: start of pop up demo
-		//popup
-		popUp = new PopUp(currentScene);
-		popUp.setLocalSize(.5f, .5f);
-		popUp.setLocalPosition(.5f, .5f);
-
-		Label label = new Label(popUp, currentScene);
-		label.setText("POP UP");
-		label.setLocalSize(.4f, .15f);
-		label.setLocalPosition(0, .1f);
-		label.setLocalFontScale(.6f);
-		label.setColor(Color.BLACK);
-		label.setTextColor(Color.GREEN);
-
-		Button button = new Button(popUp, currentScene);
-		button.setText("BUTTON");
-		button.setLocalSize(.4f, .15f);
-		button.setLocalPosition(0, -.1f);
-		button.setLocalFontScale(.6f);
-
-		popUp.spawn(Vector2.ZERO, popUp.getLocalScale(), .3f);
-		//TODO: end of pop up demo
+		scene.setBackgroundColor(MAIN_MENU_BACKGROUND_COLOR);
 
 		//adding logo
 		BufferedImage logoImage = ImageFactory.getImageFromPath(LOGO_PATH);
-		Image logo = new Image(currentScene);
+		Image logo = new Image(scene);
 		logo.setImage(logoImage);
 		logo.setLocalSize(LOGO_HEIGHT * logoImage.getWidth() / logoImage.getHeight(), LOGO_HEIGHT);
 		logo.setLocalPosition(LOGO_POSITION);
 		
 		//adding buttons
-		Button easyButton = new Button(currentScene.CENTER, currentScene);
+		Button easyButton = new Button(scene.CENTER, scene);
 		easyButton.setLocalSize(BUTTON_SIZE);
 		easyButton.setLocalPosition(FIRST_BUTTON_POSITION);
 		easyButton.setText("Easy");
 		easyButton.setLocalFontScale(BUTTON_FONT_SCALE);
 		easyButton.setMouseClickAction(() -> newGameScene(ConnectFour.EASY));
 		
-		Button mediumButton = new Button(currentScene.CENTER, currentScene);
+		Button mediumButton = new Button(scene.CENTER, scene);
 		mediumButton.setLocalSize(BUTTON_SIZE);
 		mediumButton.setLocalPosition(new Vector2(easyButton.getLocalPosition().x, easyButton.getLocalPosition().y - easyButton.getLocalSize().y - BUTTON_MARGIN));
 		mediumButton.setText("Medium");
 		mediumButton.setLocalFontScale(BUTTON_FONT_SCALE);
 		mediumButton.setMouseClickAction(() -> newGameScene(ConnectFour.MEDIUM));
 		
-		Button hardButton = new Button(currentScene.CENTER, currentScene);
+		Button hardButton = new Button(scene.CENTER, scene);
 		hardButton.setLocalSize(BUTTON_SIZE);
 		hardButton.setLocalPosition(new Vector2(mediumButton.getLocalPosition().x, mediumButton.getLocalPosition().y - mediumButton.getLocalSize().y - BUTTON_MARGIN));
 		hardButton.setText("Hard");
 		hardButton.setLocalFontScale(BUTTON_FONT_SCALE);
 		hardButton.setMouseClickAction(() -> newGameScene(ConnectFour.HARD));
 		
-		Button twoPlayerButton = new Button(currentScene.CENTER, currentScene);
+		Button twoPlayerButton = new Button(scene.CENTER, scene);
 		twoPlayerButton.setLocalSize(BUTTON_SIZE);
 		twoPlayerButton.setLocalPosition(new Vector2(hardButton.getLocalPosition().x, hardButton.getLocalPosition().y - hardButton.getLocalSize().y - BUTTON_MARGIN));
 		twoPlayerButton.setText("Two Player");
 		twoPlayerButton.setLocalFontScale(BUTTON_FONT_SCALE);
 		twoPlayerButton.setMouseClickAction(() -> newGameScene(ConnectFour.TWO_PLAYER));
 
-		currentScene.initialize(this);
+		//TODO: start of pop up demo
+		//popup
+		PopUp popUp = new PopUp(scene);
+		popUp.setLocalSize(.5f, .5f);
+		popUp.setLocalPosition(.5f, .5f);
+		popUp.setLayer(5);
+
+		Label label = new Label(popUp, scene);
+		label.setText("POP UP");
+		label.setLocalSize(.4f, .15f);
+		label.setLocalPosition(0, .1f);
+		label.setLocalFontScale(.5f);
+		label.setColor(Color.BLACK);
+		label.setTextColor(Color.GREEN);
+
+		Button button = new Button(popUp, scene);
+		button.setText("BUTTON");
+		button.setLocalSize(.4f, .15f);
+		button.setLocalPosition(0, -.1f);
+		button.setLocalFontScale(.5f);
+
+		popUp.spawn(.4f);
+		//TODO: end of pop up demo
+
+		scene.initialize(this);
 	}
 
 	private static final Color GAME_BACKGROUND_COLOR = new Color(119, 165, 191);
@@ -120,10 +119,10 @@ public class Game extends JFrame implements KeyListener
 	{
 		//creating a new scene
 		createNewScene();
-		currentScene.setBackgroundColor(GAME_BACKGROUND_COLOR);
+		scene.setBackgroundColor(GAME_BACKGROUND_COLOR);
 
 		//creating resetButton
-		Button resetButton = new Button(currentScene.NORTH_WEST, currentScene);
+		Button resetButton = new Button(scene.NORTH_WEST, scene);
 		resetButton.setText("Reset");
 		resetButton.setLocalFontScale(.75f);
 		resetButton.setLocalSize(.5f, .2f);
@@ -133,7 +132,7 @@ public class Game extends JFrame implements KeyListener
 		resetButton.setMouseClickAction(() -> newGameScene(gameMode));
 
 		//creating backButton
-		Button backButton = new Button(currentScene.NORTH_WEST, currentScene);
+		Button backButton = new Button(scene.NORTH_WEST, scene);
 		backButton.setText("Back");
 		backButton.setLocalFontScale(.75f);
 		backButton.setLocalSize(.5f, .2f);
@@ -141,27 +140,27 @@ public class Game extends JFrame implements KeyListener
 		backButton.setMouseClickAction(() -> newMainMenuScene());
 
 		//creating connect four game
-		game = new ConnectFour(currentScene);
+		game = new ConnectFour(scene);
 		game.setLocalPosition(CONNECT_FOUR_POSITION);
 		game.setLocalSize(CONNECT_FOUR_HEIGHT * ConnectFour.COLUMNS / ConnectFour.ROWS, CONNECT_FOUR_HEIGHT);
 		game.startNewGame(gameMode);
-				
+
 		//initializing scene
-		currentScene.initialize(this);
+		scene.initialize(this);
 	}
 
 	private void createNewScene()
 	{
-		if (currentScene != null)
+		if (scene != null)
 		{
-			currentScene.setEnabled(false);
-			currentScene.setActive(false);
-			remove(currentScene);
+			scene.setEnabled(false);
+			scene.setActive(false);
+			remove(scene);
 		}
 
-		currentScene = new Scene(1000, 20);
-		add(currentScene);
-		currentScene.setLayout(null);
+		scene = new Scene(1000, 20);
+		add(scene);
+		scene.setLayout(null);
 	}
 
 	@Override
