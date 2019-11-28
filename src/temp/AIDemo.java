@@ -1,4 +1,6 @@
-package connectfour;
+package temp;
+
+import connectfour.ConnectFour;
 
 import java.time.LocalTime;
 import java.util.Arrays;

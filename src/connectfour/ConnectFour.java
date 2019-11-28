@@ -185,6 +185,7 @@ public class ConnectFour extends Drawable
 				}
 			});
 		}
+
 	}
 
 	public void update()

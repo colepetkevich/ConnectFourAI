@@ -5,13 +5,9 @@ import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.awt.image.BufferedImage;
 
-import javax.swing.JFrame;
+import javax.swing.*;
 
-import engine.Button;
-import engine.Image;
-import engine.ImageFactory;
-import engine.Scene;
-import engine.Vector2;
+import engine.*;
 import neuralnetwork.NNRepresentation;
 
 public class Game extends JFrame implements KeyListener
@@ -45,11 +41,36 @@ public class Game extends JFrame implements KeyListener
 	private static final float BUTTON_MARGIN = 0.05f;
 	private static final float BUTTON_FONT_SCALE = .85f;
 
+	private PopUp popUp;
+
 	private void newMainMenuScene()
 	{
 		createNewScene();
 		currentScene.setBackgroundColor(MAIN_MENU_BACKGROUND_COLOR);
-		
+
+		//TODO: start of pop up demo
+		//popup
+		popUp = new PopUp(currentScene);
+		popUp.setLocalSize(.5f, .5f);
+		popUp.setLocalPosition(.5f, .5f);
+
+		Label label = new Label(popUp, currentScene);
+		label.setText("POP UP");
+		label.setLocalSize(.4f, .15f);
+		label.setLocalPosition(0, .1f);
+		label.setLocalFontScale(.6f);
+		label.setColor(Color.BLACK);
+		label.setTextColor(Color.GREEN);
+
+		Button button = new Button(popUp, currentScene);
+		button.setText("BUTTON");
+		button.setLocalSize(.4f, .15f);
+		button.setLocalPosition(0, -.1f);
+		button.setLocalFontScale(.6f);
+
+		popUp.spawn(Vector2.ZERO, popUp.getLocalScale(), .3f);
+		//TODO: end of pop up demo
+
 		//adding logo
 		BufferedImage logoImage = ImageFactory.getImageFromPath(LOGO_PATH);
 		Image logo = new Image(currentScene);
@@ -62,30 +83,30 @@ public class Game extends JFrame implements KeyListener
 		easyButton.setLocalSize(BUTTON_SIZE);
 		easyButton.setLocalPosition(FIRST_BUTTON_POSITION);
 		easyButton.setText("Easy");
-		easyButton.setFontScale(BUTTON_FONT_SCALE);
+		easyButton.setLocalFontScale(BUTTON_FONT_SCALE);
 		easyButton.setMouseClickAction(() -> newGameScene(ConnectFour.EASY));
 		
 		Button mediumButton = new Button(currentScene.CENTER, currentScene);
 		mediumButton.setLocalSize(BUTTON_SIZE);
 		mediumButton.setLocalPosition(new Vector2(easyButton.getLocalPosition().x, easyButton.getLocalPosition().y - easyButton.getLocalSize().y - BUTTON_MARGIN));
 		mediumButton.setText("Medium");
-		mediumButton.setFontScale(BUTTON_FONT_SCALE);
+		mediumButton.setLocalFontScale(BUTTON_FONT_SCALE);
 		mediumButton.setMouseClickAction(() -> newGameScene(ConnectFour.MEDIUM));
 		
 		Button hardButton = new Button(currentScene.CENTER, currentScene);
 		hardButton.setLocalSize(BUTTON_SIZE);
 		hardButton.setLocalPosition(new Vector2(mediumButton.getLocalPosition().x, mediumButton.getLocalPosition().y - mediumButton.getLocalSize().y - BUTTON_MARGIN));
 		hardButton.setText("Hard");
-		hardButton.setFontScale(BUTTON_FONT_SCALE);
+		hardButton.setLocalFontScale(BUTTON_FONT_SCALE);
 		hardButton.setMouseClickAction(() -> newGameScene(ConnectFour.HARD));
 		
 		Button twoPlayerButton = new Button(currentScene.CENTER, currentScene);
 		twoPlayerButton.setLocalSize(BUTTON_SIZE);
 		twoPlayerButton.setLocalPosition(new Vector2(hardButton.getLocalPosition().x, hardButton.getLocalPosition().y - hardButton.getLocalSize().y - BUTTON_MARGIN));
 		twoPlayerButton.setText("Two Player");
-		twoPlayerButton.setFontScale(BUTTON_FONT_SCALE);
+		twoPlayerButton.setLocalFontScale(BUTTON_FONT_SCALE);
 		twoPlayerButton.setMouseClickAction(() -> newGameScene(ConnectFour.TWO_PLAYER));
-		
+
 		currentScene.initialize(this);
 	}
 
@@ -104,7 +125,7 @@ public class Game extends JFrame implements KeyListener
 		//creating resetButton
 		Button resetButton = new Button(currentScene.NORTH_WEST, currentScene);
 		resetButton.setText("Reset");
-		resetButton.setFontScale(.75f);
+		resetButton.setLocalFontScale(.75f);
 		resetButton.setLocalSize(.5f, .2f);
 		resetButton.setLocalPosition(.30f, -.4f);
 
@@ -114,7 +135,7 @@ public class Game extends JFrame implements KeyListener
 		//creating backButton
 		Button backButton = new Button(currentScene.NORTH_WEST, currentScene);
 		backButton.setText("Back");
-		backButton.setFontScale(.75f);
+		backButton.setLocalFontScale(.75f);
 		backButton.setLocalSize(.5f, .2f);
 		backButton.setLocalPosition(.30f, -.15f);
 		backButton.setMouseClickAction(() -> newMainMenuScene());
@@ -142,17 +163,9 @@ public class Game extends JFrame implements KeyListener
 		add(currentScene);
 		currentScene.setLayout(null);
 	}
-	
-	//main method
-	public static void main(String[] args)
-	{
-		Game connectFour = new Game("Connect Four");
-	}
 
 	@Override
-	public void keyTyped(KeyEvent e) {
-
-	}
+	public void keyTyped(KeyEvent e) {}
 
 	@Override
 	public void keyPressed(KeyEvent e)
@@ -164,7 +177,11 @@ public class Game extends JFrame implements KeyListener
 	}
 
 	@Override
-	public void keyReleased(KeyEvent e) {
-
+	public void keyReleased(KeyEvent e) {}
+	
+	//main method
+	public static void main(String[] args)
+	{
+		Game connectFour = new Game("Connect Four");
 	}
 }

@@ -56,7 +56,7 @@ public abstract class Item
 		//setting position, size, and scale
 		scale = new Vector2(parent.scale.x * localScale.x, parent.scale.y * localScale.y);
 		size = new Vector2(scale.x * localSize.x, scale.y * localSize.y);
-		position = new Vector2(parent.position.x + scale.x * localPosition.x, parent.position.y + scale.y * localPosition.y);
+		position = new Vector2(parent.position.x + parent.scale.x * localPosition.x, parent.position.y + parent.scale.y * localPosition.y);
 	}
 	
 	public Vector2 getLocalPosition() { return localPosition; }
@@ -66,9 +66,9 @@ public abstract class Item
 		this.localPosition = localPosition;
 		
 		if (parent != null)
-			setPosition(new Vector2(parent.position.x + scale.x * localPosition.x, parent.position.y + scale.y * localPosition.y));
+			setPosition(new Vector2(parent.position.x + parent.scale.x * localPosition.x, parent.position.y + parent.scale.y * localPosition.y));
 		else
-			setPosition(new Vector2(scale.x * localPosition.x, scale.y * localPosition.y));
+			setPosition(new Vector2(localPosition.x, localPosition.y));
 	}
 	
 	public Vector2 getLocalSize() { return localSize; }
@@ -107,9 +107,9 @@ public abstract class Item
 	{
 		this.position = position;
 		
-		//update only the 
+		//update only the position's of children
 		for (Item child : children)
-			child.setPosition(new Vector2(position.x + child.scale.x * child.localPosition.x, position.y + child.scale.y * child.localPosition.y));
+			child.setLocalPosition(child.localPosition);
 	}
 	
 	public Vector2 getSize() { return size; }
@@ -124,14 +124,12 @@ public abstract class Item
 	private void setScale(Vector2 scale)
 	{
 		this.scale = scale;
+		setLocalSize(localSize);
+		setLocalPosition(localPosition);
 		
 		//update the scale, size
 		for (Item child : children)
-		{
-			child.setScale(new Vector2(scale.x * child.localScale.x, scale.y * child.localScale.y));
-			child.setLocalSize(child.localSize);
-			child.setLocalPosition(child.localPosition);
-		}
+			child.setLocalScale(child.localScale);
 	}
 	
 	//abstract method for destroying Item

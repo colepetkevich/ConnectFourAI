@@ -40,8 +40,8 @@ public class Image extends Drawable
 				
 				float drawWidth = getSize().x * sceneHeight / (2 * Scene.RADIUS);
 				float drawHeight = getSize().y * sceneHeight / (2 * Scene.RADIUS);
-				//System.out.println(getPosition().x);
-				
+
+
 				g.drawImage(image,
 						Math.round(getPosition().x * sceneHeight / (2 * Scene.RADIUS) + sceneWidth / 2 - drawWidth / 2), 
 						Math.round(-getPosition().y * sceneHeight / (2 * Scene.RADIUS) + sceneHeight / 2 - drawHeight / 2), 

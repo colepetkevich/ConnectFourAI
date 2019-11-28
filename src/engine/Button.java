@@ -1,17 +1,15 @@
 package engine;
 
-import java.awt.Font;
-import java.awt.FontMetrics;
-import java.awt.Graphics;
+import java.awt.*;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 
-import javax.swing.JButton;
+import javax.swing.*;
 
 public class Button extends UI implements MouseListener
 {	
 	private boolean isClickable;
-	private float fontScale;
+	private float localFontScale;
 	
 	private Runnable mouseClickAction;
 	private Runnable mouseEnterAction;
@@ -50,11 +48,23 @@ public class Button extends UI implements MouseListener
 		component.setLayout(null);
 		
 		isClickable = true;
-		fontScale = 1;
+		localFontScale = 1;
 		mouseClickAction = mouseEnterAction = mouseExitAction = null;
 
 		component.setFocusable(false);
 		component.addMouseListener(this);
+	}
+
+	private Vector2 previousScale = Vector2.ZERO;
+	public void update()
+	{
+		super.update();
+
+		//if there is a change in scale, update font scale as well
+		if (!getScale().equals(previousScale))
+			scaleFontSize();
+
+		previousScale = getScale();
 	}
 	
 	public void resizeUpdate()
@@ -74,19 +84,25 @@ public class Button extends UI implements MouseListener
 			font = new Font(font.getName(), font.getStyle(), fontSize);
 			fontMetrics = button.getFontMetrics(font);
 			fontSize++;
-		} while (fontMetrics.getHeight() < fontScale * button.getHeight());
+		} while (fontMetrics.getHeight() < localFontScale * getScale().y * button.getHeight());
 		
 		((JButton) component).setFont(new Font(font.getName(), font.getStyle(), fontSize));
 	}
+
+	public Color getColor() { return ((JButton) component).getBackground(); }
+	public void setColor(Color color) { ((JButton) component).setBackground(color);}
 	
 	public String getText() { return ((JButton) component).getText(); }
 	public void setText(String text) { ((JButton) component).setText(text); }
 	
 	public Font getFont() { return ((JButton) component).getFont(); }
 	public void setFont(String name, int style) { ((JButton) component).setFont(new Font(name, style, ((JButton) component).getFont().getSize())); }
+
+	public Color getTextColor() { return ((JButton) component).getForeground(); }
+	public void setTextColor(Color color) { ((JButton) component).setForeground(color); }
 	
-	public float getFontScale() { return fontScale; }
-	public void setFontScale(float fontScale) { this.fontScale = fontScale; }
+	public float getLocalFontScale() { return localFontScale; }
+	public void setLocalFontScale(float localFontScale) { this.localFontScale = localFontScale; }
 	
 	public boolean isClickable() { return isClickable; }
 	public void setClickable(boolean isClickable) { this.isClickable = isClickable; }
