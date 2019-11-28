@@ -204,9 +204,8 @@ public class ConnectFour extends Drawable
 		}
 
 		// This is where I will build the win screen pop up
-		// Also a temporary LAG MACHINE
 		char winner = getWinner(connectFour);
-		if (winner != EMPTY) {
+		if (winner != EMPTY  && winMessage == null) {
 
 			winMessage = new Label(parent, scene);
 			winMessage.setLocalFontScale(0.3f);
@@ -222,9 +221,6 @@ public class ConnectFour extends Drawable
 				winMessage.setLocalSize(0.6f,0.4f);
 			}
 		}
-
-
-
 	}
 
 	public void fixedUpdate() {}
