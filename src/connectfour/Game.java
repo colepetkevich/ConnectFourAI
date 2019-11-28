@@ -103,7 +103,7 @@ public class Game extends JFrame implements KeyListener
 		button.setLocalPosition(0, -.1f);
 		button.setLocalFontScale(.5f);
 
-		popUp.spawn(.4f);
+		new Delay(2, () -> popUp.spawn(.3f), scene);
 		//TODO: end of pop up demo
 
 		scene.initialize(this);

@@ -10,16 +10,19 @@ public class PopUp extends Image
     {
         super(scene);
 
-        //default image
+        //default image and visibility
         setImage(POP_UP_PATH);
+        setVisibility(false);
     }
 
     public PopUp(Drawable parent, Scene scene)
     {
         super(parent, scene);
 
-        //default image
+        //default image and visibility
         setImage(POP_UP_PATH);
+        setVisibility(false);
+
     }
 
     //spawn coroutine variables
@@ -32,6 +35,9 @@ public class PopUp extends Image
         //setting scale to zero
         finalScale = getLocalScale();
         setLocalScale(Vector2.ZERO);
+
+        //making visibility
+        setVisibility(true);
 
         float demon = (float) (Math.sin(INITIAL_STEP + STEP_DISTANCE));
 

@@ -204,7 +204,6 @@ public class ConnectFour extends Drawable
 		}
 
 		// This is where I will build the win screen pop up
-		char winner = getWinner(connectFour);
 		if (winner != EMPTY  && winMessage == null) {
 
 			winMessage = new Label(parent, scene);
