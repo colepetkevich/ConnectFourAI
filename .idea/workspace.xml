@@ -2,15 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="ede16ff6-4698-4fe2-bd1b-1f25693f30f0" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/bin/connectfour/ConnectFour.class" beforeDir="false" afterPath="$PROJECT_DIR$/bin/connectfour/ConnectFour.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/bin/connectfour/Game.class" beforeDir="false" afterPath="$PROJECT_DIR$/bin/connectfour/Game.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/bin/connectfour/PopUp.class" beforeDir="false" afterPath="$PROJECT_DIR$/bin/connectfour/PopUp.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/bin/temp/AIDemo.class" beforeDir="false" afterPath="$PROJECT_DIR$/bin/temp/AIDemo.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/bin/temp/ConnectFourAI$TranpositionTable.class" beforeDir="false" afterPath="$PROJECT_DIR$/bin/temp/ConnectFourAI$TranpositionTable.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/bin/temp/ConnectFourAI.class" beforeDir="false" afterPath="$PROJECT_DIR$/bin/temp/ConnectFourAI.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/res/files/GameData.txt" beforeDir="false" afterPath="$PROJECT_DIR$/res/files/GameData.txt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/connectfour/ConnectFour.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/connectfour/ConnectFour.java" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />

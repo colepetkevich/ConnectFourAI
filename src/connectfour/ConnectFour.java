@@ -26,6 +26,7 @@ public class ConnectFour extends Drawable
 	private char winner;
 	private DataSetHandler dataSetHandler;
 	private Button[] inputButtons;
+	private Label winMessage;
 
 	//connect four ai (neural network)
 	private NeuralNetwork connectFourAI;
@@ -207,18 +208,18 @@ public class ConnectFour extends Drawable
 		char winner = getWinner(connectFour);
 		if (winner != EMPTY) {
 
-			Label l = new Label(parent, scene);
-			l.setLocalFontScale(0.3f);
+			winMessage = new Label(parent, scene);
+			winMessage.setLocalFontScale(0.3f);
 
 			if (winner == RED) {
-				l.setColor(Color.RED);
-				l.setText("<html><center>RED<br/>WINS</center></html>");
-				l.setLocalSize(0.5f,0.4f);
+				winMessage.setColor(Color.RED);
+				winMessage.setText("<html><center>RED<br/>WINS</center></html>");
+				winMessage.setLocalSize(0.5f,0.4f);
 			}
 			else {
-				l.setColor(Color.YELLOW);
-				l.setText("<html><center>YELLOW<br/>WINS</center></html>");
-				l.setLocalSize(0.6f,0.4f);
+				winMessage.setColor(Color.YELLOW);
+				winMessage.setText("<html><center>YELLOW<br/>WINS</center></html>");
+				winMessage.setLocalSize(0.6f,0.4f);
 			}
 		}
 
