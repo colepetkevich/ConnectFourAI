@@ -201,6 +201,29 @@ public class ConnectFour extends Drawable
 				aiPlays(connectFourAI);
 			}, scene);
 		}
+
+		// This is where I will build the win screen pop up
+		// Also a temporary LAG MACHINE
+		char winner = getWinner(connectFour);
+		if (winner != EMPTY) {
+
+			Label l = new Label(parent, scene);
+			l.setLocalFontScale(0.3f);
+
+			if (winner == RED) {
+				l.setColor(Color.RED);
+				l.setText("<html><center>RED<br/>WINS</center></html>");
+				l.setLocalSize(0.5f,0.4f);
+			}
+			else {
+				l.setColor(Color.YELLOW);
+				l.setText("<html><center>YELLOW<br/>WINS</center></html>");
+				l.setLocalSize(0.6f,0.4f);
+			}
+		}
+
+
+
 	}
 
 	public void fixedUpdate() {}
