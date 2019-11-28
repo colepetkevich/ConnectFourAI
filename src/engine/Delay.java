@@ -1,7 +1,5 @@
 package engine;
 
-import java.util.concurrent.Callable;
-
 public class Delay
 {
     private float time;

@@ -296,7 +296,7 @@ public class ConnectFour extends Drawable
 	}
 
 	//STATIC HELPER METHODS
-	private static boolean canInsert(int column, char[] connectFour)
+	public static boolean canInsert(int column, char[] connectFour)
 	{
 		if (connectFour[column] != EMPTY)
 			return false;
@@ -304,7 +304,7 @@ public class ConnectFour extends Drawable
 		return true;
 	}
 
-	private static int insert(int column, char[] connectFour, final char TURN)
+	public static int insert(int column, char[] connectFour, final char TURN)
 	{
 		if (connectFour[column] != EMPTY)
 			return -1;
@@ -320,7 +320,7 @@ public class ConnectFour extends Drawable
 	}
 
 	//checks single index for winner
-	private static char getWinner(char[] connectFour, int index)
+	public static char getWinner(char[] connectFour, int index)
 	{
 		int row = index / COLUMNS;
 		int column = index % COLUMNS;
@@ -567,7 +567,7 @@ public class ConnectFour extends Drawable
 		return true;
 	}
 
-	private static int checkForcedMove(char[] connectFour, final char TURN)
+	public static int checkForcedMove(char[] connectFour, final char TURN)
 	{
 		int blockingMove = -1;
 

@@ -65,23 +65,6 @@ public class DataSetHandler
 
                 double[] input = translateBoard(board);
 
-//                double[] input = new double[Game.COLUMNS * Game.ROWS];
-//                for (int i = 0; i < input.length; i++)
-//                {
-//                    switch (line.charAt(1 + 3 * i))
-//                    {
-//                        case Game.RED:
-//                            input[i] = TRANSLATED_RED;
-//                            break;
-//                        case Game.YELLOW:
-//                            input[i] = TRANSLATED_YELLOW;
-//                            break;
-//                        default:
-//                            input[i] = TRANSLATED_EMPTY;
-//                            break;
-//                    }
-//                }
-
                 //determining output
                 double[] output = new double[ConnectFour.COLUMNS];
                 Arrays.fill(output, 0.0);
