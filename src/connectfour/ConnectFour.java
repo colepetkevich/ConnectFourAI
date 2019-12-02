@@ -7,9 +7,7 @@ import engine.*;
 import engine.Button;
 import engine.Image;
 import engine.Label;
-import graph.Edge;
 import neuralnetwork.NeuralNetwork;
-import neuralnetwork.WeightNetwork;
 
 public class ConnectFour extends Drawable
 {
@@ -29,17 +27,23 @@ public class ConnectFour extends Drawable
 	private Label winMessage;
 
 	//connect four ai (neural network)
-	private NeuralNetwork connectFourAI;
+	private NeuralNetwork nnAI;
 	private boolean aiCanPlayMove;
 	private final float AI_PLAY_DELAY = .75f;
 	private static final String NEURAL_NETWORK_PATH = "res/files/NeuralNetwork.dat";
+
+	//connect four ai (minimax)
+	private ConnectFourAI mmAI;
+	private final int MAX_DEPTH = 21;
+	private boolean aiIsThinking;
 
 	//connectfour modes
 	private int gameMode;
 	public static final int EASY = 0;
 	public static final int MEDIUM = 1;
 	public static final int HARD = 2;
-	public static final int TWO_PLAYER = 3;
+	public static final int VERY_HARD = 3;
+	public static final int TWO_PLAYER = 4;
 
 	private static final String BOARD_TILE_PATH = "res/images/BoardTile.png";
 	
@@ -79,12 +83,15 @@ public class ConnectFour extends Drawable
 			tile.setLocalSize(width / COLUMNS, width / COLUMNS);
 			tile.setLocalPosition(getLocalPosition().x - width / 2 + tile.getLocalSize().x * (column + 0.5f), getLocalPosition().y + getLocalSize().y / 2 - tile.getLocalSize().y * (row + 0.5f));
 			//make tiles slightly bigger so that there are no gap between tiles
-			tile.setLocalSize(1.01f * tile.getLocalSize().x, 1.01f * tile.getLocalSize().y);
+			tile.setLocalSize(1.025f * tile.getLocalSize().x, 1.025f * tile.getLocalSize().y);
 		}
 
 		//creating connect four ai
-		connectFourAI = new NeuralNetwork(NEURAL_NETWORK_PATH);
+		nnAI = new NeuralNetwork(NEURAL_NETWORK_PATH);
 		aiCanPlayMove = gameMode != TWO_PLAYER;
+
+		//creating minimax ai
+		mmAI = new ConnectFourAI(MAX_DEPTH);
 
 		//creating input buttons
 		inputButtons = new Button[COLUMNS];
@@ -196,12 +203,18 @@ public class ConnectFour extends Drawable
 		{
 			aiCanPlayMove = false;
 
-			//do ai's move at a delay
-			new Delay(AI_PLAY_DELAY, () ->
-			{
-				aiPlays(connectFourAI);
-			}, scene);
+			//if very hard play minimax ai immediately
+			if (gameMode == VERY_HARD)
+				mmAIPlays();
+			//otherwise play neural network ai at a delay
+			else
+				new Delay(AI_PLAY_DELAY, () -> nnAIPlays(), scene);
 		}
+
+		//while ai is thinking, check if move is completed
+		if (aiIsThinking && turn == RED && winner == EMPTY && !boardFull(connectFour))
+			mmAIPlays();
+
 
 		// This is where I will build the win screen pop up
 		if (winner != EMPTY  && winMessage == null) {
@@ -227,17 +240,17 @@ public class ConnectFour extends Drawable
 
 	public void draw(Graphics g) {}
 
-	private void aiPlays(NeuralNetwork connectFourAi)
+	private void nnAIPlays()
 	{
-		double[] prediction = connectFourAi.calculate(DataSetHandler.translateBoard(connectFour));
+		double[] prediction = nnAI.calculate(DataSetHandler.translateBoard(connectFour));
 
 		double[] emptyPrediction = new double[prediction.length];
 		Arrays.fill(emptyPrediction, -Double.MAX_VALUE);
 
 		int move = -1;
 
-		//does forced move before ai prediction if on medium or hard game mode
-		if (gameMode == MEDIUM || gameMode == HARD)
+		//does forced move before ai prediction if on medium difficulty of higher
+		if (gameMode == MEDIUM || gameMode == HARD || gameMode == VERY_HARD)
 			move = checkForcedMove(connectFour, turn);
 
 		//if there is not forced move then play ai's move
@@ -253,7 +266,7 @@ public class ConnectFour extends Drawable
 			//makes sure index is valid
 			//if on hard gameMode make sure current move will not results in a loss
 			while (!Arrays.equals(prediction, emptyPrediction) && (!canInsert(move, connectFour) ||
-					(gameMode == HARD && yellowForcedMove >= 0 && yellowForcedMove < COLUMNS)))
+					((gameMode == HARD || gameMode == VERY_HARD) && yellowForcedMove >= 0 && yellowForcedMove < COLUMNS)))
 			{
 				prediction[move] = -Double.MAX_VALUE;
 				move = NeuralNetwork.maxIndex(prediction);
@@ -304,6 +317,65 @@ public class ConnectFour extends Drawable
 
 		nextTurn();
 		aiCanPlayMove = true;
+	}
+
+	private int move;
+	private void mmAIPlays()
+	{
+		Thread childThread = null;
+		if (!aiIsThinking)
+		{
+			move = Integer.MIN_VALUE;
+			childThread = new Thread(() ->
+			{
+				move = mmAI.getBestMove(new Board(connectFour, turn));
+			});
+			childThread.start();
+
+			aiIsThinking = true;
+		}
+		else
+		{
+			if (move != Integer.MIN_VALUE)
+			{
+				aiIsThinking = false;
+
+				//if no move was calculated then default to neural network
+				if (move == -1)
+					nnAIPlays();
+				//otherwise play move
+				else
+				{
+					int row = insert(move, connectFour, turn) / COLUMNS;
+
+					//checks for winner
+					winner = getWinner(connectFour);
+					if (winner != EMPTY || boardFull(connectFour))
+					{
+						System.out.println(boardFull(connectFour) ? "Its a tie!" : (winner == RED ? "Red" : "Yellow") + " wins!");
+
+						//if yellow is the winner or it is a tie connectfour, then save the logged data
+						if (gameMode == TWO_PLAYER && (turn == RED || boardFull(connectFour)))
+							dataSetHandler.savaData();
+						else
+							dataSetHandler.clearData();
+					}
+
+					Vector2 tokenSize = new Vector2(getLocalSize().x / COLUMNS, getLocalSize().x / COLUMNS);
+
+					//create a new token
+					Token token = new Token(this, scene);
+					token.setLocalSize(tokenSize);
+					token.setLocalPosition(getLocalPosition().x - getLocalSize().x / 2 +  tokenSize.x * (move + 0.5f), getLocalPosition().y + getLocalSize().y / 2 + token.getLocalSize().y / 2);
+
+					//drop this token and make the hover token invisible
+					token.drop(getLocalPosition().y + getLocalSize().y / 2 - token.getLocalSize().y * (row + 0.5f));
+
+					nextTurn();
+					aiCanPlayMove = true;
+				}
+			}
+		}
 	}
 
 	//HELPER METHODS

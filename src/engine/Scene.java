@@ -114,10 +114,10 @@ public class Scene extends JPanel implements Runnable, Updatable
 			//starts running Scene and make the JFrame visible
 			new Thread(this).start();
 			jFrame.setVisible(true);
-			
+
+			resizeUpdate();
 			fixedUpdate();
 			update();
-			resizeUpdate();
 		}
 	}
 	

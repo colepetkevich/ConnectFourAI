@@ -74,13 +74,20 @@ public class Game extends JFrame implements KeyListener
 		hardButton.setText("Hard");
 		hardButton.setLocalFontScale(BUTTON_FONT_SCALE);
 		hardButton.setMouseClickAction(() -> newGameScene(ConnectFour.HARD));
-		
+
 		Button twoPlayerButton = new Button(scene.CENTER, scene);
 		twoPlayerButton.setLocalSize(BUTTON_SIZE);
 		twoPlayerButton.setLocalPosition(new Vector2(hardButton.getLocalPosition().x, hardButton.getLocalPosition().y - hardButton.getLocalSize().y - BUTTON_MARGIN));
-		twoPlayerButton.setText("Two Player");
+		twoPlayerButton.setText("Very Hard");
 		twoPlayerButton.setLocalFontScale(BUTTON_FONT_SCALE);
-		twoPlayerButton.setMouseClickAction(() -> newGameScene(ConnectFour.TWO_PLAYER));
+		twoPlayerButton.setMouseClickAction(() -> newGameScene(ConnectFour.VERY_HARD));
+		
+//		Button twoPlayerButton = new Button(scene.CENTER, scene);
+//		twoPlayerButton.setLocalSize(BUTTON_SIZE);
+//		twoPlayerButton.setLocalPosition(new Vector2(hardButton.getLocalPosition().x, hardButton.getLocalPosition().y - hardButton.getLocalSize().y - BUTTON_MARGIN));
+//		twoPlayerButton.setText("Two Player");
+//		twoPlayerButton.setLocalFontScale(BUTTON_FONT_SCALE);
+//		twoPlayerButton.setMouseClickAction(() -> newGameScene(ConnectFour.TWO_PLAYER));
 
 		//TODO: start of pop up demo
 		//popup
