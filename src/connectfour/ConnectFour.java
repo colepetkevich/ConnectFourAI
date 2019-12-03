@@ -72,23 +72,25 @@ public class ConnectFour extends Drawable
 		//TODO: start of pop up demo
 		//popup
 		winPopUp = new PopUp(scene);
-		winPopUp.setLocalSize(.55f, .55f);
+		winPopUp.setLocalSize(.65f, .65f);
 		//popUp.setLocalPosition(.5f, .5f);
 		winPopUp.setLayer(5);
 
 		winLabel = new Label(winPopUp, scene);
 		winLabel.setText("");
-		winLabel.setLocalSize(.4f, .15f);
+		winLabel.setLocalSize(.5f, .3f);
 		winLabel.setLocalPosition(0, .1f);
-		winLabel.setLocalFontScale(.5f);
+		winLabel.setLocalFontScale(.45f);
 		winLabel.setColor(Color.BLACK);
 		winLabel.setTextColor(Color.BLACK);
 
-		Button exButton = new Button(winPopUp, scene);
-		exButton.setText("BUTTON");
-		exButton.setLocalSize(.4f, .15f);
-		exButton.setLocalPosition(0, -.1f);
-		exButton.setLocalFontScale(.5f);
+		Button closeButton = new Button(winPopUp, scene);
+		closeButton.setText("Close");
+		closeButton.setLocalSize(.4f,.15f);
+		closeButton.setLocalPosition(0,-.2f);
+		closeButton.setLocalFontScale(.5f);
+
+		closeButton.setMouseClickAction(() -> winPopUp.setVisibility(false));
 
 		//new Delay(2, () -> popUp.spawn(.3f), scene);
 		//TODO: end of pop up demo
@@ -255,8 +257,8 @@ public class ConnectFour extends Drawable
 				winLabel.setTextColor(Color.YELLOW);
 			}
 
-			new Delay(2, () -> {
-				winPopUp.spawn(.1f);
+			new Delay(1, () -> {
+				winPopUp.spawn(.3f);
 			}, scene);
 		}
 	}

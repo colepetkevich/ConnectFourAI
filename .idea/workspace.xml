@@ -2,44 +2,11 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="ede16ff6-4698-4fe2-bd1b-1f25693f30f0" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/bin/connectfour/Board.class" beforeDir="false" afterPath="$PROJECT_DIR$/bin/connectfour/Board.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/bin/connectfour/ConnectFour.class" beforeDir="false" afterPath="$PROJECT_DIR$/bin/connectfour/ConnectFour.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/bin/connectfour/ConnectFourAI$TranspositionTable.class" beforeDir="false" afterPath="$PROJECT_DIR$/bin/connectfour/ConnectFourAI$TranspositionTable.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/bin/connectfour/ConnectFourAI.class" beforeDir="false" afterPath="$PROJECT_DIR$/bin/connectfour/ConnectFourAI.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/bin/connectfour/DataSetHandler$GameData.class" beforeDir="false" afterPath="$PROJECT_DIR$/bin/connectfour/DataSetHandler$GameData.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/bin/connectfour/DataSetHandler.class" beforeDir="false" afterPath="$PROJECT_DIR$/bin/connectfour/DataSetHandler.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/bin/connectfour/Game.class" beforeDir="false" afterPath="$PROJECT_DIR$/bin/connectfour/Game.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/bin/connectfour/PopUp.class" beforeDir="false" afterPath="$PROJECT_DIR$/bin/connectfour/PopUp.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/bin/connectfour/Token.class" beforeDir="false" afterPath="$PROJECT_DIR$/bin/connectfour/Token.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/bin/connectfour/WinSetCreator.class" beforeDir="false" afterPath="$PROJECT_DIR$/bin/connectfour/WinSetCreator.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/bin/engine/Anchor.class" beforeDir="false" afterPath="$PROJECT_DIR$/bin/engine/Anchor.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/bin/engine/Button$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/bin/engine/Button$1.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/bin/engine/Button.class" beforeDir="false" afterPath="$PROJECT_DIR$/bin/engine/Button.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/bin/engine/Coroutine.class" beforeDir="false" afterPath="$PROJECT_DIR$/bin/engine/Coroutine.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/bin/engine/Drawable.class" beforeDir="false" afterPath="$PROJECT_DIR$/bin/engine/Drawable.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/bin/engine/Image.class" beforeDir="false" afterPath="$PROJECT_DIR$/bin/engine/Image.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/bin/engine/ImageFactory.class" beforeDir="false" afterPath="$PROJECT_DIR$/bin/engine/ImageFactory.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/bin/engine/Item.class" beforeDir="false" afterPath="$PROJECT_DIR$/bin/engine/Item.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/bin/engine/Scene$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/bin/engine/Scene$1.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/bin/engine/Scene.class" beforeDir="false" afterPath="$PROJECT_DIR$/bin/engine/Scene.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/bin/engine/Time.class" beforeDir="false" afterPath="$PROJECT_DIR$/bin/engine/Time.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/bin/engine/UI.class" beforeDir="false" afterPath="$PROJECT_DIR$/bin/engine/UI.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/bin/engine/Updatable.class" beforeDir="false" afterPath="$PROJECT_DIR$/bin/engine/Updatable.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/bin/engine/Vector2.class" beforeDir="false" afterPath="$PROJECT_DIR$/bin/engine/Vector2.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/bin/graph/AbstractGraph.class" beforeDir="false" afterPath="$PROJECT_DIR$/bin/graph/AbstractGraph.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/bin/graph/Edge.class" beforeDir="false" afterPath="$PROJECT_DIR$/bin/graph/Edge.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/bin/graph/Graph.class" beforeDir="false" afterPath="$PROJECT_DIR$/bin/graph/Graph.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/bin/graph/MapGraph.class" beforeDir="false" afterPath="$PROJECT_DIR$/bin/graph/MapGraph.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/bin/neuralnetwork/NNRepresentation.class" beforeDir="false" afterPath="$PROJECT_DIR$/bin/neuralnetwork/NNRepresentation.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/bin/neuralnetwork/NetworkData.class" beforeDir="false" afterPath="$PROJECT_DIR$/bin/neuralnetwork/NetworkData.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/bin/neuralnetwork/NeuralNetwork.class" beforeDir="false" afterPath="$PROJECT_DIR$/bin/neuralnetwork/NeuralNetwork.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/bin/neuralnetwork/Neuron.class" beforeDir="false" afterPath="$PROJECT_DIR$/bin/neuralnetwork/Neuron.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/bin/neuralnetwork/Trainer.class" beforeDir="false" afterPath="$PROJECT_DIR$/bin/neuralnetwork/Trainer.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/bin/neuralnetwork/WeightNetwork.class" beforeDir="false" afterPath="$PROJECT_DIR$/bin/neuralnetwork/WeightNetwork.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/images/PopUp.png" beforeDir="false" afterPath="$PROJECT_DIR$/bin/images/PopUp.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/res/images/PopUp.png" beforeDir="false" afterPath="$PROJECT_DIR$/res/images/PopUp.png" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/connectfour/ConnectFour.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/connectfour/ConnectFour.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/connectfour/Game.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/connectfour/Game.java" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
