@@ -44,6 +44,8 @@ public class ConnectFour extends Drawable
 	public static final int HARD = 2;
 	public static final int VERY_HARD = 3;
 	public static final int TWO_PLAYER = 4;
+	private PopUp winPopUp;
+	private Label winLabel;
 
 	private static final String BOARD_TILE_PATH = "res/images/BoardTile.png";
 	
@@ -66,6 +68,31 @@ public class ConnectFour extends Drawable
 		turn = RED;
 		winner = EMPTY;
 		dataSetHandler = new DataSetHandler();
+
+		//TODO: start of pop up demo
+		//popup
+		winPopUp = new PopUp(scene);
+		winPopUp.setLocalSize(.55f, .55f);
+		//popUp.setLocalPosition(.5f, .5f);
+		winPopUp.setLayer(5);
+
+		winLabel = new Label(winPopUp, scene);
+		winLabel.setText("");
+		winLabel.setLocalSize(.4f, .15f);
+		winLabel.setLocalPosition(0, .1f);
+		winLabel.setLocalFontScale(.5f);
+		winLabel.setColor(Color.BLACK);
+		winLabel.setTextColor(Color.BLACK);
+
+		Button exButton = new Button(winPopUp, scene);
+		exButton.setText("BUTTON");
+		exButton.setLocalSize(.4f, .15f);
+		exButton.setLocalPosition(0, -.1f);
+		exButton.setLocalFontScale(.5f);
+
+		//new Delay(2, () -> popUp.spawn(.3f), scene);
+		//TODO: end of pop up demo
+
 
 		//calculating the width based on height, rows, and columns
 		float width = getLocalSize().y * COLUMNS / ROWS;
@@ -217,21 +244,20 @@ public class ConnectFour extends Drawable
 
 
 		// This is where I will build the win screen pop up
-		if (winner != EMPTY  && winMessage == null) {
-
-			winMessage = new Label(parent, scene);
-			winMessage.setLocalFontScale(0.3f);
+		if (winner != EMPTY  && winLabel.getText() == "" ) {
 
 			if (winner == RED) {
-				winMessage.setColor(Color.RED);
-				winMessage.setText("<html><center>RED<br/>WINS</center></html>");
-				winMessage.setLocalSize(0.5f,0.4f);
+				winLabel.setText("<html><center>RED<br/>WINS</center></html>");
+				winLabel.setColor(Color.RED);
 			}
 			else {
-				winMessage.setColor(Color.YELLOW);
-				winMessage.setText("<html><center>YELLOW<br/>WINS</center></html>");
-				winMessage.setLocalSize(0.6f,0.4f);
+				winLabel.setText("<html><center>YELLOW<br/>WINS</center></html>");
+				winLabel.setTextColor(Color.YELLOW);
 			}
+
+			new Delay(2, () -> {
+				winPopUp.spawn(.1f);
+			}, scene);
 		}
 	}
 

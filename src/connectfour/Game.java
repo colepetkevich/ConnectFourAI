@@ -89,30 +89,6 @@ public class Game extends JFrame implements KeyListener
 //		twoPlayerButton.setLocalFontScale(BUTTON_FONT_SCALE);
 //		twoPlayerButton.setMouseClickAction(() -> newGameScene(ConnectFour.TWO_PLAYER));
 
-		//TODO: start of pop up demo
-		//popup
-		PopUp popUp = new PopUp(scene);
-		popUp.setLocalSize(.5f, .5f);
-		popUp.setLocalPosition(.5f, .5f);
-		popUp.setLayer(5);
-
-		Label label = new Label(popUp, scene);
-		label.setText("POP UP");
-		label.setLocalSize(.4f, .15f);
-		label.setLocalPosition(0, .1f);
-		label.setLocalFontScale(.5f);
-		label.setColor(Color.BLACK);
-		label.setTextColor(Color.GREEN);
-
-		Button button = new Button(popUp, scene);
-		button.setText("BUTTON");
-		button.setLocalSize(.4f, .15f);
-		button.setLocalPosition(0, -.1f);
-		button.setLocalFontScale(.5f);
-
-		new Delay(2, () -> popUp.spawn(.3f), scene);
-		//TODO: end of pop up demo
-
 		scene.initialize(this);
 	}
 
