@@ -2,7 +2,6 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="ede16ff6-4698-4fe2-bd1b-1f25693f30f0" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/bin/connectfour/ConnectFour.class" beforeDir="false" afterPath="$PROJECT_DIR$/bin/connectfour/ConnectFour.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/bin/images/PopUp.png" beforeDir="false" afterPath="$PROJECT_DIR$/bin/images/PopUp.png" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/res/images/PopUp.png" beforeDir="false" afterPath="$PROJECT_DIR$/res/images/PopUp.png" afterDir="false" />
