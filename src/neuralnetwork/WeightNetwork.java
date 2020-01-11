@@ -1,5 +1,9 @@
 package neuralnetwork;
 
+/**
+ * @Author Cole Petkevich, Zebadiah Quiros, Kestt Van Zyle
+ */
+
 import graph.Edge;
 import graph.MapGraph;
 

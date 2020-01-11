@@ -1,5 +1,9 @@
 package connectfour;
 
+/**
+ * @Author Cole Petkevich, Zebadiah Quiros, Kestt Van Zyl
+ */
+
 import engine.Coroutine;
 import engine.Drawable;
 import engine.Image;

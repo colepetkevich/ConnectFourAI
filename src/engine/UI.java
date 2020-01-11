@@ -1,5 +1,9 @@
 package engine;
 
+/**
+ * @Author Cole Petkevich, Zebadiah Quiros, Kestt Van Zyl
+ */
+
 import javax.swing.JComponent;
 
 public abstract class UI extends Item implements Updatable

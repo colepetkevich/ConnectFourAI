@@ -143,6 +143,4 @@ public class GraphTest
 
         assertEquals(numberOfEdges, edgeCount);
     }
-
-
 }

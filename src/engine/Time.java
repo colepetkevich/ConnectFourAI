@@ -1,12 +1,22 @@
 package engine;
 
+/**
+ * @Author Cole Petkevich, Zebadiah Quiros, Kestt Van Zyl
+ */
+
 public class Time 
 {
 	//nanoseconds in a second
 	public static final float SECOND = 1000000000;
 	
-	private static long lastUpdate = System.nanoTime();
-	private static long lastFixedUpdate = System.nanoTime();
+	private long lastUpdate;
+	private long lastFixedUpdate;
+
+	public Time()
+	{
+		lastUpdate = System.nanoTime();
+		lastFixedUpdate = System.nanoTime();
+	}
 	
 	public void saveLastUpdate() { lastUpdate = System.nanoTime(); }
 	public void saveLastFixedUpdate() { lastFixedUpdate = System.nanoTime(); }

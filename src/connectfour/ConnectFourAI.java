@@ -1,5 +1,9 @@
 package connectfour;
 
+/**
+ * @Author Cole Petkevich, Zebadiah Quiros, Kestt Van Zyl
+ */
+
 import java.util.Arrays;
 
 public class ConnectFourAI

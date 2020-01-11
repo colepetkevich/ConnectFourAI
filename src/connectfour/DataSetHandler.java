@@ -1,5 +1,9 @@
 package connectfour;
 
+/**
+ * @Author Cole Petkevich, Zebadiah Quiros, Kestt Van Zyl
+ */
+
 import java.io.*;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -159,7 +163,6 @@ public class DataSetHandler
                     break;
             }
         }
-
         return translation;
     }
 

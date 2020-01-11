@@ -1,5 +1,9 @@
 package engine;
 
+/**
+ * @Author Cole Petkevich, Zebadiah Quiros, Kestt Van Zyl
+ */
+
 import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.image.BufferedImage;

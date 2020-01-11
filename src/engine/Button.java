@@ -1,5 +1,9 @@
 package engine;
 
+/**
+ * @Author Cole Petkevich, Zebadiah Quiros, Kestt Van Zyl
+ */
+
 import java.awt.*;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
@@ -67,10 +71,7 @@ public class Button extends UI implements MouseListener
 		previousScale = getScale();
 	}
 	
-	public void resizeUpdate()
-	{
-		scaleFontSize();
-	}
+	public void resizeUpdate() { scaleFontSize(); }
 	
 	private void scaleFontSize()
 	{

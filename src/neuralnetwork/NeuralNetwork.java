@@ -1,5 +1,9 @@
 package neuralnetwork;
 
+/**
+ * @Author Cole Petkevich, Zebadiah Quiros, Kestt Van Zyle
+ */
+
 import graph.Edge;
 
 import java.io.*;
@@ -249,7 +253,7 @@ public class NeuralNetwork
     }
 
     //activation function
-    private static double activation(double x)
+    public static double activation(double x)
     {
         return 1 / (1 + Math.exp(-x));
     }
@@ -289,5 +293,12 @@ public class NeuralNetwork
             }
         }
         return index;
+    }
+
+    public Neuron[] getNeurons() {
+        return neurons;
+    }
+    public WeightNetwork getWeightNetwork() {
+        return weights;
     }
 }

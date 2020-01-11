@@ -1,5 +1,9 @@
 package engine;
 
+/**
+ * @Author Cole Petkevich, Zebadiah Quiros, Kestt Van Zyl
+ */
+
 public final class Anchor extends Item implements Updatable
 {
 	public static final int CENTER = 0;

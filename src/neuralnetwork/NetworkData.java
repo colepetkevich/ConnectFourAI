@@ -1,5 +1,9 @@
 package neuralnetwork;
 
+/**
+ * @Author Cole Petkevich, Zebadiah Quiros, Kestt Van Zyl
+ */
+
 import java.io.Serializable;
 
 public class NetworkData implements Serializable

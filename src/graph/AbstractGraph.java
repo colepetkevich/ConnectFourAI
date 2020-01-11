@@ -1,10 +1,14 @@
 package graph;
 
+/**
+ * @Author Cole Petkevich, Zebadiah Quiros, Kestt Van Zyl
+ */
+
 import java.io.Serializable;
 
 /** Abstract base class for graphs. A graph is a set of vertices and
  a set of edges. Vertices are represented by integers
- from 0 to n ‐ 1. Edges are ordered pairs of vertices.
+ from 0 to n - 1. Edges are ordered pairs of vertices.
  */
 public abstract class AbstractGraph implements Graph, Serializable
 {

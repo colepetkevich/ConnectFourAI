@@ -1,5 +1,9 @@
 package engine;
 
+/**
+ * @Author Cole Petkevich, Zebadiah Quiros, Kestt Van Zyl
+ */
+
 import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.event.ActionEvent;
@@ -51,7 +55,7 @@ public class Scene extends JPanel implements Runnable, Updatable
 	public final Anchor SOUTH_EAST;
 	public final Anchor SOUTH_WEST;
 		
-	public Scene(int maxUpdatesPerSecond, int fixedUpdatesPerSecond)
+	public Scene(float maxUpdatesPerSecond, float fixedUpdatesPerSecond)
 	{
 		super();
 		setLayout(null);
@@ -71,20 +75,17 @@ public class Scene extends JPanel implements Runnable, Updatable
 		isActive = false;
 
 		TIME = new Time();
+
 //		//creating second timer for fps counter
-//		printFPS = new ActionListener()
-//		{
-//            public void actionPerformed(ActionEvent event)
-//            {
-//            	if (isActive)
-//            	{
-//            		System.out.println("fps: " + fps);
-//            		fps = 0;
-//            	}
-//            	else
-//            		secondTimer.stop();
-//            }
-//        };
+//		printFPS = event -> {
+//			if (isActive)
+//			{
+//				System.out.println("fps: " + fps);
+//				fps = 0;
+//			}
+//			else
+//				secondTimer.stop();
+//		};
 //		secondTimer = new Timer(1000, printFPS);
 //		secondTimer.start();
 //		fps = 0;
@@ -104,26 +105,23 @@ public class Scene extends JPanel implements Runnable, Updatable
 		SOUTH_WEST = new Anchor(Anchor.NORTH_WEST, this);
 	}
 
-	public void initialize(JFrame jFrame)
+	public void initialize()
 	{
 		if (!isInitilized)
 		{		
 			isActive = true;
 			isInitilized = true;
-			
+
 			//starts running Scene and make the JFrame visible
 			new Thread(this).start();
-			jFrame.setVisible(true);
 
 			resizeUpdate();
-			fixedUpdate();
-			update();
 		}
 	}
 	
 	//handles all the connectfour logic and graphics
 	public void update()
-	{				
+	{
 		//calls update() on all updatables
 		for (int i = updatables.size() - 1; i >= 0; i--)
 			updatables.get(i).update();
@@ -131,10 +129,10 @@ public class Scene extends JPanel implements Runnable, Updatable
 		//runs all coroutines once
 		for (int i = coroutines.size() - 1; i >= 0; i--)
 			coroutines.get(i).run();
-		
+
 		//repaint Scene
 		repaint();
-		
+
 		fps++;
 		TIME.saveLastUpdate();
 	}
@@ -189,10 +187,10 @@ public class Scene extends JPanel implements Runnable, Updatable
 		while (isActive)
 		{				
 			//call fixedUpdate() if enough time has elapsed
-			if (TIME.fixedDeltaTime() >= 1 / FIXED_UPDATES_PER_SECOND)
+			if (TIME.fixedDeltaTime() >= 1f / FIXED_UPDATES_PER_SECOND)
 				fixedUpdate();
 			//call update() if enough time has elapsed
-			if (TIME.deltaTime() >= 1 / MAX_UPDATES_PER_SECOND)
+			if (TIME.deltaTime() >= 1f / MAX_UPDATES_PER_SECOND)
 				update();	
 		}
 	}

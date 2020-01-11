@@ -1,5 +1,9 @@
 package neuralnetwork;
 
+/**
+ * @Author Cole Petkevich, Zebadiah Quiros, Kestt Van Zyl
+ */
+
 import connectfour.DataSetHandler;
 
 import java.io.File;

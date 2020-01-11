@@ -1,5 +1,9 @@
 package connectfour;
 
+/**
+ * @Author Cole Petkevich, Zebadiah Quiros, Kestt Van Zyl
+ */
+
 public class Board
 {
     public static final int ROWS = ConnectFour.ROWS;
@@ -10,6 +14,14 @@ public class Board
     private long currPlayer;
     private long mask;
 
+    /**
+     * Default Constructor for Board Objects
+     * @param
+     * @return
+     * Sets the current turn to be Red's as default
+     * Sets the current player to be 0
+     * Sets the mask to be 0
+     */
     public Board()
     {
         redTurn = true;
@@ -18,6 +30,10 @@ public class Board
         mask = 0;
     }
 
+    /**
+     * Copy Constructor for a Board
+     * @param other
+     */
     public Board(Board other)
     {
         redTurn = other.redTurn;
@@ -26,6 +42,13 @@ public class Board
         mask = other.mask;
     }
 
+    /**
+     * Constructor for Board
+     * @param connectFour
+     * Takes in an array characters that represents a connect four board.
+     * @param turn
+     * Sets the turn to whoever's turn it is
+     */
     public Board(char[] connectFour, char turn)
     {
         if (turn == ConnectFour.RED)
@@ -60,11 +83,24 @@ public class Board
         }
     }
 
+    /**
+     * canPlay method
+     * @param column
+     * Checks if the column passed is actually a playable move (not full)
+     * @return boolean
+     * returns true or false if it is a playable column or not
+     */
     public boolean canPlay(int column)
     {
         return (mask & topMask(column)) == 0;
     }
 
+    /**
+     * play method
+     * @param column
+     * Plays a piece into the given column
+     * The color is determined by whose turn it currently is
+     */
     public void play(int column)
     {
         currPlayer ^= mask;
@@ -74,10 +110,43 @@ public class Board
     }
 
     //PUBLIC METHODS
+    /**
+     * isFull()
+     * @return boolean
+     * Returns whether or not the board is completely full
+     */
     public boolean isFull() { return (BOARD_MASK ^ mask) == 0; }
+
+    /**
+     * canWinThisMove()
+     * @return boolean
+     * Returns whether or not red can win on their next move
+     */
     public boolean canWinThisMove() { return (getWinningMoves() & getPossibleMoves()) != 0; }
+
+    /**
+     * canLoseNextMove()
+     * @return boolean
+     * Returns whether or not red can lose on yellow's next move
+     */
     public boolean canLoseNextMove() { return (getOpponentWinningMoves() & getPossibleMoves()) != 0;}
+
+    /**
+     * isWinningMove(int column)
+     * @param column
+     * Which column to check
+     * @return boolean
+     * Returns true or false whether or not this column is a winning move or not
+     */
     public boolean isWinningMove(int column) { return (getWinningMoves() & getPossibleMoves() & columnMask(column)) != 0; }
+
+    /**
+     * isBlockingMove(int column)
+     * @param column
+     * Which column to check
+     * @return boolean
+     * Returns true or false whether or not this column is a blocking move or not
+     */
     public boolean isBlockingMove(int column) { return (getOpponentWinningMoves() & getPossibleMoves() & columnMask(column)) != 0; }
 
     //PUBLIC GETTERS
@@ -85,7 +154,15 @@ public class Board
     public long getKey() { return currPlayer + mask; }
 
     //EQUALS AND TOSTRING
-    public boolean equals(Board other) { return redTurn == other.redTurn && currPlayer == other.currPlayer && mask == other.mask; }
+    public boolean equals(Object obj)
+    {
+        if (obj == null || !(obj instanceof Board))
+            return false;
+
+        Board other = (Board) obj;
+
+        return redTurn == other.redTurn && currPlayer == other.currPlayer && mask == other.mask;
+    }
     public String toString()
     {
         String maskString = Long.toBinaryString(mask);

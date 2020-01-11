@@ -1,5 +1,9 @@
 package connectfour;
 
+/**
+ * @Author Cole Petkevich, Zebadiah Quiros, Kestt Van Zyl
+ */
+
 import java.awt.*;
 import java.util.Arrays;
 
@@ -24,7 +28,6 @@ public class ConnectFour extends Drawable
 	private char winner;
 	private DataSetHandler dataSetHandler;
 	private Button[] inputButtons;
-	private Label winMessage;
 
 	//connect four ai (neural network)
 	private NeuralNetwork nnAI;
@@ -44,20 +47,42 @@ public class ConnectFour extends Drawable
 	public static final int HARD = 2;
 	public static final int VERY_HARD = 3;
 	public static final int TWO_PLAYER = 4;
+
+	//ui
 	private PopUp winPopUp;
 	private Label winLabel;
+	private final float POP_UP_SPAWN_TIME = .4f;
 
 	private static final String BOARD_TILE_PATH = "res/images/BoardTile.png";
-	
+
+	/**
+	 * ConnectFour constructor
+	 * @param scene
+	 * Sets the current Scene to be this parameter
+	 */
 	public ConnectFour(Scene scene)
 	{
 		super(scene);
 	}
-	
+
+	/**
+	 * ConnectFour constructor
+	 * @param parent
+	 * Which drawable object to attach this to
+	 * @param scene
+	 * Which Scene to hold everything in
+	 */
 	public ConnectFour(Drawable parent, Scene scene)
 	{
 		super(parent, scene);
 	}
+
+	/**
+	 * startNewGame(int gameMode)
+	 * @param gameMode
+	 * int gameMode is the difficulty of the AI
+	 * This method will start a new Connect Four game, with the passed difficulty
+	 */
 	
 	public void startNewGame(int gameMode)
 	{
@@ -69,7 +94,6 @@ public class ConnectFour extends Drawable
 		winner = EMPTY;
 		dataSetHandler = new DataSetHandler();
 
-		//TODO: start of pop up demo
 		//popup
 		winPopUp = new PopUp(scene);
 		winPopUp.setLocalSize(.65f, .65f);
@@ -85,16 +109,12 @@ public class ConnectFour extends Drawable
 		winLabel.setTextColor(Color.BLACK);
 
 		Button closeButton = new Button(winPopUp, scene);
-		closeButton.setText("Close");
+		closeButton.setText("CLOSE");
 		closeButton.setLocalSize(.4f,.15f);
 		closeButton.setLocalPosition(0,-.2f);
 		closeButton.setLocalFontScale(.5f);
 
-		closeButton.setMouseClickAction(() -> winPopUp.setVisibility(false));
-
-		//new Delay(2, () -> popUp.spawn(.3f), scene);
-		//TODO: end of pop up demo
-
+		closeButton.setMouseClickAction(() -> winPopUp.despawn(POP_UP_SPAWN_TIME));
 
 		//calculating the width based on height, rows, and columns
 		float width = getLocalSize().y * COLUMNS / ROWS;
@@ -225,6 +245,12 @@ public class ConnectFour extends Drawable
 		}
 	}
 
+	/**
+	 * update() method
+	 * This is called frequently and handles updating everything
+	 * For example if it's the AI's turn it will call a method for the AI to play its move
+	 * Or if someone has won, it will create a win popup
+	 */
 	public void update()
 	{
 		//only have ai play if not two player mode, turn is RED, and game is not over
@@ -234,7 +260,7 @@ public class ConnectFour extends Drawable
 
 			//if very hard play minimax ai immediately
 			if (gameMode == VERY_HARD)
-				mmAIPlays();
+				new Delay(AI_PLAY_DELAY, () -> mmAIPlays(), scene);
 			//otherwise play neural network ai at a delay
 			else
 				new Delay(AI_PLAY_DELAY, () -> nnAIPlays(), scene);
@@ -258,9 +284,18 @@ public class ConnectFour extends Drawable
 			}
 
 			new Delay(1, () -> {
-				winPopUp.spawn(.3f);
+				winPopUp.spawn(POP_UP_SPAWN_TIME, Vector2.ONE);
 			}, scene);
 		}
+		else if (winner != RED  && winner != YELLOW && winLabel.getText() == "" && boardFull(connectFour)) {
+		    winLabel.setText("<html><center>It's a Tie!</center></html>");
+		    winLabel.setColor(Color.ORANGE);
+
+            new Delay(1, () -> {
+                winPopUp.spawn(POP_UP_SPAWN_TIME, Vector2.ONE);
+            }, scene);
+        }
+
 	}
 
 	public void fixedUpdate() {}
@@ -268,6 +303,12 @@ public class ConnectFour extends Drawable
 
 	public void draw(Graphics g) {}
 
+	/**
+	 * nnAIPlays() method
+	 * This method goes through the process of calcuating the Neural Network's desired move.
+	 * If there is a difficulty scale that requires it, it may go through some additional processes to increase
+	 * the intelligence of the AI
+	 */
 	private void nnAIPlays()
 	{
 		double[] prediction = nnAI.calculate(DataSetHandler.translateBoard(connectFour));
@@ -348,6 +389,11 @@ public class ConnectFour extends Drawable
 	}
 
 	private int move;
+
+	/**
+	 * mmAIPlays() method
+	 * This tells the MiniMax AI to play the board
+	 */
 	private void mmAIPlays()
 	{
 		Thread childThread = null;
@@ -407,6 +453,10 @@ public class ConnectFour extends Drawable
 	}
 
 	//HELPER METHODS
+
+	/**
+	 * Sets whose turn it is to the player opposite of what it is at
+	 */
 	private void nextTurn()
 	{
 		if (turn == RED)
@@ -416,6 +466,16 @@ public class ConnectFour extends Drawable
 	}
 
 	//STATIC HELPER METHODS
+
+	/**
+	 * canInsert(int column, char[] connectFour) method
+	 * @param column
+	 * Which column to checj
+	 * @param connectFour
+	 * Which board to checj
+	 * @return boolean
+	 * Returns whether or not a piece can be inserted into the specific column of the specific board
+	 */
 	public static boolean canInsert(int column, char[] connectFour)
 	{
 		if (connectFour[column] != EMPTY)
@@ -424,6 +484,20 @@ public class ConnectFour extends Drawable
 		return true;
 	}
 
+
+	/**
+	 * insert(int column, char[] connectFour, final char TURN)
+	 * @param column
+	 * Which column to insert into
+	 * @param connectFour
+	 * Which board to insert into
+	 * @param TURN
+	 * Whose turn is it
+	 * @return int
+	 * returns the index that the token is inserted into
+	 *
+	 * This method inserts a token into a specific point.
+	 */
 	public static int insert(int column, char[] connectFour, final char TURN)
 	{
 		if (connectFour[column] != EMPTY)
@@ -439,7 +513,17 @@ public class ConnectFour extends Drawable
 		return index;
 	}
 
-	//checks single index for winner
+	/**
+	 * getWinner(char[] connectFour, int index)
+	 * @param connectFour
+	 * Which board to check for winners
+	 * @param index
+	 * Which index to check specifically at for a winner
+	 * @return char
+	 * Returns who has won the game
+	 *
+	 * checks single index for winner
+	 */
 	public static char getWinner(char[] connectFour, int index)
 	{
 		int row = index / COLUMNS;
@@ -817,4 +901,9 @@ public class ConnectFour extends Drawable
 		//if blocking then returns: [COLUMN, 2*COLUMN)
 		return (connectFour[i] == TURN ? 0 : COLUMNS) + emptySpot % COLUMNS;
 	}
+
+	public NeuralNetwork getNeuralNetwork() {
+		return nnAI;
+	}
+
 }

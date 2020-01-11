@@ -1,9 +1,15 @@
 package neuralnetwork;
 
+/**
+ * @Author Cole Petkevich, Zebadiah Quiros, Kestt Van Zyl
+ */
+
 import java.io.Serializable;
 
 public class Neuron implements Serializable
 {
+    private static final long serialVersionUID = 3884689762876358004L;
+
     private double bias;
     private double input;
     private double output;
@@ -53,5 +59,38 @@ public class Neuron implements Serializable
 
     public int getIndex() {
         return index;
+    }
+
+    public boolean equals(Object o) {
+        if (! (o instanceof  Neuron) ) {
+            return false;
+        }
+        Neuron oN = (Neuron) o;
+
+        if (oN.getBias() != this.getBias()) {
+            return false;
+        }
+
+        if (oN.getIndex() != this.getIndex()) {
+            return false;
+        }
+
+        if (oN.getdEdO() != this.getdEdO()) {
+            return false;
+        }
+
+        if (oN.getdEdI() != this.getdEdI()) {
+            return false;
+        }
+
+        if (oN.getInput() != this.getInput()) {
+            return false;
+        }
+
+        if (oN.getOutput() != this.getOutput()) {
+            return false;
+        }
+
+        return true;
     }
 }

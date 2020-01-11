@@ -1,8 +1,13 @@
 package engine;
 
+/**
+ * @Author Cole Petkevich, Zebadiah Quiros, Kestt Van Zyl
+ */
+
 public class Vector2
 {
 	public static final Vector2 ZERO = new Vector2(0, 0);
+	public static final Vector2 ONE = new Vector2(1, 1);
 
 	public final float x;
 	public final float y;

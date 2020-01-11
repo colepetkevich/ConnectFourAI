@@ -1,5 +1,9 @@
 package engine;
 
+/**
+ * @Author Cole Petkevich, Zebadiah Quiros, Kestt Van Zyl
+ */
+
 import java.awt.Graphics;
 
 public abstract class Drawable extends Item implements Updatable, Comparable<Drawable>

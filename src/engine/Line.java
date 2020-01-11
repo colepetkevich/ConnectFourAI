@@ -1,5 +1,9 @@
 package engine;
 
+/**
+ * @Author Cole Petkevich, Zebadiah Quiros, Kestt Van Zyl
+ */
+
 import java.awt.*;
 
 public class Line extends Drawable {
@@ -26,8 +30,8 @@ public class Line extends Drawable {
             float drawWidth = getSize().x * sceneHeight / (2 * Scene.RADIUS);
             float drawHeight = getSize().y * sceneHeight / (2 * Scene.RADIUS);
 
-            Vector2 positionOne = new Vector2(getPosition().x - .5f * getSize().x, getPosition().y - .5f * getSize().y);
-            Vector2 positionTwo = new Vector2(getPosition().x + .5f * getSize().x, getPosition().y + .5f * getSize().y);
+            Vector2 positionOne = new Vector2(getPosition().x + .5f * getSize().x, getPosition().y + .5f * getSize().y);
+            Vector2 positionTwo = new Vector2(getPosition().x - .5f * getSize().x, getPosition().y - .5f * getSize().y);
             //System.out.println(positionOne + " & " + positionTwo);
 
 

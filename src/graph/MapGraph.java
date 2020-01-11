@@ -1,5 +1,9 @@
 package graph;
 
+/**
+ * @Author Cole Petkevich, Zebadiah Quiros, Kestt Van Zyl
+ */
+
 import java.io.Serializable;
 import java.util.Iterator;
 import java.util.LinkedHashMap;

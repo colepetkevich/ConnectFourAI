@@ -2,7 +2,9 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/GameEngine.iml" filepath="$PROJECT_DIR$/GameEngine.iml" />
+      <module fileurl="file://$PROJECT_DIR$/ConnectFourAI.iml" filepath="$PROJECT_DIR$/ConnectFourAI.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/ConnectFourAI.main.iml" filepath="$PROJECT_DIR$/.idea/modules/ConnectFourAI.main.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/ConnectFourAI.test.iml" filepath="$PROJECT_DIR$/.idea/modules/ConnectFourAI.test.iml" />
     </modules>
   </component>
 </project>
